@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">Internship Profil</a>
+                <a class="navbar-brand" href="index.jsp">Your internship profile management</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
