@@ -71,7 +71,7 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Welcome To Internship Management Website!</div>
                 <div class="intro-heading"> </div>
-                <a href="signin.jsp" class="page-scroll btn btn-xl">Sign in</a>
+                <a href="/SOA_Project-war/signin.jsp" class="page-scroll btn btn-xl">Sign in</a>
                 <div>
                     <p style="text-align:center">No account ? Create one <a href="#services" target="_blank">here</a></p>
                 </div>
