@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginInterface</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <url-pattern>/yann/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

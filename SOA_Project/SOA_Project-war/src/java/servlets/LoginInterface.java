@@ -65,9 +65,11 @@ public class LoginInterface extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username=request.getParameter("UserUsername");
-        String password=request.getParameter("UserPassword");
-        try {
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        RequestDispatcher rd = request.getRequestDispatcher("home");       
+        rd.forward(request, response);
+        /*try {
             if (DatabaseManager.verifConnection(DatabaseManager.connectionDatabase(), username, password).equals("nothing here")) {
                 
             } else {
@@ -77,7 +79,7 @@ public class LoginInterface extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
     }
 
