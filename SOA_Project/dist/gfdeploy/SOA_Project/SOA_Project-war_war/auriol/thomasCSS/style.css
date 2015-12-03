@@ -1,0 +1,23 @@
+red
+{
+    color : red;
+}
+
+fieldset
+{	
+    border-color: black;
+    border-radius: 5px;
+}
+
+input[type=submit]
+{
+    
+}
+
+label
+
+{
+    display: block;
+    width: 150px;
+    float: left;
+}
