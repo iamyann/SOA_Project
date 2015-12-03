@@ -30,10 +30,26 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <script language="javascript">
+            //fonction permettant d'afficher les cases à cocher entreprise et étudiants après le clic sur creer un compte
+            function afficherLesChamps() {
+                i = 1;
+                for (i = 1; i <= 5; i++) {
+                    document.getElementById("cacher" + i).style.visibility = "visible";
+                }
+            }
 
+            //fonction permettant de cacher les cases à cocher entreprise et étudiants au chargement de la page
+            function cacherLesChamps() {
+                i = 1;
+                for (i = 1; i <= 5; i++) {
+                    document.getElementById("cacher" + i).style.visibility = "hidden";
+                }
+            }
+        </script>
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" onLoad="cacherLesChamps()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -72,8 +88,21 @@
                 <div class="intro-lead-in">Welcome To Internship Management Website!</div>
                 <div class="intro-heading"> </div>
                 <a href="/SOA_Project-war/signin.jsp" class="page-scroll btn btn-xl">Sign in</a>
-                <div>
-                    <p style="text-align:center">No account ? Create one <a href="#services" target="_blank">here</a></p>
+                <div align="center">
+                    
+                    <form method="post" action="CreationCompte">
+                        <a href="#" onClick="afficherLesChamps()">Créer un compte</a><br/>
+                            
+                        <p>
+                            <input type="radio" name="typeCompte" value="etudiant" id="cacher1"/> 
+                            <label for="etudiant" id="cacher2">Etudiant<label/>
+                            <input type="radio" name="typeCompte" value="entreprise" id="cacher3"/>
+                            <label for="entreprise" id="cacher4">Entreprise/Laboratoire<label/><br/>
+                        </p>
+                        <div> <input type="submit" id="cacher5" value="Valider"> </div>
+                                
+                            
+                    </form>
                 </div>
             </div>
         </div>

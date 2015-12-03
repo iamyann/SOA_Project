@@ -8,9 +8,35 @@
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreationCompte</servlet-name>
+        <servlet-class>servlets.CreationCompte</servlet-class>
+    </servlet>   
+    <servlet-mapping>
+        <servlet-name>CreationCompte</servlet-name>
+        <url-pattern>/CreationCompte</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>creerCompteEtudiant</servlet-name>
+        <servlet-class>servlets.creerCompteEtudiant</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>creerCompteEtudiant</servlet-name>
+        <url-pattern>/creerCompteEtudiant</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>creerCompteEntreprise</servlet-name>
+        <servlet-class>servlets.creerCompteEntreprise</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>creerCompteEntreprise</servlet-name>
+        <url-pattern>/creerCompteEntreprise</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>5</session-timeout>
     </session-config>
 </web-app>
