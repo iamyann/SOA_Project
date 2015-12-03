@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Waiting for your profile</title>
+<title>Chargement.....</title>
 <meta http-equiv="refresh" content="1; URL=yann/profil/index.jsp">
 </head>
 
