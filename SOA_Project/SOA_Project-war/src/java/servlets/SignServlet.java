@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,10 +59,17 @@ public class SignServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = ((HttpServletRequest) request).getSession(false);
+        session = request.getSession();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        if(username.equals("admin") && password.equals("admin"))
+        session.setAttribute( "prenom", username);
+        RequestDispatcher rd = request.getRequestDispatcher("redex.jsp");       
+        rd.forward(request, response);         
+        /*if(username.equals("admin") && password.equals("admin"))
         {
+            session.setAttribute( "nom", nom );
+            session.setAttribute( "prenom", username);
             RequestDispatcher rd = request.getRequestDispatcher("redex.jsp");       
             rd.forward(request, response);               
         }
@@ -69,7 +77,7 @@ public class SignServlet extends HttpServlet {
         {
              RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");       
             rd.forward(request, response); 
-        }
+        }*/
 
         /*try {
             if (DatabaseManager.verifConnection(DatabaseManager.connectionDatabase(), username, password).equals("nothing here")) {
