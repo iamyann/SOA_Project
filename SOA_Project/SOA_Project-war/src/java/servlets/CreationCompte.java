@@ -63,12 +63,12 @@ public class CreationCompte extends HttpServlet {
        String typeCompte=request.getParameter("typeCompte");
         if(typeCompte.equals("entreprise"))
         {
-            RequestDispatcher rd = request.getRequestDispatcher("r1.jsp");       
+            RequestDispatcher rd = request.getRequestDispatcher("/creerCompteEntreprise.jsp");       
             rd.forward(request, response);               
         }
         else
         {
-             RequestDispatcher rd = request.getRequestDispatcher("r2.jsp");       
+             RequestDispatcher rd = request.getRequestDispatcher("/creerCompteEtudiant_y.jsp");       
             rd.forward(request, response); 
         }        
     }
