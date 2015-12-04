@@ -60,15 +60,15 @@ public class CreationCompte extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             
-       String typeCompte=request.getParameter("typeCompte");
+        String typeCompte=request.getParameter("typeCompte");
         if(typeCompte.equals("entreprise"))
         {
-            RequestDispatcher rd = request.getRequestDispatcher("/creerCompteEntreprise.jsp");       
+            RequestDispatcher rd = request.getRequestDispatcher("creerCompteEntreprise.jsp");       
             rd.forward(request, response);               
         }
         else
         {
-             RequestDispatcher rd = request.getRequestDispatcher("/creerCompteEtudiant_y.jsp");       
+             RequestDispatcher rd = request.getRequestDispatcher("creerCompteEtudiant.jsp");       
             rd.forward(request, response); 
         }        
     }
