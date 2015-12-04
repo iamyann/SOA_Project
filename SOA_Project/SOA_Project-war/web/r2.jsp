@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Chargement.....</title>
-<meta http-equiv="refresh" content="1; URL=thomas/creerCompteEtudiant.jsp">
+<meta http-equiv="refresh" content="1; URL=creerCompteEtudiant.jsp">
 </head>
 
 <body>

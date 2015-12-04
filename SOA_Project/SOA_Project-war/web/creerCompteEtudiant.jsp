@@ -2,30 +2,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="thomasCSS/style.css"/>
+        <link rel="stylesheet" href="thomas/style.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Création Compte Etudiant</title>
     </head>
     <body>        
-        <form method="post" action="afficherProfilEtudiant">
+        <form method="post" action="servletCreerCompteEtudiant">
             <fieldset>
             <legend>	Enregistrement	</legend>
                 <label for="email">Email<red>*</red></label>
                     <input type="email" name="email" id="email" required><br>
                 <label for="mdp">Mot de passe<red>*</red></label>
-                    <input type="password" name="mdp" id="mdp1" required><br>
+                    <input type="password" name="mdp1" id="mdp1" required><br>
                 <label for="mdp">Confirmation Mot de passe<red>*</red></label>
-                    <input type="password" name="mdp" id="mdp2" required><br>
+                    <input type="password" name="mdp2" id="mdp2" required><br>
             </fieldset><br>
             <fieldset>
                 <legend>	Profil	</legend>
                 <label for="civilite">Sexe<red>*</red></label>
                     <input type="radio" name="sexe" value="M" checked/>Homme
                     <input type="radio" name="sexe" value="F"/>Femme</label><br>
-                <label for="nom">Nom<red>*</red></label>
-                    <input type="text" id="Nom" name="Nom"  size="20" maxlength="20" required/><br>
                 <label for="prenom">Prénom<red>*</red></label>
-                    <input type="text" id="Prenom" name="Prenom"  size="20" maxlength="20" required/><br>
+                    <input type="text" id="prenom" name="prenom" size="20" maxlength="20" required/><br>
+                <label for="nom">Nom<red>*</red></label>
+                    <input type="text" id="nom" name="nom" size="20" maxlength="20" required/><br>
                 <label for="date_de_naissance">Date de naissance<red>*</red></label>
                     <input type="date" name="date" id="date" required><br>
                 <label for="adresse">Adresse<red>*</red></label>

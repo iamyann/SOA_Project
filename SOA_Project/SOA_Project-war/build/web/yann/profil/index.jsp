@@ -144,7 +144,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="/SOA_Project-war/yann/accueil.jsp"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/SOA_Project-war/index.jsp"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>

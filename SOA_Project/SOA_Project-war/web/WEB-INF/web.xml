@@ -12,19 +12,19 @@
     <servlet>
         <servlet-name>CreationCompte</servlet-name>
         <servlet-class>servlets.CreationCompte</servlet-class>
-    </servlet>   
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationCompte</servlet-name>
         <url-pattern>/CreationCompte</url-pattern>
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>creerCompteEtudiant</servlet-name>
-        <servlet-class>servlets.creerCompteEtudiant</servlet-class>
+        <servlet-name>servletCreerCompteEtudiant</servlet-name>
+        <servlet-class>servlets.servletCreerCompteEtudiant</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>creerCompteEtudiant</servlet-name>
-        <url-pattern>/creerCompteEtudiant</url-pattern>
+        <servlet-name>servletCreerCompteEtudiant</servlet-name>
+        <url-pattern>/servletCreerCompteEtudiant</url-pattern>
     </servlet-mapping>
     
     <servlet>
