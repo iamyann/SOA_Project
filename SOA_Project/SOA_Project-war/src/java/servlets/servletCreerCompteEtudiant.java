@@ -29,8 +29,8 @@ public class servletCreerCompteEtudiant extends HttpServlet {
         session.setAttribute( "nom", nom );
         session.setAttribute( "prenom", prenom);
         
-        RequestDispatcher rd = request.getRequestDispatcher("redex.jsp");
-        rd.include(request, response);      
-        //this.getServletContext().getRequestDispatcher("/profilEtudiant.jsp").forward(request, response);
+        //RequestDispatcher rd = request.getRequestDispatcher("redex.jsp");
+        //rd.include(request, response);      
+        this.getServletContext().getRequestDispatcher("/WEB-INF/profilEtudiant.jsp").forward(request, response);
     }
 }

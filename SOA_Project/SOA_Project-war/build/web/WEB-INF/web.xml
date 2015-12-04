@@ -4,11 +4,14 @@
         <servlet-name>SignServlet</servlet-name>
         <servlet-class>servlets.SignServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCreerCompteEntreprise</servlet-name>
+        <servlet-class>servlets.ServletCreerCompteEntreprise</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>CreationCompte</servlet-name>
         <servlet-class>servlets.CreationCompte</servlet-class>
@@ -17,7 +20,6 @@
         <servlet-name>CreationCompte</servlet-name>
         <url-pattern>/CreationCompte</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>servletCreerCompteEtudiant</servlet-name>
         <servlet-class>servlets.servletCreerCompteEtudiant</servlet-class>
@@ -26,7 +28,6 @@
         <servlet-name>servletCreerCompteEtudiant</servlet-name>
         <url-pattern>/servletCreerCompteEtudiant</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>creerCompteEntreprise</servlet-name>
         <servlet-class>servlets.creerCompteEntreprise</servlet-class>
@@ -35,7 +36,10 @@
         <servlet-name>creerCompteEntreprise</servlet-name>
         <url-pattern>/creerCompteEntreprise</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>ServletCreerCompteEntreprise</servlet-name>
+        <url-pattern>/ServletCreerCompteEntreprise</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>
     </session-config>

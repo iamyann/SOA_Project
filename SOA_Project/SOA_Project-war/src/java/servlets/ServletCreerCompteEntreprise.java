@@ -5,22 +5,20 @@
  */
 package servlets;
 
-/**
- *
- * @author Auriol
- */
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* Servlet permettant de vérifier quelle type de compte on souhaite créer et redirige vers la page appropriée  */
-public class CreationCompte extends HttpServlet {
+/**
+ *
+ * @author TOSHIBA
+ */
+public class ServletCreerCompteEntreprise extends HttpServlet {
 
-    /* AURIOL ==> Yann a modifié des trucsq pour que ça marche */
-   /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -31,7 +29,19 @@ public class CreationCompte extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletCreerCompteEntreprise</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletCreerCompteEntreprise at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,6 +56,7 @@ public class CreationCompte extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -59,12 +70,13 @@ public class CreationCompte extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String typeCompte=request.getParameter("typeCompte");
-       if (typeCompte.equals("entreprise")) {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/creerCompteEntreprise.jsp").forward(request, response);
-       } else {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/creerCompteEtudiant.jsp").forward(request, response);
-       }
+       String nomEtab=request.getParameter("nomEntreprise");
+       String typeEtab=request.getParameter("typeEtab");
+       
+       request.setAttribute("nomEtab",nomEtab);
+       request.setAttribute("typeEtab",typeEtab);
+       
+       this.getServletContext().getRequestDispatcher("/WEB-INF/profilEntreprise.jsp").forward(request, response);  
     }
 
     /**
