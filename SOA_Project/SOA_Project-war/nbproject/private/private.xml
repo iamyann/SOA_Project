@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Thomas/Documents/INSA/5A/SOA%20-%20G.Gharbi/SOA_Project/SOA_Project/SOA_Project-war/web/WEB-INF/creerCompteEtudiant.jsp</file>
+            <file>file:/C:/Users/Thomas/Documents/INSA/5A/SOA%20-%20G.Gharbi/SOA_Project/SOA_Project/SOA_Project-war/web/WEB-INF/profilEtudiant.jsp</file>
+            <file>file:/C:/Users/Thomas/Documents/INSA/5A/SOA%20-%20G.Gharbi/SOA_Project/SOA_Project/SOA_Project-war/src/java/servlets/servletCreerCompteEtudiant.java</file>
+        </group>
     </open-files>
 </project-private>
