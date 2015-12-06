@@ -62,35 +62,25 @@ public class SignServlet extends HttpServlet {
          HttpSession session = ((HttpServletRequest) request).getSession(false);
         session = request.getSession();
         String username=request.getParameter("username");
-        String password=request.getParameter("password");
+        String password=request.getParameter("password");        
         session.setAttribute( "prenom", username);
-        RequestDispatcher rd = request.getRequestDispatcher("redex.jsp");       
-        rd.forward(request, response);         
-        /*if(username.equals("admin") && password.equals("admin"))
+        
+        if("entreprise".equalsIgnoreCase(username))
         {
-            session.setAttribute( "nom", nom );
-            session.setAttribute( "prenom", username);
-            RequestDispatcher rd = request.getRequestDispatcher("redex.jsp");       
-            rd.forward(request, response);               
+            RequestDispatcher rd = request.getRequestDispatcher("r1.jsp");       
+            rd.forward(request, response); 
+        }
+        else if("etudiant".equalsIgnoreCase(username))
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("r2.jsp");       
+            rd.forward(request, response); 
         }
         else
         {
-             RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");       
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");       
             rd.forward(request, response); 
-        }*/
-
-        /*try {
-            if (DatabaseManager.verifConnection(DatabaseManager.connectionDatabase(), username, password).equals("nothing here")) {
-                
-            } else {
-                RequestDispatcher rd = request.getRequestDispatcher("home");
-                rd.forward(request, response);
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
+        }
+                        
     }
 
     /**
