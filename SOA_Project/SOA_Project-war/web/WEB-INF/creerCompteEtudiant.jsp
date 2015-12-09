@@ -13,9 +13,9 @@
                 <label for="email">Email<red>*</red></label>
                     <input type="text" name="email" id="email" size="20" maxlength="30" required><br> <!-- remettre en mail!!!-->
                 <label for="mdp">Mot de passe<red>*</red></label>
-                    <input type="password" name="mdp1" id="mdp1" size="20" maxlength="20" required><br>
+                    <input id="mdp1" type="password" name="mdp1" id="mdp1" size="20" maxlength="20" required><br>
                 <label for="mdp">Confirmation Mot de passe<red>*</red></label>
-                    <input type="password" name="mdp2" id="mdp2" size="20" maxlength="20" required><br>
+                    <input id="mdp2" type="password" name="mdp2" id="mdp2" size="20" maxlength="20" required><br>
             </fieldset><br>
             <fieldset>
                 <legend>Profil</legend>
@@ -74,7 +74,7 @@
                         <option value="Angola">Angola </option>
                         <option value="Anguilla">Anguilla </option>
                         <option value="Arabie_Saoudite">Arabie_Saoudite </option>
-                        <option value="Argentine">Argentine </option><option value="Armenie">Armenie </option><option value="Australie">Australie </option><option value="Autriche">Autriche </option><option value="Azerbaidjan">Azerbaidjan </option><option value="Bahamas">Bahamas </option><option value="Bangladesh">Bangladesh </option><option value="Barbade">Barbade </option><option value="Bahrein">Bahrein </option><option value="Belgique">Belgique </option><option value="Belize">Belize </option><option value="Benin">Benin </option><option value="Bermudes">Bermudes </option><option value="Bielorussie">Bielorussie </option><option value="Bolivie">Bolivie </option><option value="Botswana">Botswana </option><option value="Bhoutan">Bhoutan </option><option value="Boznie_Herzegovine">Boznie_Herzegovine </option><option value="Bresil">Bresil </option><option value="Brunei">Brunei </option><option value="Bulgarie">Bulgarie </option><option value="Burkina_Faso">Burkina_Faso </option><option value="Burundi">Burundi </option><option value="Caiman">Caiman </option><option value="Cambodge">Cambodge </option><option value="Cameroun">Cameroun </option><option value="Canada">Canada </option><option value="Canaries">Canaries </option><option value="Cap_vert">Cap_Vert </option><option value="Chili">Chili </option><option value="Chine">Chine </option><option value="Chypre">Chypre </option><option value="Colombie">Colombie </option><option value="Comores">Colombie </option><option value="Congo">Congo </option><option value="Congo_democratique">Congo_democratique </option><option value="Cook">Cook </option><option value="Coree_du_Nord">Coree_du_Nord </option><option value="Coree_du_Sud">Coree_du_Sud </option><option value="Costa_Rica">Costa_Rica </option><option value="Cote_d_Ivoire">CÃ´te_d_Ivoire </option><option value="Croatie">Croatie </option><option value="Cuba">Cuba </option><option value="Danemark">Danemark </option><option value="Djibouti">Djibouti </option><option value="Dominique">Dominique </option><option value="Egypte">Egypte </option><option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option><option value="Equateur">Equateur </option><option value="Erythree">Erythree </option><option value="Espagne">Espagne </option><option value="Estonie">Estonie </option><option value="Etats_Unis">Etats_Unis </option><option value="Ethiopie">Ethiopie </option><option value="Falkland">Falkland </option><option value="Feroe">Feroe </option><option value="Fidji">Fidji </option><option value="Finlande">Finlande </option><option value="France">France </option><option value="Gabon">Gabon </option><option value="Gambie">Gambie </option>
+                        <option value="Argentine">Argentine </option><option value="Armenie">Armenie </option><option value="Australie">Australie </option><option value="Autriche">Autriche </option><option value="Azerbaidjan">Azerbaidjan </option><option value="Bahamas">Bahamas </option><option value="Bangladesh">Bangladesh </option><option value="Barbade">Barbade </option><option value="Bahrein">Bahrein </option><option value="Belgique">Belgique </option><option value="Belize">Belize </option><option value="Benin">Benin </option><option value="Bermudes">Bermudes </option><option value="Bielorussie">Bielorussie </option><option value="Bolivie">Bolivie </option><option value="Botswana">Botswana </option><option value="Bhoutan">Bhoutan </option><option value="Boznie_Herzegovine">Boznie_Herzegovine </option><option value="Bresil">Bresil </option><option value="Brunei">Brunei </option><option value="Bulgarie">Bulgarie </option><option value="Burkina_Faso">Burkina_Faso </option><option value="Burundi">Burundi </option><option value="Caiman">Caiman </option><option value="Cambodge">Cambodge </option><option value="Cameroun">Cameroun </option><option value="Canada">Canada </option><option value="Canaries">Canaries </option><option value="Cap_vert">Cap_Vert </option><option value="Chili">Chili </option><option value="Chine">Chine </option><option value="Chypre">Chypre </option><option value="Colombie">Colombie </option><option value="Comores">Colombie </option><option value="Congo">Congo </option><option value="Congo_democratique">Congo_democratique </option><option value="Cook">Cook </option><option value="Coree_du_Nord">Coree_du_Nord </option><option value="Coree_du_Sud">Coree_du_Sud </option><option value="Costa_Rica">Costa_Rica </option><option value="Cote_d_Ivoire">Cote_d_Ivoire </option><option value="Croatie">Croatie </option><option value="Cuba">Cuba </option><option value="Danemark">Danemark </option><option value="Djibouti">Djibouti </option><option value="Dominique">Dominique </option><option value="Egypte">Egypte </option><option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option><option value="Equateur">Equateur </option><option value="Erythree">Erythree </option><option value="Espagne">Espagne </option><option value="Estonie">Estonie </option><option value="Etats_Unis">Etats_Unis </option><option value="Ethiopie">Ethiopie </option><option value="Falkland">Falkland </option><option value="Feroe">Feroe </option><option value="Fidji">Fidji </option><option value="Finlande">Finlande </option><option value="France">France </option><option value="Gabon">Gabon </option><option value="Gambie">Gambie </option>
                         <option value="Georgie">Georgie </option>
                         <option value="Ghana">Ghana </option>
                         <option value="Gibraltar">Gibraltar </option>
@@ -252,7 +252,25 @@
                         <option value="GPr" id="GPr">Génie des Procédés</option> 
                     </select><br>
             </fieldset><br>
-            <input type="submit" value="Valider"/>
+            <input disabled type="submit" value="Valider" id="send"/>
         </form>
+        <script>
+            document.getElementById('mdp1').onkeyup = function(e) {
+                if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }
+            document.getElementById('mdp2').onkeyup = function(e) {
+                if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }           
+        </script>
     </body>
 </html>

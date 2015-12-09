@@ -41,9 +41,9 @@
             ResultSet resultat = statement.executeQuery( "SELECT adresse FROM THOMAS.ETUDIANTS" );
             while ( resultat.next() ) 
             {
-                String adresse = resultat.getString( "adresse" );
-                out.println(adresse);
+                String adresse = resultat.getString( "adresse" );                
             }            
+            //out.println(adresse);
         }
         catch (SQLException e) // gérer les éventuelles erreurs ici
         {

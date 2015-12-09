@@ -1,9 +1,3 @@
-<%-- 
-    Document   : fail
-    Created on : 4 déc. 2015, 18:16:37
-    Author     : Thomas
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
