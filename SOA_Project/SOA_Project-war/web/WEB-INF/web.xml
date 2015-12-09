@@ -40,6 +40,26 @@
         <servlet-name>ReponseEntretienServlet</servlet-name>
         <servlet-class>servlets.ReponseEntretienServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OffreStageServlet</servlet-name>
+        <servlet-class>servlets.OffreStageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VoirProfilServlet</servlet-name>
+        <servlet-class>servlets.VoirProfilServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VoirCandidatureServlet</servlet-name>
+        <servlet-class>servlets.VoirCandidatureServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValiderServlet</servlet-name>
+        <servlet-class>servlets.ValiderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SpontaneServlet</servlet-name>
+        <servlet-class>servlets.SpontaneServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -79,6 +99,26 @@
     <servlet-mapping>
         <servlet-name>CreationCompte</servlet-name>
         <url-pattern>/CreationCompte</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OffreStageServlet</servlet-name>
+        <url-pattern>/OffreStageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VoirProfilServlet</servlet-name>
+        <url-pattern>/VoirProfilServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VoirCandidatureServlet</servlet-name>
+        <url-pattern>/VoirCandidatureServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValiderServlet</servlet-name>
+        <url-pattern>/ValiderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SpontaneServlet</servlet-name>
+        <url-pattern>/SpontaneServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

@@ -62,7 +62,7 @@
                                     <div class="media-body">
                                         <h5 class="media-heading"><strong>${sessionScope.prenom}</strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Hier Ã  10:32 </p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Hier à 10:32 </p>
                                         <p>Ceci est un test</p>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Profil <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="voir-profil.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter son profil</a>
+                                <a href="/SOA_Project-war/VoirProfilServlet"><i class="fa fa-fw fa-desktop"></i> Consulter son profil</a>
                             </li>
                             <li>
                                 <a href="edit-profil.jsp"><i class="fa fa-fw fa-wrench"></i> Modifier son profil</a>
@@ -131,22 +131,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="stages-offres.jsp"><i class="fa fa-fw fa-table"></i> Offres de stage</a>
+                        <a href="/SOA_Project-war/OffreStageServlet"><i class="fa fa-fw fa-table"></i> Offres de stage</a>
                     </li>
                     <li>
-                        <a href="form-stages.jsp"><i class="fa fa-fw fa-edit"></i> Candidater a un Stage</a>
+                        <a href="/SOA_Project-war/SpontaneServlet"><i class="fa fa-fw fa-edit"></i> Candidature spontanee</a>
                     </li>
                     <li>
-                        <a href="forms.jsp"><i class="fa fa-fw fa-edit"></i> Candidature spontanee</a>
-                    </li>
-                    <li>
-                        <a href="voir-candidatures.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter ses candidatures</a>
-                    </li>
-                    <li>
-                        <a href="tables.jsp"><i class="fa fa-fw fa-table"></i> Repondre a  un entretien</a>
-                    </li>
-                    <li>
-                        <a href="stage.jsp"><i class="fa fa-fw fa-table"></i> Repondre a  une offre</a>
+                        <a href="/SOA_Project-war/VoirCandidatureServlet"><i class="fa fa-fw fa-desktop"></i> Mes candidatures</a>
                     </li>                    
                 </ul>
             </div>
@@ -168,7 +159,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.jsp">Tableau de bord</a>
+                                 <i class="fa fa-dashboard"></i>  <a href="index-etud.jsp">Tableau de bord</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Stage
@@ -184,12 +175,9 @@
 
                         <form method="POST" action="CandidatSpontServlet">
 							
-			    <label>Nom. Entreprise</label>
-			    <div class="form-group input-group">								
-                                <input name="nom_entreprise" type="text" class="form-control">
-                                <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
-                            </div>   
-
+			    
+			    ${entreprise}
+                            
                             <div class="form-group">
                                 <label>CV</label>
                                 <input name="CV" type="file">
