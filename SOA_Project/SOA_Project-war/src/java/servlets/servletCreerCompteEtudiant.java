@@ -29,16 +29,18 @@ public class servletCreerCompteEtudiant extends HttpServlet
             this.getServletContext().getRequestDispatcher("/WEB-INF/fail.jsp").forward(request, response);
         }
 /* Connexion à la base de données  et inscription de l'utilisateur */
-        String url = "jdbc:derby://localhost:1527/test"; // à modifier selon matthieu
+        String url = "jdbc:derby://localhost:1527/etudiants"; // à modifier selon matthieu
         String utilisateur = "thomas";
-        String motDePasse = "thomasthomas";
+        String motDePasse = "thomas";
         Connection connexion = null;
         try // Ici, nous placerons nos requêtes vers la BDD
         {
             connexion = DriverManager.getConnection(url, utilisateur, motDePasse); // connexion à la bdd en mode admin
             Statement statement = connexion.createStatement();  // création de l'objet gérant les requêtes
+            // récupération des champs du formulaire
             String email = request.getParameter("email");
-            String mdp = request.getParameter("mdp"); 
+            String mdp = request.getParameter("mdp1"); // on assume que les deux mots de passes sont identiques du fait du js
+            //String mdp2 = request.getParameter("mdp2");
             String sexe = request.getParameter("sexe");
             String prenom = request.getParameter("prenom");
             String nom = request.getParameter("nom");
@@ -49,13 +51,14 @@ public class servletCreerCompteEtudiant extends HttpServlet
             int code = Integer.parseInt(request.getParameter("code_postal"));
             String ville = request.getParameter("ville");
             String pays  = request.getParameter("pays");
-            int id = Integer.parseInt(request.getParameter("telephone"));
+            int telephone = Integer.parseInt(request.getParameter("telephone"));
             String etab = request.getParameter("etablissement_scolaire");
             String spe = request.getParameter("spe");
-            //int statut = statement.executeUpdate("INSERT INTO TABLETEST (email, id) VALUES ('bla', "+ id + ")");
-            //this.getServletContext().getRequestDispatcher("/WEB-INF/fail.jsp").forward(request, response);
-            //int statut = statement.executeUpdate("INSERT INTO ETUDIANT (email, mot_de_passe prenom, nom) "
-            //        + "VALUES ('" + email + "','" + mdp "','" + prenom "','" + nom "');");
+            // mise en forme des champs pour insertion dans la bdd
+            String date = String.valueOf(jour)+"/"+String.valueOf(mois)+"/"+String.valueOf(annee);
+            // insertion dans la bdd
+            int statut = statement.executeUpdate("INSERT INTO THOMAS.ETUDIANTS (EMAIL, MDP, SEXE, PRENOM, NOM, DATE, ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, ETAB, SPE) "
+                    + "VALUES ('"+email+"', '"+mdp+"', '"+sexe+"', '"+prenom+"', '"+nom+"', '"+date+"', '"+adresse+"', "+code+", '"+ville+"', '"+pays+"', "+telephone+", '"+etab+"', '"+spe+"')");
         } 
         catch (SQLException e) // gérer les éventuelles erreurs ici
         {
@@ -74,8 +77,9 @@ public class servletCreerCompteEtudiant extends HttpServlet
 /* redirection */
         request.setAttribute("email", request.getParameter("email"));      
         request.setAttribute("prenom", request.getParameter("prenom"));
-        request.setAttribute("nom", request.getParameter("nom"));   
-        //this.getServletContext().getRequestDispatcher("/WEB-INF/fail.jsp").forward(request, response);     
+        request.setAttribute("nom", request.getParameter("nom"));
+        request.setAttribute("mdp", request.getParameter("mdp1"));
+        request.setAttribute("pays", request.getParameter("pays"));    
         this.getServletContext().getRequestDispatcher("/WEB-INF/profilEtudiant.jsp").forward(request, response);     
     }
 }
