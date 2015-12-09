@@ -67,7 +67,7 @@ public class SignServlet extends HttpServlet {
         
         if("entreprise".equalsIgnoreCase(username))
         {
-            RequestDispatcher rd = request.getRequestDispatcher("r1.jsp");       
+            RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       
             rd.forward(request, response); 
         }
         else if("etudiant".equalsIgnoreCase(username))
