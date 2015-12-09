@@ -5,8 +5,6 @@
  */
 package servlets;
 
-import beans.EntrepriseBean;
-import forms.CreationEntrepriseForm;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -39,13 +37,6 @@ public class ServletCreerCompteEntreprise extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        EntrepriseBean entreprise = new EntrepriseBean();
-        
-        CreationEntrepriseForm form = new CreationEntrepriseForm();
-        
-        entreprise=form.creerCompteEntreprise(request);
-        
-       request.setAttribute("entrepriseBean",entreprise);
        this.getServletContext().getRequestDispatcher("/WEB-INF/confirmerCreationEntreprise.jsp").forward(request, response);  
     }
 

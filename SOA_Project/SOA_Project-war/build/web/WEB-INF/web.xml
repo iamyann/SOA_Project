@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>servletCreerCompteEtudiant</servlet-name>
-        <servlet-class>servlets.servletCreerCompteEtudiant</servlet-class>
+        <servlet-class>servlets.ServletCreerCompteEtudiant</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletConfirmation</servlet-name>
@@ -40,13 +40,10 @@
         <servlet-name>ReponseEntretienServlet</servlet-name>
         <servlet-class>servlets.ReponseEntretienServlet</servlet-class>
     </servlet>
-    
-    
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>servletCreerCompteEtudiant</servlet-name>
         <url-pattern>/servletCreerCompteEtudiant</url-pattern>
