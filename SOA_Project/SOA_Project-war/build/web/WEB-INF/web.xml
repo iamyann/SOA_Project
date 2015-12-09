@@ -12,17 +12,29 @@
         <servlet-name>ServletConfirmation</servlet-name>
         <servlet-class>servlets.ServletConfirmation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>servlets.EditProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CandidatSpontServlet</servlet-name>
+        <servlet-class>servlets.CandidatSpontServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CandidatStageServlet</servlet-name>
+        <servlet-class>servlets.CandidatStageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReponseStageServlet</servlet-name>
+        <servlet-class>servlets.ReponseStageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReponseEntretienServlet</servlet-name>
+        <servlet-class>servlets.ReponseEntretienServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>CreationCompte</servlet-name>
-        <servlet-class>servlets.CreationCompte</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CreationCompte</servlet-name>
-        <url-pattern>/CreationCompte</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>servletCreerCompteEtudiant</servlet-name>
@@ -47,6 +59,26 @@
     <servlet-mapping>
         <servlet-name>ServletConfirmation</servlet-name>
         <url-pattern>/ServletConfirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/EditProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CandidatSpontServlet</servlet-name>
+        <url-pattern>/CandidatSpontServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CandidatStageServlet</servlet-name>
+        <url-pattern>/CandidatStageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReponseStageServlet</servlet-name>
+        <url-pattern>/ReponseStageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReponseEntretienServlet</servlet-name>
+        <url-pattern>/ReponseEntretienServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

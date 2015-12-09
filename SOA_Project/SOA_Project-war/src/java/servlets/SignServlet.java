@@ -72,7 +72,7 @@ public class SignServlet extends HttpServlet {
         }
         else if("etudiant".equalsIgnoreCase(username))
         {
-            RequestDispatcher rd = request.getRequestDispatcher("r2.jsp");       
+            RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
             rd.forward(request, response); 
         }
         else
