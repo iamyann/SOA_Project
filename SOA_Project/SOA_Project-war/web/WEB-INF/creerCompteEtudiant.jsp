@@ -7,11 +7,11 @@
         <title>Création Compte Etudiant</title>
     </head>
     <body>        
-        <form method="post" action="servletCreerCompteEtudiant">
+        <form method="post" action="ServletCreerCompteEtudiant">
             <fieldset>
             <legend>Enregistrement</legend>
                 <label for="email">Email<red>*</red></label>
-                    <input type="text" name="email" id="email" size="20" maxlength="30" required><br> <!-- remettre en mail!!!-->
+                    <input type="email" name="email" id="email" size="20" maxlength="30" required><br> 
                 <label for="mdp">Mot de passe<red>*</red></label>
                     <input id="mdp1" type="password" name="mdp1" id="mdp1" size="20" maxlength="20" required><br>
                 <label for="mdp">Confirmation Mot de passe<red>*</red></label>
@@ -21,7 +21,7 @@
                 <legend>Profil</legend>
                 <label for="civilite">Sexe<red>*</red></label>
                     <input type="radio" name="sexe" value="M" checked/>Homme
-                    <input type="radio" name="sexe" value="F"/>Femme</label><br>
+                    <input type="radio" name="sexe" value="F"/>Femme<br>
                 <label for="prenom">Prénom<red>*</red></label>
                     <input type="text" id="prenom" name="prenom" size="20" maxlength="20" required/><br>
                 <label for="nom">Nom<red>*</red></label>

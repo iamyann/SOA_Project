@@ -1,149 +1,266 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="ISO8859-1"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        
+    <head>        
         <link rel="stylesheet" href="style.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Création Compte Entreprise/Laboratoire</title>
-    </head>
-    
+        <title>Cr�ation Compte Entreprise/Laboratoire</title>
+    </head>    
     <body>
-        <header>
-            
-        </header>
-        
-        <nav>
-            
-        </nav>
-        
-        <section>
-                <aside>
-                    <form method="post" action="ServletCreerCompteEntreprise">
-                        
-                        <fieldset>
-                            <legend>ENREGISTREMENT</legend>
-                            <table>
-                                <tr>
-                                    <td><label for="emailEtab">Email<red>*</red></label></td>
-                                    <td><input type="email" id="emailEtab" name="emailEtab" value="${entrepriseBean.email}"required/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="mdp">Mot de passe<red>*</red></label></td>
-                                    <td><input type="password" name="mdp1" id="mdp1" required></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="mdp">Confirmation Mot de passe<red>*</red></label></td>
-                                    <td><input type="password" name="mdp2" id="mdp2" required></td>
-                                </tr>
-                            </table>
-
-                        </fieldset>
-                        <fieldset>
-                            <legend>PROFIL</legend>
-                            <table>
-                                <tr>
-                                    <td><label for="Type">Type<red>*</red></label></td>
-                                    <td>
-                                        <input type="radio" name="typeEtab" value="entreprise" checked/>
-                                        <label for="Entreprise">Entreprise</label>
-                                        <input type="radio" name="typeEtab" value="laboratoire"/>
-                                        <label for="Laboratoire">Laboratoire</label>
-                                    </td>
-                                </tr>                    
-                                <tr>
-                                    <td><label for="nomEnteprise">Nom<red>*</red></label></td>
-                                    <td><input type="text" id="nomEntreprise" name="nomEntreprise"  value="Cap" size="20" maxlength="20" required/></td>   
-                                </tr>
-                                <tr>
-                                    <td><label for="siret">Numéro de SIRET 
-                                            (pour les entreprises françaises) </label></td>
-                                    <td><input type="number" id="siret" name="siret" value="" size="14" maxlength="14" required/></td>
-                                </tr>
-
-                                <tr>
-                                    <td><label for="domaineAct">Domaine d'activité<red>*</red></label></td>
-                                    <td><select name="domaineAct" id="domaineAct" required>
-                                            <option>Choisir un domaine</option>
-                                            <option value="Eco Industrie, environnement et aménagement">Eco Industrie, environnement et aménagement</option>
-                                            <option value="Eco conception">Eco conception</option>
-                                            <option value="Industrie agroalimentaire">Industrie agroalimentaire</option>
-                                            <option value="Industrie chimique, parachimique, pharmaceutique, cosmétique">Industrie chimique, parachimique, pharmaceutique, cosmétique</option>
-                                            <option value="Energie">Energie</option>
-                                            <option value="Industrie automobile,navale,ferroviaire">Industrie automobile,navale,ferroviaire</option>
-                                            <option value="Matériaux, métallurgie">Matériaux, métallurgie</option>
-                                            <option value="Nanotechnologies">Nanotechnologies</option>
-                                            <option value="Instrumentation">Instrumentation</option>
-                                            <option value="Industrie électronique et microéléctronique">Industrie électronique et microéléctronique</option>
-                                            <option value="Informatique">Informatique</option>
-                                            <option value="SSII">SSII</option>
-                                            <option value="Opérateur de télécommunication">Opérateur de télécommunication</option>
-                                            <option value="Réseaux">Réseaux</option>
-                                            <option value="Institution financière/banque/assurance">Institution financière/banque/assurance</option>
-                                            <option value="Société de conseil">Société de conseil</option>
-                                            <option value="Administration d'Etat, territoriale, hospitalière">Administration d'Etat, territoriale, hospitalière</option>
-                                            <option value="Bâtiment travaux publics">Bâtiment travaux publics</option>
-                                            <option value="Autres secteurs industriels">Autres secteurs industriels</option>
-                                        </select></td>                    
-                                </tr>
-                                <tr>
-                                    <td><label for="tailleEtab">Taille de l'établissement<red>*</red></label></td>
-                                    <td><select name="tailleEtablissement" id="tailleEtablissement" required>                   
-                                            <option>Choisir une taille</option>
-                                            <option value="TPE">1 à 49 (TPE)</option>
-                                            <option value="PME">50 à 249 (PME)</option>
-                                            <option value="ETI">250 à 4999</option>
-                                            <option value="Grand Groupe">>5000 (Grand Groupe)</option>
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="adresseEtab">Adresse<red>*</red></label></td>
-                                    <td><textarea name="adresseEtab" id="adresseEtab" rows=3 cols=20 required></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="codePos">Code Postal<red>*</red></label></td>
-                                    <td><input type="text" id="codePos" name="codePos" value="" size="5" maxlength="5" required/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="villeEtab">Ville<red>*</red></label></td>
-                                    <td><input type="text" id="villeEtab" name="villeEtab" value="" size="20" maxlength="20" required/></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="paysEtab">Pays<red>*</red></label></td>
-                                    <td><select name="paysEtab" id="paysEtab" required>
-                                            <option value="1" >Choisir un pays</option>
-                                            <option value="2" >Afghanistan</option>
-                                            <option value="3" >Afrique du Sud</option>
-                                            <option value="4" >Albanie</option>
-                                            <option value="5" >Algérie</option><option value="6" >Allemagne</option><option value="7" >Andorre</option><option value="8" >Angola</option><option value="9" >Antigua-et-Barbuda</option><option value="10" >Arabie saoudite</option><option value="11" >Argentine</option><option value="12" >Arménie</option><option value="13" >Australie</option><option value="14" >Autriche</option><option value="15" >Azerbaïdjan</option><option value="16" >Bahamas</option><option value="17" >Bahreïn</option><option value="18" >Bangladesh</option><option value="19" >Barbade</option><option value="20" >Belau</option><option value="21" >Belgique</option><option value="22" >Belize</option><option value="23" >Bénin</option><option value="24" >Bhoutan</option><option value="25" >Biélorussie</option><option value="26" >Birmanie</option><option value="27" >Bolivie</option><option value="28" >Bosnie-Herzégovine</option><option value="29" >Botswana</option><option value="30" >Brésil</option><option value="31" >Brunei</option><option value="32" >Bulgarie</option><option value="33" >Burkina</option><option value="34" >Burundi</option><option value="35" >Cambodge</option><option value="36" >Cameroun</option><option value="37" >Canada</option><option value="38" >Cap-Vert</option><option value="39" >Chili</option><option value="40" >Chine</option><option value="41" >Chypre</option><option value="42" >Colombie</option><option value="43" >Comores</option><option value="44" >Congo</option><option value="45" >Congo  (ex-Zaïre)</option><option value="46" >Cook (les Îles)</option><option value="47" >Corée du Nord</option><option value="48" >Corée du Sud</option><option value="49" >Costa Rica</option><option value="50" >Côte d'Ivoire</option><option value="51" >Croatie</option><option value="52" >Cuba</option><option value="53" >Danemark</option><option value="54" >Djibouti</option><option value="55" >Dominique</option><option value="56" >Égypte</option><option value="57" >Émirats arabes unis</option><option value="58" >Équateur</option><option value="59" >Érythrée</option><option value="60" >Espagne</option><option value="61" >Estonie</option><option value="62" >États-Unis</option><option value="63" >Éthiopie</option><option value="64" >Fidji</option><option value="65" >Finlande</option><option value="1" >France</option><option value="67" >Gabon</option><option value="68" >Gambie</option><option value="69" >Géorgie</option><option value="70" >Ghana</option><option value="71" >Grèce</option><option value="72" >Grenade</option><option value="73" >Guatemala</option><option value="74" >Guinée</option><option value="75" >Guinée-Bissao</option><option value="76" >Guinée équatoriale</option><option value="77" >Guyana</option><option value="78" >Haïti</option><option value="79" >Honduras</option><option value="80" >Hongrie</option><option value="81" >Inde</option><option value="82" >Indonésie</option><option value="83" >Iran</option><option value="84" >Iraq</option><option value="85" >Irlande</option><option value="86" >Islande</option><option value="87" >Israël</option><option value="88" >Italie</option><option value="89" >Jamaïque</option><option value="90" >Japon</option><option value="91" >Jordanie</option><option value="92" >Kazakhstan</option><option value="93" >Kenya</option><option value="94" >Kirghizistan</option><option value="95" >Kiribati</option><option value="96" >Koweït</option><option value="97" >Laos</option><option value="98" >Lesotho</option><option value="99" >Lettonie</option><option value="100" >Liban</option><option value="101" >Liberia</option><option value="102" >Libye</option><option value="103" >Liechtenstein</option><option value="104" >Lituanie</option><option value="105" >Luxembourg</option><option value="106" >Macédoine</option><option value="107" >Madagascar</option><option value="108" >Malaisie</option><option value="109" >Malawi</option><option value="110" >Maldives</option><option value="111" >Mali</option><option value="112" >Malte</option><option value="113" >Maroc</option><option value="114" >Marshall (les Îles)</option><option value="115" >Maurice</option><option value="116" >Mauritanie</option><option value="117" >Mexique</option><option value="118" >Micronésie</option><option value="119" >Moldavie</option><option value="120" >Monaco</option><option value="121" >Mongolie</option><option value="122" >Mozambique</option><option value="123" >Namibie</option><option value="124" >Nauru</option><option value="125" >Népal</option><option value="126" >Nicaragua</option><option value="127" >Niger</option><option value="128" >Nigeria</option><option value="129" >Niue</option><option value="130" >Norvège</option><option value="131" >Nouvelle-Zélande</option><option value="132" >Oman</option><option value="133" >Ouganda</option><option value="134" >Ouzbékistan</option><option value="135" >Pakistan</option><option value="136" >Panama</option><option value="137" >Papouasie - Nouvelle Guinée</option><option value="138" >Paraguay</option><option value="139" >Pays-Bas</option><option value="140" >Pérou</option><option value="141" >Philippines</option><option value="142" >Pologne</option><option value="143" >Portugal</option><option value="144" >Qatar</option><option value="145" >République centrafricaine</option><option value="146" >République dominicaine</option><option value="147" >République tchèque</option><option value="148" >Roumanie</option><option value="149" >Royaume-Uni</option><option value="150" >Russie</option><option value="151" >Rwanda</option><option value="152" >Saint-Christophe-et-Niévès</option><option value="153" >Sainte-Lucie</option><option value="154" >Saint-Marin</option><option value="155" >Saint-Siège , ou leVatican</option><option value="156" >Saint-Vincent-et-les Grenadines</option><option value="157" >Salomon (les Îles)</option><option value="158" >Salvador</option><option value="159" >Samoa occidentales</option><option value="160" >Sao Tomé-et-Principe</option><option value="161" >Sénégal</option><option value="162" >Seychelles</option><option value="163" >Sierra Leone</option><option value="164" >Singapour</option><option value="165" >Slovaquie</option><option value="166" >Slovénie</option><option value="167" >Somalie</option><option value="168" >Soudan</option><option value="169" >Sri Lanka</option><option value="170" >Suède</option><option value="171" >Suisse</option><option value="172" >Suriname</option><option value="173" >Swaziland</option><option value="174" >Syrie</option><option value="175" >Tadjikistan</option><option value="196" >Taïwan</option><option value="176" >Tanzanie</option><option value="177" >Tchad</option><option value="178" >Thaïlande</option><option value="179" >Togo</option><option value="180" >Tonga</option><option value="181" >Trinité-et-Tobago</option><option value="182" >Tunisie</option><option value="183" >Turkménistan</option><option value="184" >Turquie</option><option value="185" >Tuvalu</option><option value="186" >Ukraine</option><option value="187" >Uruguay</option><option value="188" >Vanuatu</option><option value="189" >Venezuela</option><option value="190" >Viêt Nam</option><option value="191" >Yémen</option><option value="192" >Yougoslavie</option><option value="193" >Zaïre  voir Congo</option><option value="194" >Zambie</option><option value="195" >Zimbabwe</option>
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="telEtab">Téléphone<red>*</red></label></td>
-                                    <td><input type="text" id="telEtab" name="telEtab" value="" size="14" maxlength="14" required/></td>
-                                </tr>
-
-                                <tr>
-                                    <td><label for="siteWebEtab">Site Web</label></td>
-                                    <td><input type="siteWebEtab" id="siteWebEtab" name="siteWebEtab" value="" size="20" maxlength="30"/></td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                        
-                        <table>
-                            <tr>
-                                <td><input type="submit" value="Valider"/></td>
-                            </tr>
-                        </table>
-                       
-                    </form>
-                </aside>
-
-        </section>
-        
-        <footer>
-            
-        </footer>
-        
+        <form method="post" action="ServletCreerCompteEntreprise">
+            <fieldset>
+            <legend>Enregistrement</legend>
+                <label for="email">Email<red>*</red></label>
+                    <input type="email" name="email" id="email" size="20" maxlength="30" required><br> <!-- remettre en mail!!!-->
+                <label for="mdp">Mot de passe<red>*</red></label>
+                    <input id="mdp1" type="password" name="mdp1" id="mdp1" size="20" maxlength="20" required><br>
+                <label for="mdp">Confirmation Mot de passe<red>*</red></label>
+                    <input id="mdp2" type="password" name="mdp2" id="mdp2" size="20" maxlength="20" required><br>
+            </fieldset><br>
+            <fieldset>
+            <legend>Profil</legend>
+                <label for="type">Type<red>*</red></label></td>
+                    <input type="radio" name="type" value="entreprise" checked/>Entreprise
+                    <input type="radio" name="type" value="laboratoire"/>Laboratoire<br>
+                <label for="nom">Nom<red>*</red></label>
+                    <input type="text" id="nom" name="nom" size="20" maxlength="20" required/><br>   
+                <label for="siret">Num�ro de SIRET
+                                (pour les entreprises fran�aises)</label>
+                    <input type="text" id="siret" name="siret" size="14" maxlength="14" required/><br><br>
+                <label for="domaine">Domaine d'activit�<red>*</red></label>
+                    <select name="domaine" id="domaine" required>
+                        <option>Choisir un domaine</option>
+                        <option value="Eco Industrie, environnement et am�nagement">Eco Industrie, environnement et am�nagement</option>
+                        <option value="Eco conception">Eco conception</option>
+                        <option value="Industrie agroalimentaire">Industrie agroalimentaire</option>
+                        <option value="Industrie chimique, parachimique, pharmaceutique, cosm�tique">Industrie chimique, parachimique, pharmaceutique, cosm�tique</option>
+                        <option value="Energie">Energie</option>
+                        <option value="Industrie automobile,navale,ferroviaire">Industrie automobile,navale,ferroviaire</option>
+                        <option value="Mat�riaux, m�tallurgie">Mat�riaux, m�tallurgie</option>
+                        <option value="Nanotechnologies">Nanotechnologies</option>
+                        <option value="Instrumentation">Instrumentation</option>
+                        <option value="Industrie �lectronique et micro�l�ctronique">Industrie �lectronique et micro�l�ctronique</option>
+                        <option value="Informatique">Informatique</option>
+                        <option value="SSII">SSII</option>
+                        <option value="Op�rateur de t�l�communication">Op�rateur de t�l�communication</option>
+                        <option value="R�seaux">R�seaux</option>
+                        <option value="Institution financi�re/banque/assurance">Institution financi�re/banque/assurance</option>
+                        <option value="Soci�t� de conseil">Soci�t� de conseil</option>
+                        <option value="Administration d'Etat, territoriale, hospitali�re">Administration d'Etat, territoriale, hospitali�re</option>
+                        <option value="B�timent travaux publics">B�timent travaux publics</option>
+                        <option value="Autres secteurs industriels">Autres secteurs industriels</option>
+                    </select><br>                
+                <label for="taille">Taille de l'�tablissement<red>*</red></label>
+                    <select name="taille" id="taille" required>                   
+                        <option>Choisir une taille</option>
+                        <option value="TPE">1 � 49 (TPE)</option>
+                        <option value="PME">50 � 249 (PME)</option>
+                        <option value="ETI">250 � 4999</option>
+                        <option value="Grand Groupe">>5000 (Grand Groupe)</option>
+                    </select><br>
+                <label for="adresse">Adresse<red>*</red></label>
+                    <input type="text" id="adresse" name="adresse" size="30" maxlength="30" required/><br>
+                <label for="code_postal">Code Postal<red>*</red></label>
+                    <input type="text" id="code_postal" name="code_postal" size="5" maxlength="5" required/><br>
+                <label for="ville">Ville<red>*</red></label>
+                    <input type="text" id="ville" name="ville" size="20" maxlength="20" required/><br>
+                <label for="pays">Pays<red>*</red></label>
+                    <!--<input type="text" id="pays" name="pays" size="20" maxlength="20" required/><br>-->
+                    <select id="pays" name="pays" required>
+                        <option value="1">Choisir Pays</option>
+                        <option value="Afghanistan">Afghanistan </option>
+                        <option value="Afrique_Centrale">Afrique_Centrale </option>
+                        <option value="Afrique_du_sud">Afrique_du_Sud </option>
+                        <option value="Albanie">Albanie </option>
+                        <option value="Algerie">Algerie </option>
+                        <option value="Allemagne">Allemagne </option>
+                        <option value="Andorre">Andorre </option>
+                        <option value="Angola">Angola </option>
+                        <option value="Anguilla">Anguilla </option>
+                        <option value="Arabie_Saoudite">Arabie_Saoudite </option>
+                        <option value="Argentine">Argentine </option><option value="Armenie">Armenie </option><option value="Australie">Australie </option><option value="Autriche">Autriche </option><option value="Azerbaidjan">Azerbaidjan </option><option value="Bahamas">Bahamas </option><option value="Bangladesh">Bangladesh </option><option value="Barbade">Barbade </option><option value="Bahrein">Bahrein </option><option value="Belgique">Belgique </option><option value="Belize">Belize </option><option value="Benin">Benin </option><option value="Bermudes">Bermudes </option><option value="Bielorussie">Bielorussie </option><option value="Bolivie">Bolivie </option><option value="Botswana">Botswana </option><option value="Bhoutan">Bhoutan </option><option value="Boznie_Herzegovine">Boznie_Herzegovine </option><option value="Bresil">Bresil </option><option value="Brunei">Brunei </option><option value="Bulgarie">Bulgarie </option><option value="Burkina_Faso">Burkina_Faso </option><option value="Burundi">Burundi </option><option value="Caiman">Caiman </option><option value="Cambodge">Cambodge </option><option value="Cameroun">Cameroun </option><option value="Canada">Canada </option><option value="Canaries">Canaries </option><option value="Cap_vert">Cap_Vert </option><option value="Chili">Chili </option><option value="Chine">Chine </option><option value="Chypre">Chypre </option><option value="Colombie">Colombie </option><option value="Comores">Colombie </option><option value="Congo">Congo </option><option value="Congo_democratique">Congo_democratique </option><option value="Cook">Cook </option><option value="Coree_du_Nord">Coree_du_Nord </option><option value="Coree_du_Sud">Coree_du_Sud </option><option value="Costa_Rica">Costa_Rica </option><option value="Cote_d_Ivoire">Cote_d_Ivoire </option><option value="Croatie">Croatie </option><option value="Cuba">Cuba </option><option value="Danemark">Danemark </option><option value="Djibouti">Djibouti </option><option value="Dominique">Dominique </option><option value="Egypte">Egypte </option><option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option><option value="Equateur">Equateur </option><option value="Erythree">Erythree </option><option value="Espagne">Espagne </option><option value="Estonie">Estonie </option><option value="Etats_Unis">Etats_Unis </option><option value="Ethiopie">Ethiopie </option><option value="Falkland">Falkland </option><option value="Feroe">Feroe </option><option value="Fidji">Fidji </option><option value="Finlande">Finlande </option><option value="France">France </option><option value="Gabon">Gabon </option><option value="Gambie">Gambie </option>
+                        <option value="Georgie">Georgie </option>
+                        <option value="Ghana">Ghana </option>
+                        <option value="Gibraltar">Gibraltar </option>
+                        <option value="Grece">Grece </option>
+                        <option value="Grenade">Grenade </option>
+                        <option value="Groenland">Groenland </option>
+                        <option value="Guadeloupe">Guadeloupe </option>
+                        <option value="Guam">Guam </option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guernesey">Guernesey </option>
+                        <option value="Guinee">Guinee </option>
+                        <option value="Guinee_Bissau">Guinee_Bissau </option>
+                        <option value="Guinee equatoriale">Guinee_Equatoriale </option>
+                        <option value="Guyana">Guyana </option>
+                        <option value="Guyane_Francaise ">Guyane_Francaise </option>
+                        <option value="Haiti">Haiti </option>
+                        <option value="Hawaii">Hawaii </option>
+                        <option value="Honduras">Honduras </option>
+                        <option value="Hong_Kong">Hong_Kong </option>
+                        <option value="Hongrie">Hongrie </option>
+                        <option value="Inde">Inde </option>
+                        <option value="Indonesie">Indonesie </option>
+                        <option value="Iran">Iran </option>
+                        <option value="Iraq">Iraq </option>
+                        <option value="Irlande">Irlande </option>
+                        <option value="Islande">Islande </option>
+                        <option value="Israel">Israel </option>
+                        <option value="Italie">italie </option>
+                        <option value="Jamaique">Jamaique </option>
+                        <option value="Jan Mayen">Jan Mayen </option>
+                        <option value="Japon">Japon </option>
+                        <option value="Jersey">Jersey </option>
+                        <option value="Jordanie">Jordanie </option>
+                        <option value="Kazakhstan">Kazakhstan </option>
+                        <option value="Kenya">Kenya </option>
+                        <option value="Kirghizstan">Kirghizistan </option>
+                        <option value="Kiribati">Kiribati </option>
+                        <option value="Koweit">Koweit </option>
+                        <option value="Laos">Laos </option>
+                        <option value="Lesotho">Lesotho </option>
+                        <option value="Lettonie">Lettonie </option>
+                        <option value="Liban">Liban </option>
+                        <option value="Liberia">Liberia </option>
+                        <option value="Liechtenstein">Liechtenstein </option>
+                        <option value="Lituanie">Lituanie </option>
+                        <option value="Luxembourg">Luxembourg </option>
+                        <option value="Lybie">Lybie </option>
+                        <option value="Macao">Macao </option>
+                        <option value="Macedoine">Macedoine </option>
+                        <option value="Madagascar">Madagascar </option>
+                        <option value="Madère">Madère </option>
+                        <option value="Malaisie">Malaisie </option>
+                        <option value="Malawi">Malawi </option>
+                        <option value="Maldives">Maldives </option>
+                        <option value="Mali">Mali </option>
+                        <option value="Malte">Malte </option>
+                        <option value="Man">Man </option>
+                        <option value="Mariannes du Nord">Mariannes du Nord </option>
+                        <option value="Maroc">Maroc </option>
+                        <option value="Marshall">Marshall </option>
+                        <option value="Martinique">Martinique </option>
+                        <option value="Maurice">Maurice </option>
+                        <option value="Mauritanie">Mauritanie </option>
+                        <option value="Mayotte">Mayotte </option>
+                        <option value="Mexique">Mexique </option>
+                        <option value="Micronesie">Micronesie </option>
+                        <option value="Midway">Midway </option>
+                        <option value="Moldavie">Moldavie </option>
+                        <option value="Monaco">Monaco </option>
+                        <option value="Mongolie">Mongolie </option>
+                        <option value="Montserrat">Montserrat </option>
+                        <option value="Mozambique">Mozambique </option>
+                        <option value="Namibie">Namibie </option>
+                        <option value="Nauru">Nauru </option>
+                        <option value="Nepal">Nepal </option>
+                        <option value="Nicaragua">Nicaragua </option>
+                        <option value="Niger">Niger </option>
+                        <option value="Nigeria">Nigeria </option>
+                        <option value="Niue">Niue </option>
+                        <option value="Norfolk">Norfolk </option>
+                        <option value="Norvege">Norvege </option>
+                        <option value="Nouvelle_Caledonie">Nouvelle_Caledonie </option>
+                        <option value="Nouvelle_Zelande">Nouvelle_Zelande </option>
+                        <option value="Oman">Oman </option>
+                        <option value="Ouganda">Ouganda </option>
+                        <option value="Ouzbekistan">Ouzbekistan </option>
+                        <option value="Pakistan">Pakistan </option>
+                        <option value="Palau">Palau </option>
+                        <option value="Palestine">Palestine </option>
+                        <option value="Panama">Panama </option>
+                        <option value="Papouasie_Nouvelle_Guinee">Papouasie_Nouvelle_Guinee </option>
+                        <option value="Paraguay">Paraguay </option>
+                        <option value="Pays_Bas">Pays_Bas </option>
+                        <option value="Perou">Perou </option>
+                        <option value="Philippines">Philippines </option>
+                        <option value="Pologne">Pologne </option>
+                        <option value="Polynesie">Polynesie </option>
+                        <option value="Porto_Rico">Porto_Rico </option>
+                        <option value="Portugal">Portugal </option>
+                        <option value="Qatar">Qatar </option>
+                        <option value="Republique_Dominicaine">Republique_Dominicaine </option>
+                        <option value="Republique_Tcheque">Republique_Tcheque </option>
+                        <option value="Reunion">Reunion </option>
+                        <option value="Roumanie">Roumanie </option>
+                        <option value="Royaume_Uni">Royaume_Uni </option>
+                        <option value="Russie">Russie </option>
+                        <option value="Rwanda">Rwanda </option>
+                        <option value="Sahara Occidental">Sahara Occidental </option>
+                        <option value="Sainte_Lucie">Sainte_Lucie </option>
+                        <option value="Saint_Marin">Saint_Marin </option>
+                        <option value="Salomon">Salomon </option>
+                        <option value="Salvador">Salvador </option>
+                        <option value="Samoa_Occidentales">Samoa_Occidentales</option>
+                        <option value="Samoa_Americaine">Samoa_Americaine </option>
+                        <option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </option>
+                        <option value="Senegal">Senegal </option>
+                        <option value="Seychelles">Seychelles </option>
+                        <option value="Sierra Leone">Sierra Leone </option>
+                        <option value="Singapour">Singapour </option>
+                        <option value="Slovaquie">Slovaquie </option>
+                        <option value="Slovenie">Slovenie</option>
+                        <option value="Somalie">Somalie </option>
+                        <option value="Soudan">Soudan </option>
+                        <option value="Sri_Lanka">Sri_Lanka </option>
+                        <option value="Suede">Suede </option>
+                        <option value="Suisse">Suisse </option>
+                        <option value="Surinam">Surinam </option>
+                        <option value="Swaziland">Swaziland </option>
+                        <option value="Syrie">Syrie </option>
+                        <option value="Tadjikistan">Tadjikistan </option>
+                        <option value="Taiwan">Taiwan </option>
+                        <option value="Tonga">Tonga </option>
+                        <option value="Tanzanie">Tanzanie </option>
+                        <option value="Tchad">Tchad </option>
+                        <option value="Thailande">Thailande </option>
+                        <option value="Tibet">Tibet </option>
+                        <option value="Timor_Oriental">Timor_Oriental </option>
+                        <option value="Togo">Togo </option>
+                        <option value="Trinite_et_Tobago">Trinite_et_Tobago </option>
+                        <option value="Tristan da cunha">Tristan de cuncha </option>
+                        <option value="Tunisie">Tunisie </option>
+                        <option value="Turkmenistan">Turmenistan </option>
+                        <option value="Turquie">Turquie </option>
+                        <option value="Ukraine">Ukraine </option>
+                        <option value="Uruguay">Uruguay </option>
+                        <option value="Vanuatu">Vanuatu </option>
+                        <option value="Vatican">Vatican </option>
+                        <option value="Venezuela">Venezuela </option>
+                        <option value="Vierges_Americaines">Vierges_Americaines </option>
+                        <option value="Vierges_Britanniques">Vierges_Britanniques </option>
+                        <option value="Vietnam">Vietnam </option>
+                        <option value="Wake">Wake </option>
+                        <option value="Wallis et Futuma">Wallis et Futuma </option>
+                        <option value="Yemen">Yemen </option>
+                        <option value="Yougoslavie">Yougoslavie </option>
+                        <option value="Zambie">Zambie </option>
+                        <option value="Zimbabwe">Zimbabwe </option>
+                    </select><br>
+                <label for="telephone">T�l�phone<red>*</red></label>
+                    <input type="tel" id="telephone" name="telephone" size="10" maxlength="10" required/><br>
+                <label for="siteweb">Site Web</label>
+                    <input type="text" id="siteweb" name="siteweb" size="20" maxlength="30"/><br>
+            </fieldset><br>
+            <input disabled type="submit" value="Valider" id="send"/>
+        </form>
+        <script>
+        document.getElementById('mdp1').onkeyup = function(e) {
+            if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+                document.getElementById('send').disabled = false;
+            }
+            else{
+                document.getElementById('send').disabled = true;
+            }
+        }
+        document.getElementById('mdp2').onkeyup = function(e) {
+            if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+                document.getElementById('send').disabled = false;
+            }
+            else{
+                document.getElementById('send').disabled = true;
+            }
+        }           
+        </script>
     </body>
 </html>

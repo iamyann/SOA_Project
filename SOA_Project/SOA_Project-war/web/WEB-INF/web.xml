@@ -13,7 +13,7 @@
         <servlet-class>servlets.CreationCompte</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>servletCreerCompteEtudiant</servlet-name>
+        <servlet-name>ServletCreerCompteEtudiant</servlet-name>
         <servlet-class>servlets.ServletCreerCompteEtudiant</servlet-class>
     </servlet>
     <servlet>
@@ -45,8 +45,8 @@
         <url-pattern>/SignServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>servletCreerCompteEtudiant</servlet-name>
-        <url-pattern>/servletCreerCompteEtudiant</url-pattern>
+        <servlet-name>ServletCreerCompteEtudiant</servlet-name>
+        <url-pattern>/ServletCreerCompteEtudiant</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletCreerCompteEntreprise</servlet-name>
