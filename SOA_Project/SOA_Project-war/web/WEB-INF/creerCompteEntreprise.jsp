@@ -26,15 +26,15 @@
                             <table>
                                 <tr>
                                     <td><label for="emailEtab">Email<red>*</red></label></td>
-                                    <td><input type="email" id="emailEtab" name="emailEtab" required/></td>
+                                    <td><input type="email" id="emailEtab" name="emailEtab" value="${entrepriseBean.email}"required/></td>
                                 </tr>
                                 <tr>
                                     <td><label for="mdp">Mot de passe<red>*</red></label></td>
-                                    <td><input type="password" name="mdp" id="mdp1" required></td>
+                                    <td><input type="password" name="mdp1" id="mdp1" required></td>
                                 </tr>
                                 <tr>
                                     <td><label for="mdp">Confirmation Mot de passe<red>*</red></label></td>
-                                    <td><input type="password" name="mdp" id="mdp2" required></td>
+                                    <td><input type="password" name="mdp2" id="mdp2" required></td>
                                 </tr>
                             </table>
 
@@ -53,7 +53,7 @@
                                 </tr>                    
                                 <tr>
                                     <td><label for="nomEnteprise">Nom<red>*</red></label></td>
-                                    <td><input type="text" id="nomEntreprise" name="nomEntreprise"  size="20" maxlength="20" required/></td>   
+                                    <td><input type="text" id="nomEntreprise" name="nomEntreprise"  value="Cap" size="20" maxlength="20" required/></td>   
                                 </tr>
                                 <tr>
                                     <td><label for="siret">Numéro de SIRET 
@@ -125,7 +125,7 @@
 
                                 <tr>
                                     <td><label for="siteWebEtab">Site Web</label></td>
-                                    <td><input type="siteWebEtab" id="siteWebEtab" name="SiteWebEtab" value="" size="20" maxlength="30"/></td>
+                                    <td><input type="siteWebEtab" id="siteWebEtab" name="siteWebEtab" value="" size="20" maxlength="30"/></td>
                                 </tr>
                             </table>
                         </fieldset>

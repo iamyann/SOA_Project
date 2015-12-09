@@ -8,6 +8,10 @@
         <servlet-name>ServletCreerCompteEntreprise</servlet-name>
         <servlet-class>servlets.ServletCreerCompteEntreprise</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletConfirmation</servlet-name>
+        <servlet-class>servlets.ServletConfirmation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServletCreerCompteEntreprise</servlet-name>
         <url-pattern>/ServletCreerCompteEntreprise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConfirmation</servlet-name>
+        <url-pattern>/ServletConfirmation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>
