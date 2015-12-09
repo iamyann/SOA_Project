@@ -16,8 +16,7 @@ public class ServletCreerCompteEtudiant extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
-    {
-        
+    {        
 /* Chargement du driver JDBC pour MySQL */
         try 
         {
@@ -48,17 +47,17 @@ public class ServletCreerCompteEtudiant extends HttpServlet
             int mois = Integer.parseInt(request.getParameter("mois"));
             int annee = Integer.parseInt(request.getParameter("annee"));
             String adresse = request.getParameter("adresse");
-            int code = Integer.parseInt(request.getParameter("code_postal"));
+            String code = request.getParameter("code_postal");
             String ville = request.getParameter("ville");
             String pays  = request.getParameter("pays");
-            int telephone = Integer.parseInt(request.getParameter("telephone"));
+            String telephone = request.getParameter("telephone");
             String etab = request.getParameter("etablissement_scolaire");
             String spe = request.getParameter("spe");
             // mise en forme des champs pour insertion dans la bdd
             String date = String.valueOf(jour)+"/"+String.valueOf(mois)+"/"+String.valueOf(annee);
             // insertion dans la bdd
             int statut = statement.executeUpdate("INSERT INTO THOMAS.ETUDIANTS (EMAIL, MDP, SEXE, PRENOM, NOM, DATE, ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, ETAB, SPE) "
-                    + "VALUES ('"+email+"', '"+mdp+"', '"+sexe+"', '"+prenom+"', '"+nom+"', '"+date+"', '"+adresse+"', "+code+", '"+ville+"', '"+pays+"', "+telephone+", '"+etab+"', '"+spe+"')");
+                    + "VALUES ('"+email+"', '"+mdp+"', '"+sexe+"', '"+prenom+"', '"+nom+"', '"+date+"', '"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"', '"+etab+"', '"+spe+"')");
         } 
         catch (SQLException e) // gérer les éventuelles erreurs ici
         {

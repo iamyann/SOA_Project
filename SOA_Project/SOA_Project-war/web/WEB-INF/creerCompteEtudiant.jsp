@@ -255,22 +255,47 @@
             <input disabled type="submit" value="Valider" id="send"/>
         </form>
         <script>
-            document.getElementById('mdp1').onkeyup = function(e) {
-                if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+            function testData(){
+            return (/^[0-9]{5}$/.test(document.getElementById('code_postal').value)
+            && /^[0-9]{10}$/.test(document.getElementById('telephone').value)
+            && document.getElementById('mdp1').value == document.getElementById('mdp2').value);
+            }
+
+            document.getElementById('code_postal').onkeyup = function(e){
+                if(testData()){
                     document.getElementById('send').disabled = false;
                 }
                 else{
                     document.getElementById('send').disabled = true;
                 }
             }
-            document.getElementById('mdp2').onkeyup = function(e) {
-                if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+
+            document.getElementById('telephone').onkeyup = function(e){
+                if(testData()){
                     document.getElementById('send').disabled = false;
                 }
                 else{
                     document.getElementById('send').disabled = true;
                 }
-            }           
+            }
+
+            document.getElementById('mdp1').onkeyup = function(e){
+                if(testData()){
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }
+
+        document.getElementById('mdp2').onkeyup = function(e){
+            if(testData()){
+                document.getElementById('send').disabled = false;
+            }
+            else{
+                document.getElementById('send').disabled = true;
+            }
+        }
         </script>
     </body>
 </html>

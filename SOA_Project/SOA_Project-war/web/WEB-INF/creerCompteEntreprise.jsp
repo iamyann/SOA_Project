@@ -35,7 +35,7 @@
                         <option value="Industrie agroalimentaire">Industrie agroalimentaire</option>
                         <option value="Industrie chimique, parachimique, pharmaceutique, cosmétique">Industrie chimique, parachimique, pharmaceutique, cosmétique</option>
                         <option value="Energie">Energie</option>
-                        <option value="Industrie automobile,navale,ferroviaire">Industrie automobile,navale,ferroviaire</option>
+                        <option value="Industrie automobile, navale, ferroviaire">Industrie automobile,navale,ferroviaire</option>
                         <option value="Matériaux, métallurgie">Matériaux, métallurgie</option>
                         <option value="Nanotechnologies">Nanotechnologies</option>
                         <option value="Instrumentation">Instrumentation</option>
@@ -56,7 +56,7 @@
                         <option value="TPE">1 à 49 (TPE)</option>
                         <option value="PME">50 à 249 (PME)</option>
                         <option value="ETI">250 à 4999</option>
-                        <option value="Grand Groupe">>5000 (Grand Groupe)</option>
+                        <option value="GGR">>5000 (Grand Groupe)</option>
                     </select><br>
                 <label for="adresse">Adresse<red>*</red></label>
                     <input type="text" id="adresse" name="adresse" size="30" maxlength="30" required/><br>
@@ -245,22 +245,57 @@
             <input disabled type="submit" value="Valider" id="send"/>
         </form>
         <script>
-        document.getElementById('mdp1').onkeyup = function(e) {
-            if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
+            function testData(){
+            return (/^[0-9]{14}$/.test(document.getElementById('siret').value)
+            && /^[0-9]{5}$/.test(document.getElementById('code_postal').value)
+            && /^[0-9]{10}$/.test(document.getElementById('telephone').value)
+            && document.getElementById('mdp1').value == document.getElementById('mdp2').value);
+            }
+
+            document.getElementById('siret').onkeyup = function(e){
+                if(testData()){
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }
+
+            document.getElementById('code_postal').onkeyup = function(e){
+                if(testData()){
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }
+
+            document.getElementById('telephone').onkeyup = function(e){
+                if(testData()){
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }
+
+            document.getElementById('mdp1').onkeyup = function(e){
+                if(testData()){
+                    document.getElementById('send').disabled = false;
+                }
+                else{
+                    document.getElementById('send').disabled = true;
+                }
+            }
+
+        document.getElementById('mdp2').onkeyup = function(e){
+            if(testData()){
                 document.getElementById('send').disabled = false;
             }
             else{
                 document.getElementById('send').disabled = true;
             }
         }
-        document.getElementById('mdp2').onkeyup = function(e) {
-            if(document.getElementById('mdp1').value == document.getElementById('mdp2').value)  {
-                document.getElementById('send').disabled = false;
-            }
-            else{
-                document.getElementById('send').disabled = true;
-            }
-        }           
         </script>
     </body>
 </html>
