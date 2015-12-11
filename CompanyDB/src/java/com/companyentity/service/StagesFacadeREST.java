@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package companyEntities.service;
+package com.companyentity.service;
 
-import companyEntities.Entretiensspontanes;
+import com.companyentity.Stages;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,26 +24,26 @@ import javax.ws.rs.Produces;
  * @author Jean
  */
 @Stateless
-@Path("companyentities.entretiensspontanes")
-public class EntretiensspontanesFacadeREST extends AbstractFacade<Entretiensspontanes> {
+@Path("com.companyentity.stages")
+public class StagesFacadeREST extends AbstractFacade<Stages> {
     @PersistenceContext(unitName = "CompanyDBPU")
     private EntityManager em;
 
-    public EntretiensspontanesFacadeREST() {
-        super(Entretiensspontanes.class);
+    public StagesFacadeREST() {
+        super(Stages.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Entretiensspontanes entity) {
+    public void create(Stages entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Integer id, Entretiensspontanes entity) {
+    public void edit(@PathParam("id") Integer id, Stages entity) {
         super.edit(entity);
     }
 
@@ -56,21 +56,21 @@ public class EntretiensspontanesFacadeREST extends AbstractFacade<Entretiensspon
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Entretiensspontanes find(@PathParam("id") Integer id) {
+    public Stages find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Entretiensspontanes> findAll() {
+    public List<Stages> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Entretiensspontanes> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Stages> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

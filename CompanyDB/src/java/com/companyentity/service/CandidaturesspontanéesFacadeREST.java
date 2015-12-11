@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package companyEntities.service;
+package com.companyentity.service;
 
-import companyEntities.Candidaturesspontanées;
+import com.companyentity.Candidaturesspontanées;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,7 +24,7 @@ import javax.ws.rs.Produces;
  * @author Jean
  */
 @Stateless
-@Path("companyentities.candidaturesspontan\u00e9es")
+@Path("com.companyentity.candidaturesspontan\u00e9es")
 public class CandidaturesspontanéesFacadeREST extends AbstractFacade<Candidaturesspontanées> {
     @PersistenceContext(unitName = "CompanyDBPU")
     private EntityManager em;
