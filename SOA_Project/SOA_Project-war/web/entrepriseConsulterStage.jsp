@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Proposer Stage Etudiant</title>
+    <title>Offres de Stage</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="EntrepriseCSS/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">Profil</a>
+                <a class="navbar-brand" href="entrepriseTableauBord.jsp">Profil</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -123,7 +123,7 @@
                         <a href="entrepriseConsulterProfil.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
                     </li>
                     <li>
-                        <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Consulter ses Stages</a>
+                        <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
                     </li>                    
                     <li>
                         <a href="entrepriseConvoquerEtudiant.jsp"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
@@ -131,12 +131,7 @@
                     <li>
                         <a href="entrepriseEnvoyerReponse.jsp"><i class="fa fa-fw fa-table"></i> Envoyer une Reponse</a>
                     </li> 
-                    <li>
-                        <a href="entrepriseProposerStage.jsp"><i class="fa fa-fw fa-edit"></i> Proposer un Stage</a>
-                    </li>  
-                    <li>
-                        <a href="entrepriseRetirerStage.jsp"><i class="fa fa-fw fa-edit"></i> Retirer un Stage</a>
-                    </li>                  
+                                     
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -154,11 +149,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Mes offres de Stage
+                            Gestion des offres de Stage
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.jsp">Tableau de Bord</a>
+                                <i class="fa fa-dashboard"></i>  <a href="entrepriseTableauBord.jsp">Tableau de Bord</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Stages
@@ -170,7 +165,10 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-6">
-                        <h2>Vos offres actuellement en ligne</h2>
+                        <h2>Les offres de stage</h2>
+                        <%-- Un code java au niveau de la servlet qui récupere de la base de données les offres
+                        de stage et les affiches au niveau de la jsp sous forme de tableau.
+                        --%>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -183,13 +181,24 @@
                                 </thead>
                                 <tbody>
                                     <tr class="active">
-                                        <td>Devellopeur Web</td>
+                                        <td>Developpeur Web</td>
                                         <td>Paris</td>
                                         <td>Bac+4</td>
                                         <td>$800</td>
+                                        <td>
+                                            <form method="post" action="/SOA_Project-war/EditerStageServlet">
+                                                <button type="submit" class="btn btn-default">Editer</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method="post" action="/SOA_Project-war/SupprimerOffreServlet">
+                                                <button type="submit" class="btn btn-default">Supprimer</button>
+                                            </form>
+                                        </td>
                                     </tr>
+                                    
                                     <tr class="success">
-                                        <td>Devellopeur Java</td>
+                                        <td>Developeur Java</td>
                                         <td>Toulouse</td>
                                         <td>Bac+4</td>
                                         <td>$1200</td>
@@ -226,6 +235,9 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <form method="post" action="/SOA_Project-war/EntrepriseProposerStageServlet">
+                                <button type="submit" class="btn btn-default">Ajouter une offre de stage</button>
+                            </form>
                         </div>
                     </div>              
                     

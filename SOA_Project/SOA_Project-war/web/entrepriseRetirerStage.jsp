@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Proposer Stage Etudiant</title>
+    <title>Retirer un Stage</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="EntrepriseCSS/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">Profil</a>
+                <a class="navbar-brand" href="entrepriseTableauBord.jsp">Profil</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -123,7 +123,7 @@
                         <a href="entrepriseConsulterProfil.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
                     </li>
                     <li>
-                        <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Consulter ses Stages</a>
+                        <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
                     </li>                    
                     <li>
                         <a href="entrepriseConvoquerEtudiant.jsp"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
@@ -131,12 +131,7 @@
                     <li>
                         <a href="entrepriseEnvoyerReponse.jsp"><i class="fa fa-fw fa-table"></i> Envoyer une Reponse</a>
                     </li> 
-                    <li>
-                        <a href="entrepriseProposerStage.jsp"><i class="fa fa-fw fa-edit"></i> Proposer un Stage</a>
-                    </li>  
-                    <li>
-                        <a href="entrepriseRetirerStage.jsp"><i class="fa fa-fw fa-edit"></i> Retirer un Stage</a>
-                    </li>                  
+                                 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -158,7 +153,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.jsp">Tableau de bord</a>
+                                <i class="fa fa-dashboard"></i>  <a href="entrepriseTableauBord.jsp">Tableau de bord</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> Stage

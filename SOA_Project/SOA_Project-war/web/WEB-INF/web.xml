@@ -60,6 +60,18 @@
         <servlet-name>SpontaneServlet</servlet-name>
         <servlet-class>servlets.SpontaneServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditerStageServlet</servlet-name>
+        <servlet-class>servlets.EditerStageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SupprimerOffreServlet</servlet-name>
+        <servlet-class>servlets.SupprimerOffreServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EntrepriseProposerStageServlet</servlet-name>
+        <servlet-class>servlets.EntrepriseProposerStageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -119,6 +131,18 @@
     <servlet-mapping>
         <servlet-name>SpontaneServlet</servlet-name>
         <url-pattern>/SpontaneServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditerStageServlet</servlet-name>
+        <url-pattern>/EditerStageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupprimerOffreServlet</servlet-name>
+        <url-pattern>/SupprimerOffreServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntrepriseProposerStageServlet</servlet-name>
+        <url-pattern>/EntrepriseProposerStageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>
