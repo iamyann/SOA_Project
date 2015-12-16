@@ -5,8 +5,12 @@
  */
 package servlets;
 
+import database.Data;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,18 +49,48 @@ public class VoirProfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+            Connection c1 = null;
+        try {
+            c1 = Data.connectionDatabase1();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            Connection c2 = null;
+        try {
+            c2 = Data.connectionDatabase2();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if(Data.addElementStudentGui(c1,"STUDENT", "Mr","Mb","Yann","testmdp","10-03-96","yann.md@yahoo.fr","141 avenue de rangueil","31400","Toulouse","France","06.34.58.49.79","INSA Toulouse","IR","Jeune Etudiant, cherche stage"))
+        {
+          System.out.println("Cratch 1..."); 
+        }
+        else
+          System.out.println("Well done 1...");
+        
+        if(Data.addElementStudentGui(c1,"STUDENT", "Mr","Etudiant","Etudiant","etudiant","10-03-96","etud@yahoo.fr","143 avenue de rangueil","31400","Toulouse","France","06.65.58.49.99","Epitech","IR","Jeune Etudiant, cherche stage"))
+        {
+          System.out.println("Cratch 2...");          
+        }
+        else
+            System.out.println("Well done 2...");
+          
+        
+//            c1.close();
+//            c2.close();
               String voirprofil=""
                       + " <tr>\n" +
-"                                <td>Actuellement en recherche de stage en ingenierie Cloud</td>\n" +
-"                                <td>INSA Toulouse</td>\n" +
-"                                <td>06.34.58.49.79</td>\n" +
-"                                <td>mboungou@etud.insa-toulouse.fr</td>\n" +
-"                                <td>141 Avenue de Rangueil, Toulouse</td>\n" +
+"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "DESCRIPTION", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "ETABLISSEMENT", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "TELEPHONE", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "EMAIL", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "ADRESSE", "STUDENT")+" , "+Data.getElement(c1, "Etudiant", "etudiant", "VILLE", "STUDENT")+" </td>\n" +
 "                         </tr>"
                       ;
-              String name="Yann Mb";
             request.setAttribute("profil", voirprofil); // This will be available as ${profil}
-            request.setAttribute("name", name); // This will be available as ${name}
             RequestDispatcher rd = request.getRequestDispatcher("voir-profil.jsp");
             rd.forward(request, response); 
         
