@@ -5,8 +5,14 @@
  */
 package servlets;
 
+import database.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,18 +36,6 @@ public class EditProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditProfileServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditProfileServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +65,26 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+          Connection c1 = null;
+        try {
+            c1 = Data.connectionDatabase1();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            Connection c2 = null;
+        try {
+            c2 = Data.connectionDatabase2();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String description=request.getParameter("resume");
+        String cv=request.getParameter("file");
+
+        Data.setElement(c1, "Etudiant", "etudiant", description, "STUDENT", "DESCRIPTION");       
+        RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
+        rd.forward(request, response); 
     }
 
     /**

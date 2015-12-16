@@ -63,21 +63,7 @@ public class VoirProfilServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        if(Data.addElementStudentGui(c1,"STUDENT", "Mr","Mb","Yann","testmdp","10-03-96","yann.md@yahoo.fr","141 avenue de rangueil","31400","Toulouse","France","06.34.58.49.79","INSA Toulouse","IR","Jeune Etudiant, cherche stage"))
-        {
-          System.out.println("Cratch 1..."); 
-        }
-        else
-          System.out.println("Well done 1...");
-        
-        if(Data.addElementStudentGui(c1,"STUDENT", "Mr","Etudiant","Etudiant","etudiant","10-03-96","etud@yahoo.fr","143 avenue de rangueil","31400","Toulouse","France","06.65.58.49.99","Epitech","IR","Jeune Etudiant, cherche stage"))
-        {
-          System.out.println("Cratch 2...");          
-        }
-        else
-            System.out.println("Well done 2...");
-          
+       
         
 //            c1.close();
 //            c2.close();

@@ -158,7 +158,11 @@ public class Data {
         else
           System.out.println("Cratch 2..."); 
         
-            c1.close();
+        String description="resume";
+
+        Data.setElement(c1, "Etudiant", "etudiant", description, "STUDENT", "DESCRIPTION");     
+        
+        c1.close();
             c2.close();
             
         } catch (SQLException ex) {
