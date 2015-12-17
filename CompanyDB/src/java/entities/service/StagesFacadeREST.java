@@ -5,7 +5,7 @@
  */
 package entities.service;
 
-import entities.Entretiens_1;
+import entities.Stages;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,53 +24,53 @@ import javax.ws.rs.Produces;
  * @author Jean
  */
 @Stateless
-@Path("entities.entretiens_1")
-public class Entretiens_1FacadeREST extends AbstractFacade<Entretiens_1> {
+@Path("entities.stages")
+public class StagesFacadeREST extends AbstractFacade<Stages> {
     @PersistenceContext(unitName = "CompanyDBPU")
     private EntityManager em;
 
-    public Entretiens_1FacadeREST() {
-        super(Entretiens_1.class);
+    public StagesFacadeREST() {
+        super(Stages.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Entretiens_1 entity) {
+    public void create(Stages entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") String id, Entretiens_1 entity) {
+    public void edit(@PathParam("id") Integer id, Stages entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) {
+    public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Entretiens_1 find(@PathParam("id") String id) {
+    public Stages find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Entretiens_1> findAll() {
+    public List<Stages> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Entretiens_1> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Stages> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
