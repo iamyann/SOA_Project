@@ -1,0 +1,18 @@
+red
+{
+    color : red;
+}
+
+fieldset
+{	
+    border-color: black;
+    border-radius: 5px;
+}
+
+label
+
+{
+    display: block;
+    width: 180px;
+    float: left;
+}
