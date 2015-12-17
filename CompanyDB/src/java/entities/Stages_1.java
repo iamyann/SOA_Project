@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.companyentity;
+package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,26 +30,33 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "STAGES")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Stages.findAll", query = "SELECT s FROM Stages s"),
-    @NamedQuery(name = "Stages.findById", query = "SELECT s FROM Stages s WHERE s.id = :id"),
-    @NamedQuery(name = "Stages.findByTitresujet", query = "SELECT s FROM Stages s WHERE s.titresujet = :titresujet"),
-    @NamedQuery(name = "Stages.findByReference", query = "SELECT s FROM Stages s WHERE s.reference = :reference"),
-    @NamedQuery(name = "Stages.findByDescriptionsujet", query = "SELECT s FROM Stages s WHERE s.descriptionsujet = :descriptionsujet"),
-    @NamedQuery(name = "Stages.findByCompetences", query = "SELECT s FROM Stages s WHERE s.competences = :competences"),
-    @NamedQuery(name = "Stages.findByRemuneration", query = "SELECT s FROM Stages s WHERE s.remuneration = :remuneration"),
-    @NamedQuery(name = "Stages.findByLocaux", query = "SELECT s FROM Stages s WHERE s.locaux = :locaux"),
-    @NamedQuery(name = "Stages.findByContactname", query = "SELECT s FROM Stages s WHERE s.contactname = :contactname"),
-    @NamedQuery(name = "Stages.findByContacttel", query = "SELECT s FROM Stages s WHERE s.contacttel = :contacttel"),
-    @NamedQuery(name = "Stages.findByContactweb", query = "SELECT s FROM Stages s WHERE s.contactweb = :contactweb"),
-    @NamedQuery(name = "Stages.findByTypecontrat", query = "SELECT s FROM Stages s WHERE s.typecontrat = :typecontrat"),
-    @NamedQuery(name = "Stages.findByDuree", query = "SELECT s FROM Stages s WHERE s.duree = :duree")})
-public class Stages implements Serializable {
+    @NamedQuery(name = "Stages_1.findAll", query = "SELECT s FROM Stages_1 s"),
+    @NamedQuery(name = "Stages_1.findById", query = "SELECT s FROM Stages_1 s WHERE s.id = :id"),
+    @NamedQuery(name = "Stages_1.findBySiret", query = "SELECT s FROM Stages_1 s WHERE s.siret = :siret"),
+    @NamedQuery(name = "Stages_1.findByTitresujet", query = "SELECT s FROM Stages_1 s WHERE s.titresujet = :titresujet"),
+    @NamedQuery(name = "Stages_1.findByReference", query = "SELECT s FROM Stages_1 s WHERE s.reference = :reference"),
+    @NamedQuery(name = "Stages_1.findByDescriptionsujet", query = "SELECT s FROM Stages_1 s WHERE s.descriptionsujet = :descriptionsujet"),
+    @NamedQuery(name = "Stages_1.findBySpecialite", query = "SELECT s FROM Stages_1 s WHERE s.specialite = :specialite"),
+    @NamedQuery(name = "Stages_1.findByRemuneration", query = "SELECT s FROM Stages_1 s WHERE s.remuneration = :remuneration"),
+    @NamedQuery(name = "Stages_1.findByAdresse", query = "SELECT s FROM Stages_1 s WHERE s.adresse = :adresse"),
+    @NamedQuery(name = "Stages_1.findByContactname", query = "SELECT s FROM Stages_1 s WHERE s.contactname = :contactname"),
+    @NamedQuery(name = "Stages_1.findByContacttel", query = "SELECT s FROM Stages_1 s WHERE s.contacttel = :contacttel"),
+    @NamedQuery(name = "Stages_1.findByContactweb", query = "SELECT s FROM Stages_1 s WHERE s.contactweb = :contactweb"),
+    @NamedQuery(name = "Stages_1.findByTypecontrat", query = "SELECT s FROM Stages_1 s WHERE s.typecontrat = :typecontrat"),
+    @NamedQuery(name = "Stages_1.findByDuree", query = "SELECT s FROM Stages_1 s WHERE s.duree = :duree"),
+    @NamedQuery(name = "Stages_1.findByNiveauetude", query = "SELECT s FROM Stages_1 s WHERE s.niveauetude = :niveauetude")})
+public class Stages_1 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 14)
+    @Column(name = "SIRET")
+    private String siret;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -66,21 +72,19 @@ public class Stages implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "DESCRIPTIONSUJET")
     private String descriptionsujet;
+    @Size(max = 100)
+    @Column(name = "SPECIALITE")
+    private String specialite;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "COMPETENCES")
-    private String competences;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 10)
     @Column(name = "REMUNERATION")
     private String remuneration;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "LOCAUX")
-    private String locaux;
+    @Size(min = 1, max = 100)
+    @Column(name = "ADRESSE")
+    private String adresse;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -88,7 +92,7 @@ public class Stages implements Serializable {
     private String contactname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 10)
     @Column(name = "CONTACTTEL")
     private String contacttel;
     @Size(max = 20)
@@ -104,24 +108,27 @@ public class Stages implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "DUREE")
     private String duree;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "refoffrestage")
-    private Collection<Candidatures> candidaturesCollection;
+    @Size(max = 10)
+    @Column(name = "NIVEAUETUDE")
+    private String niveauetude;
+    @OneToMany(mappedBy = "refoffrestage")
+    private Collection<Candidatures_1> candidaturesCollection;
 
-    public Stages() {
+    public Stages_1() {
     }
 
-    public Stages(Integer id) {
+    public Stages_1(Integer id) {
         this.id = id;
     }
 
-    public Stages(Integer id, String titresujet, String reference, String descriptionsujet, String competences, String remuneration, String locaux, String contactname, String contacttel, String typecontrat, String duree) {
+    public Stages_1(Integer id, String siret, String titresujet, String reference, String descriptionsujet, String remuneration, String adresse, String contactname, String contacttel, String typecontrat, String duree) {
         this.id = id;
+        this.siret = siret;
         this.titresujet = titresujet;
         this.reference = reference;
         this.descriptionsujet = descriptionsujet;
-        this.competences = competences;
         this.remuneration = remuneration;
-        this.locaux = locaux;
+        this.adresse = adresse;
         this.contactname = contactname;
         this.contacttel = contacttel;
         this.typecontrat = typecontrat;
@@ -134,6 +141,14 @@ public class Stages implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSiret() {
+        return siret;
+    }
+
+    public void setSiret(String siret) {
+        this.siret = siret;
     }
 
     public String getTitresujet() {
@@ -160,12 +175,12 @@ public class Stages implements Serializable {
         this.descriptionsujet = descriptionsujet;
     }
 
-    public String getCompetences() {
-        return competences;
+    public String getSpecialite() {
+        return specialite;
     }
 
-    public void setCompetences(String competences) {
-        this.competences = competences;
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
     }
 
     public String getRemuneration() {
@@ -176,12 +191,12 @@ public class Stages implements Serializable {
         this.remuneration = remuneration;
     }
 
-    public String getLocaux() {
-        return locaux;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setLocaux(String locaux) {
-        this.locaux = locaux;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public String getContactname() {
@@ -224,12 +239,20 @@ public class Stages implements Serializable {
         this.duree = duree;
     }
 
+    public String getNiveauetude() {
+        return niveauetude;
+    }
+
+    public void setNiveauetude(String niveauetude) {
+        this.niveauetude = niveauetude;
+    }
+
     @XmlTransient
-    public Collection<Candidatures> getCandidaturesCollection() {
+    public Collection<Candidatures_1> getCandidaturesCollection() {
         return candidaturesCollection;
     }
 
-    public void setCandidaturesCollection(Collection<Candidatures> candidaturesCollection) {
+    public void setCandidaturesCollection(Collection<Candidatures_1> candidaturesCollection) {
         this.candidaturesCollection = candidaturesCollection;
     }
 
@@ -243,10 +266,10 @@ public class Stages implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Stages)) {
+        if (!(object instanceof Stages_1)) {
             return false;
         }
-        Stages other = (Stages) object;
+        Stages_1 other = (Stages_1) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -255,7 +278,7 @@ public class Stages implements Serializable {
 
     @Override
     public String toString() {
-        return "com.companyentity.Stages[ id=" + id + " ]";
+        return "entities.Stages_1[ id=" + id + " ]";
     }
     
 }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.companyentity.service;
+package entities.service;
 
-import com.companyentity.Entretiens;
+import entities.Candidatures_1;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,53 +24,53 @@ import javax.ws.rs.Produces;
  * @author Jean
  */
 @Stateless
-@Path("com.companyentity.entretiens")
-public class EntretiensFacadeREST extends AbstractFacade<Entretiens> {
+@Path("entities.candidatures_1")
+public class Candidatures_1FacadeREST extends AbstractFacade<Candidatures_1> {
     @PersistenceContext(unitName = "CompanyDBPU")
     private EntityManager em;
 
-    public EntretiensFacadeREST() {
-        super(Entretiens.class);
+    public Candidatures_1FacadeREST() {
+        super(Candidatures_1.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Entretiens entity) {
+    public void create(Candidatures_1 entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Integer id, Entretiens entity) {
+    public void edit(@PathParam("id") String id, Candidatures_1 entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public void remove(@PathParam("id") String id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Entretiens find(@PathParam("id") Integer id) {
+    public Candidatures_1 find(@PathParam("id") String id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Entretiens> findAll() {
+    public List<Candidatures_1> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Entretiens> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Candidatures_1> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

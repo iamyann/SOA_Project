@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.companyentity;
+package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,14 +33,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "CANDIDATURES")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Candidatures.findAll", query = "SELECT c FROM Candidatures c"),
-    @NamedQuery(name = "Candidatures.findById", query = "SELECT c FROM Candidatures c WHERE c.id = :id"),
-    @NamedQuery(name = "Candidatures.findByNometudiant", query = "SELECT c FROM Candidatures c WHERE c.nometudiant = :nometudiant"),
-    @NamedQuery(name = "Candidatures.findByPrenometudiant", query = "SELECT c FROM Candidatures c WHERE c.prenometudiant = :prenometudiant"),
-    @NamedQuery(name = "Candidatures.findByCv", query = "SELECT c FROM Candidatures c WHERE c.cv = :cv"),
-    @NamedQuery(name = "Candidatures.findByLettremotiv", query = "SELECT c FROM Candidatures c WHERE c.lettremotiv = :lettremotiv"),
-    @NamedQuery(name = "Candidatures.findByCommentaires", query = "SELECT c FROM Candidatures c WHERE c.commentaires = :commentaires")})
-public class Candidatures implements Serializable {
+    @NamedQuery(name = "Candidatures_1.findAll", query = "SELECT c FROM Candidatures_1 c"),
+    @NamedQuery(name = "Candidatures_1.findById", query = "SELECT c FROM Candidatures_1 c WHERE c.id = :id"),
+    @NamedQuery(name = "Candidatures_1.findByNometudiant", query = "SELECT c FROM Candidatures_1 c WHERE c.nometudiant = :nometudiant"),
+    @NamedQuery(name = "Candidatures_1.findByPrenometudiant", query = "SELECT c FROM Candidatures_1 c WHERE c.prenometudiant = :prenometudiant"),
+    @NamedQuery(name = "Candidatures_1.findByCommentaires", query = "SELECT c FROM Candidatures_1 c WHERE c.commentaires = :commentaires"),
+    @NamedQuery(name = "Candidatures_1.findByStatutentreprise", query = "SELECT c FROM Candidatures_1 c WHERE c.statutentreprise = :statutentreprise"),
+    @NamedQuery(name = "Candidatures_1.findByStatutetudiant", query = "SELECT c FROM Candidatures_1 c WHERE c.statutetudiant = :statutetudiant")})
+public class Candidatures_1 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,33 +59,45 @@ public class Candidatures implements Serializable {
     private String prenometudiant;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Lob
     @Column(name = "CV")
-    private String cv;
-    @Size(max = 30)
+    private Serializable cv;
+    @Lob
     @Column(name = "LETTREMOTIV")
-    private String lettremotiv;
+    private Serializable lettremotiv;
     @Size(max = 30)
     @Column(name = "COMMENTAIRES")
     private String commentaires;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "STATUTENTREPRISE")
+    private String statutentreprise;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "STATUTETUDIANT")
+    private String statutetudiant;
     @JoinColumn(name = "REFOFFRESTAGE", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Stages refoffrestage;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidatures")
-    private Collection<Entretiens> entretiensCollection;
+    @ManyToOne
+    private Stages_1 refoffrestage;
+    @OneToMany(mappedBy = "candidatures")
+    private Collection<Entretiens_1> entretiensCollection;
 
-    public Candidatures() {
+    public Candidatures_1() {
     }
 
-    public Candidatures(Integer id) {
+    public Candidatures_1(Integer id) {
         this.id = id;
     }
 
-    public Candidatures(Integer id, String nometudiant, String prenometudiant, String cv) {
+    public Candidatures_1(Integer id, String nometudiant, String prenometudiant, Serializable cv, String statutentreprise, String statutetudiant) {
         this.id = id;
         this.nometudiant = nometudiant;
         this.prenometudiant = prenometudiant;
         this.cv = cv;
+        this.statutentreprise = statutentreprise;
+        this.statutetudiant = statutetudiant;
     }
 
     public Integer getId() {
@@ -112,19 +124,19 @@ public class Candidatures implements Serializable {
         this.prenometudiant = prenometudiant;
     }
 
-    public String getCv() {
+    public Serializable getCv() {
         return cv;
     }
 
-    public void setCv(String cv) {
+    public void setCv(Serializable cv) {
         this.cv = cv;
     }
 
-    public String getLettremotiv() {
+    public Serializable getLettremotiv() {
         return lettremotiv;
     }
 
-    public void setLettremotiv(String lettremotiv) {
+    public void setLettremotiv(Serializable lettremotiv) {
         this.lettremotiv = lettremotiv;
     }
 
@@ -136,20 +148,36 @@ public class Candidatures implements Serializable {
         this.commentaires = commentaires;
     }
 
-    public Stages getRefoffrestage() {
+    public String getStatutentreprise() {
+        return statutentreprise;
+    }
+
+    public void setStatutentreprise(String statutentreprise) {
+        this.statutentreprise = statutentreprise;
+    }
+
+    public String getStatutetudiant() {
+        return statutetudiant;
+    }
+
+    public void setStatutetudiant(String statutetudiant) {
+        this.statutetudiant = statutetudiant;
+    }
+
+    public Stages_1 getRefoffrestage() {
         return refoffrestage;
     }
 
-    public void setRefoffrestage(Stages refoffrestage) {
+    public void setRefoffrestage(Stages_1 refoffrestage) {
         this.refoffrestage = refoffrestage;
     }
 
     @XmlTransient
-    public Collection<Entretiens> getEntretiensCollection() {
+    public Collection<Entretiens_1> getEntretiensCollection() {
         return entretiensCollection;
     }
 
-    public void setEntretiensCollection(Collection<Entretiens> entretiensCollection) {
+    public void setEntretiensCollection(Collection<Entretiens_1> entretiensCollection) {
         this.entretiensCollection = entretiensCollection;
     }
 
@@ -163,10 +191,10 @@ public class Candidatures implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Candidatures)) {
+        if (!(object instanceof Candidatures_1)) {
             return false;
         }
-        Candidatures other = (Candidatures) object;
+        Candidatures_1 other = (Candidatures_1) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -175,7 +203,7 @@ public class Candidatures implements Serializable {
 
     @Override
     public String toString() {
-        return "com.companyentity.Candidatures[ id=" + id + " ]";
+        return "entities.Candidatures_1[ id=" + id + " ]";
     }
     
 }

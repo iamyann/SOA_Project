@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.companyentity;
+package entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,20 +29,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Jean
  */
 @Entity
-@Table(name = "ENTRETIENSSPONTANES")
+@Table(name = "ENTRETIENS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Entretiensspontanes.findAll", query = "SELECT e FROM Entretiensspontanes e"),
-    @NamedQuery(name = "Entretiensspontanes.findById", query = "SELECT e FROM Entretiensspontanes e WHERE e.id = :id"),
-    @NamedQuery(name = "Entretiensspontanes.findByDaterdv", query = "SELECT e FROM Entretiensspontanes e WHERE e.daterdv = :daterdv"),
-    @NamedQuery(name = "Entretiensspontanes.findByHeuredeb", query = "SELECT e FROM Entretiensspontanes e WHERE e.heuredeb = :heuredeb"),
-    @NamedQuery(name = "Entretiensspontanes.findByHeurefin", query = "SELECT e FROM Entretiensspontanes e WHERE e.heurefin = :heurefin"),
-    @NamedQuery(name = "Entretiensspontanes.findByResponsablerh", query = "SELECT e FROM Entretiensspontanes e WHERE e.responsablerh = :responsablerh"),
-    @NamedQuery(name = "Entretiensspontanes.findByOperationnel", query = "SELECT e FROM Entretiensspontanes e WHERE e.operationnel = :operationnel"),
-    @NamedQuery(name = "Entretiensspontanes.findByResponsabletechnique", query = "SELECT e FROM Entretiensspontanes e WHERE e.responsabletechnique = :responsabletechnique"),
-    @NamedQuery(name = "Entretiensspontanes.findByTests", query = "SELECT e FROM Entretiensspontanes e WHERE e.tests = :tests"),
-    @NamedQuery(name = "Entretiensspontanes.findByCommentaires", query = "SELECT e FROM Entretiensspontanes e WHERE e.commentaires = :commentaires")})
-public class Entretiensspontanes implements Serializable {
+    @NamedQuery(name = "Entretiens_1.findAll", query = "SELECT e FROM Entretiens_1 e"),
+    @NamedQuery(name = "Entretiens_1.findById", query = "SELECT e FROM Entretiens_1 e WHERE e.id = :id"),
+    @NamedQuery(name = "Entretiens_1.findByDaterdv", query = "SELECT e FROM Entretiens_1 e WHERE e.daterdv = :daterdv"),
+    @NamedQuery(name = "Entretiens_1.findByLieurdv", query = "SELECT e FROM Entretiens_1 e WHERE e.lieurdv = :lieurdv"),
+    @NamedQuery(name = "Entretiens_1.findByHeuredeb", query = "SELECT e FROM Entretiens_1 e WHERE e.heuredeb = :heuredeb"),
+    @NamedQuery(name = "Entretiens_1.findByHeurefin", query = "SELECT e FROM Entretiens_1 e WHERE e.heurefin = :heurefin"),
+    @NamedQuery(name = "Entretiens_1.findByResponsablerh", query = "SELECT e FROM Entretiens_1 e WHERE e.responsablerh = :responsablerh"),
+    @NamedQuery(name = "Entretiens_1.findByOperationnel", query = "SELECT e FROM Entretiens_1 e WHERE e.operationnel = :operationnel"),
+    @NamedQuery(name = "Entretiens_1.findByResponsabletechnique", query = "SELECT e FROM Entretiens_1 e WHERE e.responsabletechnique = :responsabletechnique"),
+    @NamedQuery(name = "Entretiens_1.findByTests", query = "SELECT e FROM Entretiens_1 e WHERE e.tests = :tests"),
+    @NamedQuery(name = "Entretiens_1.findByCommentaires", query = "SELECT e FROM Entretiens_1 e WHERE e.commentaires = :commentaires")})
+public class Entretiens_1 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +55,9 @@ public class Entretiensspontanes implements Serializable {
     @Column(name = "DATERDV")
     @Temporal(TemporalType.DATE)
     private Date daterdv;
+    @Size(max = 100)
+    @Column(name = "LIEURDV")
+    private String lieurdv;
     @Basic(optional = false)
     @NotNull
     @Column(name = "HEUREDEB")
@@ -80,15 +86,18 @@ public class Entretiensspontanes implements Serializable {
     @Size(max = 50)
     @Column(name = "COMMENTAIRES")
     private String commentaires;
+    @JoinColumn(name = "CANDIDATURES", referencedColumnName = "ID")
+    @ManyToOne
+    private Candidatures_1 candidatures;
 
-    public Entretiensspontanes() {
+    public Entretiens_1() {
     }
 
-    public Entretiensspontanes(Integer id) {
+    public Entretiens_1(Integer id) {
         this.id = id;
     }
 
-    public Entretiensspontanes(Integer id, Date daterdv, Date heuredeb, Date heurefin, Boolean responsablerh, Boolean operationnel, Boolean responsabletechnique) {
+    public Entretiens_1(Integer id, Date daterdv, Date heuredeb, Date heurefin, Boolean responsablerh, Boolean operationnel, Boolean responsabletechnique) {
         this.id = id;
         this.daterdv = daterdv;
         this.heuredeb = heuredeb;
@@ -112,6 +121,14 @@ public class Entretiensspontanes implements Serializable {
 
     public void setDaterdv(Date daterdv) {
         this.daterdv = daterdv;
+    }
+
+    public String getLieurdv() {
+        return lieurdv;
+    }
+
+    public void setLieurdv(String lieurdv) {
+        this.lieurdv = lieurdv;
     }
 
     public Date getHeuredeb() {
@@ -170,6 +187,14 @@ public class Entretiensspontanes implements Serializable {
         this.commentaires = commentaires;
     }
 
+    public Candidatures_1 getCandidatures() {
+        return candidatures;
+    }
+
+    public void setCandidatures(Candidatures_1 candidatures) {
+        this.candidatures = candidatures;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -180,10 +205,10 @@ public class Entretiensspontanes implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Entretiensspontanes)) {
+        if (!(object instanceof Entretiens_1)) {
             return false;
         }
-        Entretiensspontanes other = (Entretiensspontanes) object;
+        Entretiens_1 other = (Entretiens_1) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -192,7 +217,7 @@ public class Entretiensspontanes implements Serializable {
 
     @Override
     public String toString() {
-        return "com.companyentity.Entretiensspontanes[ id=" + id + " ]";
+        return "entities.Entretiens_1[ id=" + id + " ]";
     }
     
 }
