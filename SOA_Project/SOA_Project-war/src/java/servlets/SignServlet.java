@@ -68,9 +68,8 @@ public class SignServlet extends HttpServlet {
         session = request.getSession();
         String username=request.getParameter("username");
         String password=request.getParameter("password");        
-        session.setAttribute( "prenom", username);
         
-                    Connection c1 = null;
+        Connection c1 = null;
         try {
             c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
@@ -84,28 +83,28 @@ public class SignServlet extends HttpServlet {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if(Data.addElementStudentGui(c1,"STUDENT", "Mr","Mb","Yann","testmdp","10-03-96","yann.md@yahoo.fr","141 avenue de rangueil","31400","Toulouse","France","06.34.58.49.79","INSA Toulouse","IR","Jeune Etudiant, cherche stage"))
+        //on se connecte avec son email
+        if(Data.existID(c1, username, password, "STUDENT")) //si il existe un id dans la table student, on est redirige vers le profil etudiant
         {
-          System.out.println("Cratch 1..."); 
-        }
-        else
-          System.out.println("Well done 1...");
-        
-        if(Data.addElementStudentGui(c1,"STUDENT", "Mr","Etudiant","Etudiant","etudiant","10-03-96","etud@yahoo.fr","143 avenue de rangueil","31400","Toulouse","France","06.65.58.49.99","Epitech","IR","Jeune Etudiant, cherche stage"))
-        {
-          System.out.println("Cratch 2...");          
-        }
-        else
-            System.out.println("Well done 2...");
-        
-        if("entreprise".equalsIgnoreCase(username))
-        {
-            RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       
+            String id=Data.getElementwithEmail(c1, username, password, "ID", "STUDENT");
+            String pren=Data.getElementwithID(c1, id, "PRENOM", "STUDENT");
+            session.setAttribute( "id", id);
+            session.setAttribute( "prenom", pren);
+            RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
             rd.forward(request, response); 
         }
-        else if("etudiant".equalsIgnoreCase(username))
+        else if(Data.existID(c2, username, password, "COMPANY")) //si il existe un id dans la table company, on est redirige vers le profil entreprise
         {
-            RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
+            String id=Data.getElementwithEmail(c2, username, password, "ID", "COMPANY");
+            session.setAttribute( "id", id);
+            String pren=Data.getElementwithID(c1, id, "NOM", "COMPANY");
+            session.setAttribute( "prenom", pren);
+            RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       
+            rd.forward(request, response);
+        }
+        else if("entreprise".equalsIgnoreCase(username)) //===> AURIOLE : tu dois supprimer cette partie plus tard
+        {
+            RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       
             rd.forward(request, response); 
         }
         else

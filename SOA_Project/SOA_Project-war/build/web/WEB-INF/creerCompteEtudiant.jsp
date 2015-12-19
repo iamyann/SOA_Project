@@ -252,9 +252,10 @@
                         <option value="GPr" id="GPr">Génie des Procédés</option> 
                     </select><br>
             </fieldset><br>
-            <input disabled type="submit" value="Valider" id="send"/>
+            <input type="submit" value="Valider" id="send"/>
         </form>
-        <script>
+       <!-- [Yann]Je te commente ton script parce que ça ne marche pas, desole cest pour faire des tests et avancer
+       <script>
             function testData(){
             return (/^[0-9]{5}$/.test(document.getElementById('code_postal').value)
             && /^[0-9]{10}$/.test(document.getElementById('telephone').value)
@@ -296,6 +297,6 @@
                 document.getElementById('send').disabled = true;
             }
         }
-        </script>
+        </script>-->
     </body>
 </html>

@@ -91,10 +91,10 @@
 					    <div class="row">
                             <div class="col-lg-12 text-center"> 					                       
 								  <div class="form-group">
-									   <div><input name="username" placeholder="Identifiant" class="form-control" type="text" id="Id Utilisateur"/></div>
+									   <div><input name="username" placeholder="email@test.com" class="form-control" type="text" id="Id Utilisateur"/></div>
 								  </div>                                 
 								  <div class="form-group">
-										<div><input name="password" placeholder="Mot de Passe" class="form-control" type="password" id="Mot de Passe"/></div>
+										<div><input name="password" placeholder="mot de passe" class="form-control" type="password" id="Mot de Passe"/></div>
 								  </div>                                 
 								  <div class="form-group">
 										 <input  class="btn btn-primary" type="submit" value="Se connecter"/>

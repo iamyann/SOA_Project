@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -49,8 +50,9 @@ public class VoirProfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            Connection c1 = null;
+         HttpSession session = ((HttpServletRequest) request).getSession(false);
+         String id= (String) session.getAttribute("id");
+        Connection c1 = null;
         try {
             c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
@@ -69,11 +71,11 @@ public class VoirProfilServlet extends HttpServlet {
 //            c2.close();
               String voirprofil=""
                       + " <tr>\n" +
-"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "DESCRIPTION", "STUDENT")+"</td>\n" +
-"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "ETABLISSEMENT", "STUDENT")+"</td>\n" +
-"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "TELEPHONE", "STUDENT")+"</td>\n" +
-"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "EMAIL", "STUDENT")+"</td>\n" +
-"                                <td>"+Data.getElement(c1, "Etudiant", "etudiant", "ADRESSE", "STUDENT")+" , "+Data.getElement(c1, "Etudiant", "etudiant", "VILLE", "STUDENT")+" </td>\n" +
+"                                <td>"+Data.getElementwithID(c1, id,"DESCRIPTION", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElementwithID(c1, id,"ETAB", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElementwithID(c1, id,"TELEPHONE", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElementwithID(c1, id,"EMAIL", "STUDENT")+"</td>\n" +
+"                                <td>"+Data.getElementwithID(c1, id,"ADRESSE", "STUDENT")+" , "+Data.getElementwithID(c1, id,"VILLE", "STUDENT")+" </td>\n" +
 "                         </tr>"
                       ;
             request.setAttribute("profil", voirprofil); // This will be available as ${profil}
