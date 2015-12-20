@@ -82,14 +82,8 @@ public class EditProfileServlet extends HttpServlet {
             c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            Connection c2 = null;
-        try {
-            c2 = Data.connectionDatabase2();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
+         
         //Update CV
         Part cv = request.getPart("file");
         String fileName = cv.getSubmittedFileName();

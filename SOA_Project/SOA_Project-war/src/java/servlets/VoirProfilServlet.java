@@ -59,12 +59,6 @@ public class VoirProfilServlet extends HttpServlet {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-            Connection c2 = null;
-        try {
-            c2 = Data.connectionDatabase2();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
               String voirprofil=""
                       + " <tr>\n" +
 "                                <td>"+Data.getElementwithID(c1, id,"DESCRIPTION", "STUDENT")+"</td>\n" +

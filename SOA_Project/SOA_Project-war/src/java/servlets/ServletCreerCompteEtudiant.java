@@ -38,7 +38,7 @@ public class ServletCreerCompteEtudiant extends HttpServlet
         /****************************************************/
         
          HttpSession session = ((HttpServletRequest) request).getSession(false);
-        session = request.getSession();  
+         session = request.getSession();  
          // récupération des champs du formulaire
             String email = request.getParameter("email");
             String mdp = request.getParameter("mdp1"); // on assume que les deux mots de passes sont identiques du fait du js

@@ -76,12 +76,6 @@ public class SignServlet extends HttpServlet {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-            Connection c2 = null;
-        try {
-            c2 = Data.connectionDatabase2();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         //on se connecte avec son email
         if(Data.existID(c1, username, password, "STUDENT")) //si il existe un id dans la table student, on est redirige vers le profil etudiant
@@ -93,9 +87,9 @@ public class SignServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
             rd.forward(request, response); 
         }
-        else if(Data.existID(c2, username, password, "COMPANY")) //si il existe un id dans la table company, on est redirige vers le profil entreprise
+        else if(Data.existID(c1, username, password, "COMPANY")) //si il existe un id dans la table company, on est redirige vers le profil entreprise
         {
-            String id=Data.getElementwithEmail(c2, username, password, "ID", "COMPANY");
+            String id=Data.getElementwithEmail(c1, username, password, "ID", "COMPANY");
             session.setAttribute( "id", id);
             String pren=Data.getElementwithID(c1, id, "NOM", "COMPANY");
             session.setAttribute( "prenom", pren);

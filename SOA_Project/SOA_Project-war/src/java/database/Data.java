@@ -84,6 +84,21 @@ public class Data {
         return type ;  
     }
     
+    
+    /** Retourne type si l'utilisateur existe, null sinon */
+    public static void  addElementCompanyGui(Connection con, String email, String mdp,String type,String nom,String siret,String domaine,String taille,String adresse,String code,String ville,String pays,String telephone, String siteweb)
+    {
+        try 
+        {
+             Statement smt = con.createStatement() ;
+             smt.execute("INSERT INTO COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES ('"+email+"', '"+mdp+"', '"+type+"', '"+nom+"', '"+siret+"', '"+domaine+"','"+taille+"','"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"','"+siteweb+"')");      
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     public static String  getElement(Connection con, String user, String mdp, String mot, String Table){
         String type = null ;
         try {

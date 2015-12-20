@@ -60,14 +60,8 @@ public class ServletCV extends HttpServlet {
             c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            Connection c2 = null;
-        try {
-            c2 = Data.connectionDatabase2();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }    
+        }        
+             
         HttpSession session = ((HttpServletRequest) request).getSession(false);
         String id= (String) session.getAttribute("id");
         String prenom= (String) session.getAttribute("prenom");
