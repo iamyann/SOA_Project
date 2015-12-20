@@ -6,33 +6,29 @@
 package servlets;
 
 import database.Data;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author yann
  */
-@MultipartConfig
-public class EditProfileServlet extends HttpServlet {
+public class ServletCV extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +41,6 @@ public class EditProfileServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +55,47 @@ public class EditProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Connection c1 = null;
+        try {
+            c1 = Data.connectionDatabase1();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            Connection c2 = null;
+        try {
+            c2 = Data.connectionDatabase2();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        HttpSession session = ((HttpServletRequest) request).getSession(false);
+        String id= (String) session.getAttribute("id");
+        String prenom= (String) session.getAttribute("prenom");
+        ResultSet result = Data.getCVwithID(c1, id, "STUDENT");
+        try {
+                if (result.next())
+                {
+                    Blob blob = result.getBlob("CV");
+                    InputStream inputStream = blob.getBinaryStream();
+                    int fileLength = inputStream.available();
+                    
+                    OutputStream outputStream = response.getOutputStream();
+                    response.setContentType ("application/pdf");
+                    response.setHeader ("Content-Disposition", "attachment; filename= CV_"+prenom);                  
+
+                    int bytesRead = -1;
+                    byte[] buffer = new byte[4096];
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+
+                    inputStream.close();
+                    outputStream.close();
+                    System.out.println("File saved");
+                }
+            } catch (SQLException ex) {
+            System.out.println("[ServletCV] ERROR ");
+        }        
     }
 
     /**
@@ -75,32 +110,6 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        HttpSession session = ((HttpServletRequest) request).getSession(false);
-        String id= (String) session.getAttribute("id");
-        Connection c1 = null;
-        try {
-            c1 = Data.connectionDatabase1();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            Connection c2 = null;
-        try {
-            c2 = Data.connectionDatabase2();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Update CV
-        Part cv = request.getPart("file");
-        String fileName = cv.getSubmittedFileName();
-        InputStream fileContent = cv.getInputStream();
-        Data.setCVwithID(c1,id, "?", "STUDENT", "CV",fileContent);        
-        
-        //Update Description
-        String description=request.getParameter("resume");
-        Data.setElementwithID(c1, id, description, "STUDENT", "DESCRIPTION"); 
-        RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
-        rd.forward(request, response); 
     }
 
     /**

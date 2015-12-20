@@ -178,6 +178,7 @@
                                         <th>Tel</th>
                                         <th>Email</th>
                                         <th>Adresse</th>
+                                        <th>CV</th>
                                     </tr>
                                 </thead>
                                 <tbody>

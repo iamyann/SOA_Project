@@ -6,9 +6,15 @@
 
 package database;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
+import servlets.ServletCV;
 
 
 /**
@@ -59,13 +65,19 @@ public class Data {
     
     /** Retourne type si l'utilisateur existe, null sinon */
     /** Retourne type si l'utilisateur existe, null sinon */
-    public static boolean  addElementStudentGui(Connection con, String email, String mdp,String sexe,String prenom,String nom,String date,String adresse,String code,String ville,String pays,String telephone, String etab,String spe){
+    public static boolean  addElementStudentGui(Connection con, String email, String mdp,String sexe,String prenom,String nom,String date,String adresse,String code,String ville,String pays,String telephone, String etab,String spe, String descr,InputStream cv){
         boolean type = false ;
         try {
-            Statement smt = con.createStatement() ;
-            type = smt.execute("INSERT INTO STUDENT (EMAIL, MDP, SEXE, PRENOM, NOM, DATE, ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, ETAB, SPE) "
-                        + "VALUES ('"+email+"', '"+mdp+"', '"+sexe+"', '"+prenom+"', '"+nom+"', '"+date+"', '"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"', '"+etab+"', '"+spe+"')");
-                                          
+           //Statement smt = con.createStatement() ;
+            //type = smt.execute("INSERT INTO STUDENT (EMAIL, MDP, SEXE, PRENOM, NOM, DATE, ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, ETAB, SPE, DESCRIPTION) "
+                      //  + "VALUES ('"+email+"', '"+mdp+"', '"+sexe+"', '"+prenom+"', '"+nom+"', '"+date+"', '"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"', '"+etab+"', '"+spe+"', '"+descr+"')");
+            String sql = "INSERT INTO STUDENT (EMAIL, MDP, SEXE, PRENOM, NOM, DATE, ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, ETAB, SPE, DESCRIPTION, CV) VALUES ('"+email+"', '"+mdp+"', '"+sexe+"', '"+prenom+"', '"+nom+"', '"+date+"', '"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"', '"+etab+"', '"+spe+"', '"+descr+"', ? )";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setBlob(1, cv);
+            int row = smt.executeUpdate();
+            if (row > 0) {
+                type = true ;      
+            }            
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -145,6 +157,37 @@ public class Data {
         return exist ;
     }
     
+    /** Modifie le type et renvoie "true" si l'ID existe dans la base de données */
+    public static Boolean setCVwithID(Connection con,String id, String mot, String Table, String Element,InputStream inputStream){
+        Boolean exist = false;
+        try {
+            String sql = "UPDATE "+Table+" SET "+Element+"="+mot+" WHERE ID="+id;
+            PreparedStatement smt = con.prepareStatement(sql);
+            //smt.executeUpdate("UPDATE "+Table+" SET "+Element+"="+mot+" WHERE ID="+id);
+            smt.setBlob(1, inputStream);
+            int row = smt.executeUpdate();
+            if (row > 0) {
+                exist = true ;      
+            }                  
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exist ;
+    }
+    
+    /** Modifie le type et renvoie "true" si l'ID existe dans la base de données */
+    public static ResultSet getCVwithID(Connection con,String id, String Table) throws IOException{
+        ResultSet result = null;
+        try {
+            String sql = "SELECT CV FROM "+Table+" WHERE ID="+id;
+            PreparedStatement smt = con.prepareStatement(sql);
+            result = smt.executeQuery();                
+        } catch (SQLException ex) {
+            System.out.println("[Data -> getCV] ERROR");
+        }
+        return result ;
+    }
+    
     
     /** Supprime l'utilisateur ayant l'email "email" et renvoie "true" si cet utilisateur existait bien, "false" sinon */
     public static Boolean  deleteElement(Connection con,String user, String mdp, String mot, String Table){
@@ -177,39 +220,5 @@ public class Data {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return exist ;
-    }
-    
-    /** Ce main sert uniquement de test, s'y référer pour voir comment appeler les fonctions */
-   public static void main(String[] args){
-        try {
-            
-            //Connection c1 = DatabaseManager.connectionDatabase() ;
-            Connection c1 = Data.connectionDatabase1() ;
-            Connection c2 = Data.connectionDatabase2() ;
-
-      /*  if(addElementStudentGui(c1,"STUDENT", "Mr","Mb","Yann","testmdp","10-03-96","yann.md@yahoo.fr","141 avenue de rangueil","31400","Toulouse","France","06.34.58.49.79","INSA Toulouse","IR","Jeune Etudiant, cherche stage"))
-        {
-          System.out.println("Well done 1...");
-        }
-        else
-          System.out.println("Cratch 1...");  
-        
-        if(addElementStudentGui(c1,"STUDENT", "Mr","Etudiant","Etudiant","etudiant","10-03-96","etud@yahoo.fr","143 avenue de rangueil","31400","Toulouse","France","06.65.58.49.99","Epitech","IR","Jeune Etudiant, cherche stage"))
-            {
-          System.out.println("Well done 2...");
-        }
-        else
-          System.out.println("Cratch 2..."); */
-        
-        String description="resume";
-
-        Data.setElement(c1, "Etudiant", "etudiant", description, "STUDENT", "DESCRIPTION");     
-        
-        c1.close();
-            c2.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

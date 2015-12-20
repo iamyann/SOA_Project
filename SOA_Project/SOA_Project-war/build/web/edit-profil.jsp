@@ -174,7 +174,7 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                        <form method="POST" action="EditProfileServlet">
+                        <form method="POST" action="EditProfileServlet" enctype="multipart/form-data">
 							
 			    <label></label>
                             <div class="form-group">

@@ -65,10 +65,6 @@ public class VoirProfilServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
-//            c1.close();
-//            c2.close();
               String voirprofil=""
                       + " <tr>\n" +
 "                                <td>"+Data.getElementwithID(c1, id,"DESCRIPTION", "STUDENT")+"</td>\n" +
@@ -76,11 +72,14 @@ public class VoirProfilServlet extends HttpServlet {
 "                                <td>"+Data.getElementwithID(c1, id,"TELEPHONE", "STUDENT")+"</td>\n" +
 "                                <td>"+Data.getElementwithID(c1, id,"EMAIL", "STUDENT")+"</td>\n" +
 "                                <td>"+Data.getElementwithID(c1, id,"ADRESSE", "STUDENT")+" , "+Data.getElementwithID(c1, id,"VILLE", "STUDENT")+" </td>\n" +
+"                                <td><a href=\"/SOA_Project-war/ServletCV\">mon CV</a></td>\n" +
 "                         </tr>"
                       ;
             request.setAttribute("profil", voirprofil); // This will be available as ${profil}
             RequestDispatcher rd = request.getRequestDispatcher("voir-profil.jsp");
-            rd.forward(request, response); 
+            rd.forward(request, response);
+//            c1.close();
+//            c2.close();
         
     }
 

@@ -2,6 +2,7 @@ package servlets;
 
 import database.Data;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,11 +11,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+@MultipartConfig
 public class ServletCreerCompteEtudiant extends HttpServlet 
 {
     // Handles the HTTP <code>POST</code> method.
@@ -32,21 +36,6 @@ public class ServletCreerCompteEtudiant extends HttpServlet
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         /****************************************************/
-/* Chargement du driver JDBC pour MySQL */
-        try 
-        {
-            Class.forName("org.apache.derby.jdbc.ClientDriver" );
-        } 
-        catch (ClassNotFoundException e) // gérer les éventuelles erreurs ici
-        {
-            request.setAttribute("fail", e);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/fail.jsp").forward(request, response);
-        }
-/* Connexion à la base de données  et inscription de l'utilisateur */
-        String url = "jdbc:derby://localhost:1527/GUI"; // à modifier selon matthieu
-        String utilisateur = "root";
-        String motDePasse = "root";
-        Connection connexion = null;
         
          HttpSession session = ((HttpServletRequest) request).getSession(false);
         session = request.getSession();  
@@ -70,13 +59,19 @@ public class ServletCreerCompteEtudiant extends HttpServlet
             String spe = request.getParameter("spe");
             // mise en forme des champs pour insertion dans la bdd
             String date = String.valueOf(jour)+"/"+String.valueOf(mois)+"/"+String.valueOf(annee);
+            //Update CV
+            Part cv = request.getPart("CV");
+            String fileName = cv.getSubmittedFileName();
+            InputStream fileContent = cv.getInputStream();
+            String description=request.getParameter("resume");
             
         
         if(mdp.equalsIgnoreCase(mdp2)) //si le mdp1 = mdp 2, on peut ecrire dans la BDD
         {
             // Thomas tu pourrais juste avec cette ligne, ajouter des data dans ta BDD, je t'ai mis en commentaire ce
             // qui existait avant, à toi de choisir ce qui est plus simple [voir classe Data.java où toutes les fonctions existent déja]
-            Data.addElementStudentGui(c1,email, mdp,sexe,prenom,nom,date,adresse,code,ville,pays,telephone,etab,spe);                 
+            
+            Data.addElementStudentGui(c1,email, mdp,sexe,prenom,nom,date,adresse,code,ville,pays,telephone,etab,spe,description,fileContent);                 
                     
             /* redirection [Thomas ne supprime rien, car c'est ça qui me permet d'identifier chaque etudiant] */
             session.setAttribute( "prenom", prenom);
@@ -86,7 +81,7 @@ public class ServletCreerCompteEtudiant extends HttpServlet
             RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
             rd.forward(request, response);   
             
-                       /* try // Ici, nous placerons nos requêtes vers la BDD
+            /* try // Ici, nous placerons nos requêtes vers la BDD
             {                
                 connexion = DriverManager.getConnection(url, utilisateur, motDePasse); // connexion à la bdd en mode admin
                 Statement statement = connexion.createStatement();  // création de l'objet gérant les requêtes

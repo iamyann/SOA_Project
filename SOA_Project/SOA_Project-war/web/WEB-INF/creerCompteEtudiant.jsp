@@ -7,7 +7,7 @@
         <title>Création Compte Etudiant</title>
     </head>
     <body>        
-        <form method="post" action="ServletCreerCompteEtudiant">
+        <form method="post" action="ServletCreerCompteEtudiant" enctype="multipart/form-data">
             <fieldset>
             <legend>Enregistrement</legend>
                 <label for="email">Email<red>*</red></label>
@@ -250,7 +250,11 @@
                         <option value="GM" id="GM">Génie Mécanique</option>
                         <option value="GPh" id="GPh">Génie Physique</option>
                         <option value="GPr" id="GPr">Génie des Procédés</option> 
-                    </select><br>
+                        </select><br>
+                <label>CV<red>*</red></label>
+                      <input name="CV"  type="file"><br>
+                <label>Description<red>*</red></label>
+                                <textarea name="resume" class="form-control" rows="3"></textarea><br>
             </fieldset><br>
             <input type="submit" value="Valider" id="send"/>
         </form>

@@ -72,6 +72,10 @@
         <servlet-name>EntrepriseProposerStageServlet</servlet-name>
         <servlet-class>servlets.EntrepriseProposerStageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCV</servlet-name>
+        <servlet-class>servlets.ServletCV</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>EntrepriseProposerStageServlet</servlet-name>
         <url-pattern>/EntrepriseProposerStageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCV</servlet-name>
+        <url-pattern>/ServletCV</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>
