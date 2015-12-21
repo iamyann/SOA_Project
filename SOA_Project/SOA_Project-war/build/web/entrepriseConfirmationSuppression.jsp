@@ -60,7 +60,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>${sessionScope.prenom}</strong>
+                                        <h5 class="media-heading"><strong>${sessionScope.nomEnt}</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Hier à 10:32 </p>
                                         <p>Ceci est un test</p>
