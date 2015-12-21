@@ -89,7 +89,7 @@
                     
                     <form method="post" action="CreationCompte">
                         <div>
-                            <p style="text-align:center">Pas de compte? Créer en un <a href="#" onClick="afficherLesChamps()">Ici</a></p>
+                            <p style="text-align:center">Pas de compte? Créez-en un <a href="#" onClick="afficherLesChamps()">Ici</a></p>
                         </div>                            
                         <p>
                             <input type="radio" name="typeCompte" value="etudiant" id="cacher1"/> 

@@ -53,23 +53,23 @@ public class EntrepriseAfficherProfilEntreprise extends HttpServlet {
         
         HttpSession session = ((HttpServletRequest) request).getSession(false);
         String id= (String) session.getAttribute("id");
-        Connection c2 = null;
+        Connection c1 = null;
         try {
-            c2 = Data.connectionDatabase2();
+            c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }        
         //Récupération des différentes données de l'entreprise de la BD
-        String nom = Data.getElementwithID(c2,id,"NOM","ROOT.COMPANY");
-        String siret = Data.getElementwithID(c2,id,"SIRET","ROOT.COMPANY");
-        String domaine = Data.getElementwithID(c2,id,"DOMAINE","ROOT.COMPANY");
-        String taille = Data.getElementwithID(c2,id,"TAILLE","ROOT.COMPANY");
-        String  adresse = Data.getElementwithID(c2,id,"ADRESSE","ROOT.COMPANY");
-        String codepostal = Data.getElementwithID(c2,id,"CODEPOSTAL","ROOT.COMPANY");
-        String ville = Data.getElementwithID(c2,id,"VILLE","ROOT.COMPANY");
-        String pays = Data.getElementwithID(c2,id,"PAYS","ROOT.COMPANY");
-        String telephone = Data.getElementwithID(c2,id,"TELEPHONE","ROOT.COMPANY");
-        String siteweb = Data.getElementwithID(c2,id,"SITEWEB","ROOT.COMPANY");
+        String nom = Data.getElementwithID(c1,id,"NOM","GUI.COMPANY");
+        String siret = Data.getElementwithID(c1,id,"SIRET","GUI.COMPANY");
+        String domaine = Data.getElementwithID(c1,id,"DOMAINE","GUI.COMPANY");
+        String taille = Data.getElementwithID(c1,id,"TAILLE","GUI.COMPANY");
+        String  adresse = Data.getElementwithID(c1,id,"ADRESSE","GUI.COMPANY");
+        String codepostal = Data.getElementwithID(c1,id,"CODEPOSTAL","GUI.COMPANY");
+        String ville = Data.getElementwithID(c1,id,"VILLE","GUI.COMPANY");
+        String pays = Data.getElementwithID(c1,id,"PAYS","GUI.COMPANY");
+        String telephone = Data.getElementwithID(c1,id,"TELEPHONE","GUI.COMPANY");
+        String siteweb = Data.getElementwithID(c1,id,"SITEWEB","GUI.COMPANY");
         
         request.setAttribute("nomEnt", nom);
         request.setAttribute("siretEnt", siret);
@@ -80,6 +80,7 @@ public class EntrepriseAfficherProfilEntreprise extends HttpServlet {
         request.setAttribute("villeEnt", ville);
         request.setAttribute("paysEnt", pays);
         request.setAttribute("telephoneEnt", telephone);
+        request.setAttribute("sitewebEnt", siteweb);
         
         this.getServletContext().getRequestDispatcher("/entrepriseProfil.jsp").forward(request, response); 
     }
@@ -97,23 +98,23 @@ public class EntrepriseAfficherProfilEntreprise extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = ((HttpServletRequest) request).getSession(false);
         String id= (String) session.getAttribute("id");
-        Connection c2 = null;
+        Connection c1 = null;
         try {
-            c2 = Data.connectionDatabase2();
+            c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }        
         //Récupération des différentes données de l'entreprise de la BD
-        String nom = Data.getElementwithID(c2,id,"NOM","ROOT.COMPANY");
-        String siret = Data.getElementwithID(c2,id,"SIRET","ROOT.COMPANY");
-        String domaine = Data.getElementwithID(c2,id,"DOMAINE","ROOT.COMPANY");
-        String taille = Data.getElementwithID(c2,id,"TAILLE","ROOT.COMPANY");
-        String  adresse = Data.getElementwithID(c2,id,"ADRESSE","ROOT.COMPANY");
-        String codepostal = Data.getElementwithID(c2,id,"CODEPOSTAL","ROOT.COMPANY");
-        String ville = Data.getElementwithID(c2,id,"VILLE","ROOT.COMPANY");
-        String pays = Data.getElementwithID(c2,id,"PAYS","ROOT.COMPANY");
-        String telephone = Data.getElementwithID(c2,id,"TELEPHONE","ROOT.COMPANY");
-        String siteweb = Data.getElementwithID(c2,id,"SITEWEB","ROOT.COMPANY");
+        String nom = Data.getElementwithID(c1,id,"NOM","GUI.COMPANY");
+        String siret = Data.getElementwithID(c1,id,"SIRET","GUI.COMPANY");
+        String domaine = Data.getElementwithID(c1,id,"DOMAINE","GUI.COMPANY");
+        String taille = Data.getElementwithID(c1,id,"TAILLE","GUI.COMPANY");
+        String  adresse = Data.getElementwithID(c1,id,"ADRESSE","GUI.COMPANY");
+        String codepostal = Data.getElementwithID(c1,id,"CODEPOSTAL","GUI.COMPANY");
+        String ville = Data.getElementwithID(c1,id,"VILLE","GUI.COMPANY");
+        String pays = Data.getElementwithID(c1,id,"PAYS","GUI.COMPANY");
+        String telephone = Data.getElementwithID(c1,id,"TELEPHONE","GUI.COMPANY");
+        String siteweb = Data.getElementwithID(c1,id,"SITEWEB","GUI.COMPANY");
         
         request.setAttribute("nomEnt", nom);
         request.setAttribute("siretEnt", siret);
@@ -124,6 +125,14 @@ public class EntrepriseAfficherProfilEntreprise extends HttpServlet {
         request.setAttribute("villeEnt", ville);
         request.setAttribute("paysEnt", pays);
         request.setAttribute("telephoneEnt", telephone);
+        request.setAttribute("sitewebEnt", siteweb);
+        
+        if (c1 != null) {
+                try {
+                    c1.close();
+                } catch (SQLException ignore) {
+                }
+        }
         
         this.getServletContext().getRequestDispatcher("/entrepriseProfil.jsp").forward(request, response); 
     }

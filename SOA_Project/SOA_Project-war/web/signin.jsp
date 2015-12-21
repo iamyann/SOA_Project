@@ -108,7 +108,7 @@
             <form method="post" action="CreationCompte">
 						  <div class="row">
                             <div class="col-lg-12 text-center"> 
-                                <h6 class="section-heading">Pas de compte? Créer en un <a href="#" onClick="afficherLesChamps()">Ici</a></h6>                           	                    
+                                <h6 class="section-heading">Pas de compte? Créez-en un <a href="#" onClick="afficherLesChamps()">Ici</a></h6>                           	                    
 								<p>
 									<input type="radio" name="typeCompte" value="etudiant" id="cacher1"/> 
 									<label for="etudiant" id="cacher2">Etudiant  <label/>

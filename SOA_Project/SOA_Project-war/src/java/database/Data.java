@@ -22,31 +22,16 @@ import servlets.ServletCV;
  * @author yann
  */
 public class Data {
- private static String username = "root" ;
+    //private static String username = "gui" ; //Chez moi le root ùarche pas comme unsername, c plutot gui (Auriole)
+    private static String username = "root" ;
     private static String password = "root" ;
     private static String serverName = "localhost";
     private static String portNumber="1527" ;
     private static String dbName ="GUI";
-    private static String dbEntreprise ="COMPANY";
+    
     
     /** Retourne le lien de connection après l'avoir établi */
     public static Connection connectionDatabase1() throws SQLException 
-    {
-        try 
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Connection conn = null;
-        conn = DriverManager.getConnection("jdbc:derby://"+serverName+":"+portNumber+"/"+dbName, username, password);
-        System.out.println("Connected to database");
-        return conn;
-    }
-    
-    /** Retourne le lien de connection après l'avoir établi */
-    public static Connection connectionDatabase2() throws SQLException 
     {
         try 
         {
@@ -57,10 +42,12 @@ public class Data {
         }
         
         Connection conn = null;
-        conn = DriverManager.getConnection("jdbc:derby://"+serverName+":"+portNumber+"/"+dbEntreprise, username, password);
+        conn = DriverManager.getConnection("jdbc:derby://"+serverName+":"+portNumber+"/"+dbName, username, password);
         System.out.println("Connected to database");
         return conn;
     }
+    
+    
 
     /**################################### FONCTION ##################################################"""**/
     
@@ -94,7 +81,7 @@ public class Data {
              //Statement smt = con.createStatement() ;
             //smt.execute("INSERT INTO COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES ('"+email+"', '"+mdp+"', '"+type+"', '"+nom+"', '"+siret+"', '"+domaine+"','"+taille+"','"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"','"+siteweb+"')");      
             //Les preparedStatement sont idéals pour éviter les injections SQL (pensons à corriger notre code)
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO ROOT.COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO GUI.COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
             preparedStatement.setString( 1, email );
             preparedStatement.setString( 2, mdp );
             preparedStatement.setString( 3, type );
@@ -114,6 +101,34 @@ public class Data {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    //une fonction qui permet d'update la table company
+    public static void  updateElementCompanyGui(Connection con, String id,String nom,String siret,String domaine,String taille,String adresse,String code,String ville,String pays,String telephone, String siteweb)
+    {
+        try 
+        {
+             //Statement smt = con.createStatement() ;
+             //int statut=smt.executeUpdate("UPDATE GUI.COMPANY SET EMAIL=email,NOM=nom, SIRET=siret, DOMAINE=domaine,TAILLE=taille,ADRESSE=adresse, CODEPOSTAL=code, VILLE=ville, PAYS=pays, TELEPHONE=telephone, SITEWEB=siteweb WHERE ID=id");      
+            //Les preparedStatement sont idéals pour éviter les injections SQL (pensons à corriger notre code)
+             
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE GUI.COMPANY SET NOM=?, SIRET=?, DOMAINE=?, TAILLE=?, ADRESSE=?, CODEPOSTAL=?, VILLE=?, PAYS=?, TELEPHONE=?, SITEWEB=? WHERE ID=?");
+            
+            preparedStatement.setString( 1, nom );
+            preparedStatement.setString( 2, siret );
+            preparedStatement.setString( 3, domaine );
+            preparedStatement.setString( 4, taille );
+            preparedStatement.setString( 5, adresse );
+            preparedStatement.setString( 6, code );
+            preparedStatement.setString( 7, ville );
+            preparedStatement.setString( 8, pays );
+            preparedStatement.setString( 9, telephone );
+            preparedStatement.setString( 10, siteweb );
+            preparedStatement.setString( 11, id );
+            int statut = preparedStatement.executeUpdate();
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static String  getElement(Connection con, String user, String mdp, String mot, String Table){

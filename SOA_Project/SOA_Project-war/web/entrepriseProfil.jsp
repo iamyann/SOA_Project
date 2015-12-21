@@ -95,7 +95,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${sessionScope.prenom}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${sessionScope.nomEnt}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="EntrepriseAfficherProfilEntreprise"><i class="fa fa-fw fa-user"></i> Profil</a>
@@ -167,7 +167,7 @@
                     <div class="row">
                         <div class="col-lg-6">
 
-                            <form role="form">
+                            <form role="form" method="get" action="EntrepriseModifierProfil">
                                 <div class="form-group">
                                     <label>Nom : </label> ${nomEnt}
                                 </div>
