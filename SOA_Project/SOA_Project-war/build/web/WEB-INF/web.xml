@@ -76,6 +76,10 @@
         <servlet-name>ServletCV</servlet-name>
         <servlet-class>servlets.ServletCV</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EntrepriseAfficherProfilEntreprise</servlet-name>
+        <servlet-class>servlets.EntrepriseAfficherProfilEntreprise</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>ServletCV</servlet-name>
         <url-pattern>/ServletCV</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntrepriseAfficherProfilEntreprise</servlet-name>
+        <url-pattern>/EntrepriseAfficherProfilEntreprise</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>5</session-timeout>

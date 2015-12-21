@@ -25,9 +25,10 @@ public class ServletCreerCompteEntreprise extends HttpServlet
         /**************** Fonction me permettant de me connnecter à la Database et faire des scripts par la suite************************************/
         /*===> Auriol ne supprime pas ce que je fais, ça modifie pas ton code, je fais un lien avec ma page profil**/
         /*Suite à notre discussion, La connection c2 te permet de te connecter directement sur ta BDD [voir Classe DATA.java ]*/
-        Connection c1 = null;
+        Connection c2 = null;
         try {
-            c1 = Data.connectionDatabase1();
+            //c1 = Data.connectionDatabase1(); ==> je crois que c'est le connectionDatabase2();
+            c2=Data.connectionDatabase2();
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,11 +52,11 @@ public class ServletCreerCompteEntreprise extends HttpServlet
             String siteweb = request.getParameter("siteweb");
             
             // insertion dans la bdd
-            Data.addElementCompanyGui(c1, email, mdp, type, nom, siret, domaine, taille, adresse, code, ville, pays, telephone, siteweb);                
+            Data.addElementCompanyGui(c2, email, mdp, type, nom, siret, domaine, taille, adresse, code, ville, pays, telephone, siteweb);                
                     
             /* redirection [Auriol ne supprime rien, car c'est ça qui me permet d'identifier chaque entreprise] */
             session.setAttribute( "prenom", nom);
-            String id=Data.getElement(c1, nom, mdp, "ID", "COMPANY");
+            String id=Data.getElement(c2, nom, mdp, "ID", "COMPANY");
             System.out.println("[creation Entreprise]ID = "+id);
             session.setAttribute( "id", id);
             RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       

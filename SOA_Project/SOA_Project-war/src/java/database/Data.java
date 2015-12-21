@@ -27,7 +27,7 @@ public class Data {
     private static String serverName = "localhost";
     private static String portNumber="1527" ;
     private static String dbName ="GUI";
-    private static String dbName2 ="COMPANY";
+    private static String dbEntreprise ="COMPANY";
     
     /** Retourne le lien de connection après l'avoir établi */
     public static Connection connectionDatabase1() throws SQLException 
@@ -50,13 +50,14 @@ public class Data {
     {
         try 
         {
-            Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         Connection conn = null;
-        conn = DriverManager.getConnection("jdbc:derby://"+serverName+":"+portNumber+"/"+dbName2, username, password);
+        conn = DriverManager.getConnection("jdbc:derby://"+serverName+":"+portNumber+"/"+dbEntreprise, username, password);
         System.out.println("Connected to database");
         return conn;
     }
@@ -90,8 +91,24 @@ public class Data {
     {
         try 
         {
-             Statement smt = con.createStatement() ;
-             smt.execute("INSERT INTO COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES ('"+email+"', '"+mdp+"', '"+type+"', '"+nom+"', '"+siret+"', '"+domaine+"','"+taille+"','"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"','"+siteweb+"')");      
+             //Statement smt = con.createStatement() ;
+            //smt.execute("INSERT INTO COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES ('"+email+"', '"+mdp+"', '"+type+"', '"+nom+"', '"+siret+"', '"+domaine+"','"+taille+"','"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"','"+siteweb+"')");      
+            //Les preparedStatement sont idéals pour éviter les injections SQL (pensons à corriger notre code)
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO ROOT.COMPANY (EMAIL, MDP,TYPE,NOM, SIRET, DOMAINE,TAILLE,ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            preparedStatement.setString( 1, email );
+            preparedStatement.setString( 2, mdp );
+            preparedStatement.setString( 3, type );
+            preparedStatement.setString( 4, nom );
+            preparedStatement.setString( 5, siret );
+            preparedStatement.setString( 6, domaine );
+            preparedStatement.setString( 7, taille );
+            preparedStatement.setString( 8, adresse );
+            preparedStatement.setString( 9, code );
+            preparedStatement.setString( 10, ville );
+            preparedStatement.setString( 11, pays );
+            preparedStatement.setString( 12, telephone );
+            preparedStatement.setString( 13, siteweb );
+            int statut = preparedStatement.executeUpdate();
                         
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
