@@ -103,10 +103,11 @@ public class SignServlet extends HttpServlet {
             session.setAttribute( "nomEnt", pren);
             System.out.println("Id="+id+" nom="+pren);// Juste un test pour voir si ça récupere bien les infos
             
-            System.out.println("Fermeture des objets connection");
+            //Fermeture de la Connexion à la BD
             if (c1 != null) {
                 try {
                     c1.close();
+                    System.out.println("Fermeture de la connexion");
                 } catch (SQLException ignore) {
                 }
             }
@@ -117,10 +118,11 @@ public class SignServlet extends HttpServlet {
         
         else
         {
-            System.out.println("Fermeture des objets connection");
+            //Fermeture de la Connexion à la BD
             if (c1 != null) {
                 try {
                     c1.close();
+                    System.out.println("Fermeture de la connexion");
                 } catch (SQLException ignore) {
                 }
             }

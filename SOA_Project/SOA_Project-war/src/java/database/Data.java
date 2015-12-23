@@ -22,7 +22,7 @@ import servlets.ServletCV;
  * @author yann
  */
 public class Data {
-    //private static String username = "gui" ; //Chez moi le root ùarche pas comme unsername, c plutot gui (Auriole)
+    //private static String username = "gui" ; //Chez moi le root marche pas comme unsername, c plutot gui (Auriole)
     private static String username = "root" ;
     private static String password = "root" ;
     private static String serverName = "localhost";
@@ -36,7 +36,7 @@ public class Data {
         try 
         {
             //Class.forName("com.mysql.jdbc.Driver");
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Class.forName("org.apache.derby.jdbc.ClientDriver"); //le driver de ma BD (Auriole)
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }

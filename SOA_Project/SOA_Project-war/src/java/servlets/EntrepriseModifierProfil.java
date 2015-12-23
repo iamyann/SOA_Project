@@ -129,40 +129,42 @@ public class EntrepriseModifierProfil extends HttpServlet {
          // récupération des champs du formulaire
             
             String nom = request.getParameter("nom");
-            System.out.println(nom);
+            //System.out.println(nom);
             String siret = request.getParameter("siret");
-            System.out.println(siret);
+            //System.out.println(siret);
             String domaine = request.getParameter("domaine");
-            System.out.println(domaine);
+            //System.out.println(domaine);
             String taille = request.getParameter("taille");
-            System.out.println(taille);
+            //System.out.println(taille);
             String adresse = request.getParameter("adresse");
-            System.out.println(adresse);
-            String code = request.getParameter("code_postal");
-            System.out.println(code);
+            //System.out.println(adresse);
+            String code_postal = request.getParameter("code_postal");
+            //System.out.println(code_postal);
             String ville = request.getParameter("ville");
-            System.out.println(ville);
+            //System.out.println(ville);
             String pays  = request.getParameter("pays");
-            System.out.println(pays);
+            //System.out.println(pays);
             String telephone = request.getParameter("telephone");
-            System.out.println(telephone);
+            //System.out.println(telephone);
             String siteweb = request.getParameter("siteweb");
-            System.out.println(siteweb);
+            //System.out.println(siteweb);
             
             String id=(String)session.getAttribute("id");
             // update de dans la bdd
-            Data.updateElementCompanyGui(c1, id, nom, siret, domaine, taille, adresse, code, ville, pays, telephone, siteweb);                
+            Data.updateElementCompanyGui(c1, id, nom, siret, domaine, taille, adresse, code_postal, ville, pays, telephone, siteweb);                
                     
             
             session.setAttribute( "nomEnt", nom);
             System.out.println("ID = "+id);
             
+            //Fermeture de la Connexion à la BD
             if (c1 != null) {
                 try {
                     c1.close();
+                    System.out.println("Fermeture de la connexion");
                 } catch (SQLException ignore) {
                 }
-        }
+            }
             RequestDispatcher rd = request.getRequestDispatcher("EntrepriseAfficherProfilEntreprise");       
             rd.forward(request, response);             
          

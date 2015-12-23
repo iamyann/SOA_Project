@@ -156,7 +156,7 @@
                                     <i class="fa fa-dashboard"></i>  <a href="entrepriseTableauBord.jsp">Tableau de bord</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-edit"></i> Stage
+                                    <i class="fa fa-edit"></i> Profil
                                 </li>
                             </ol>
                         </div>

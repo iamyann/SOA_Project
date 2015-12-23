@@ -70,11 +70,18 @@ public class VoirProfilServlet extends HttpServlet {
 "                         </tr>"
                       ;
             request.setAttribute("profil", voirprofil); // This will be available as ${profil}
+            
+            //Fermeture de la Connexion à la BD
+            if (c1 != null) {
+                try {
+                    c1.close();
+                    System.out.println("Fermeture de la connexion");
+                } catch (SQLException ignore) {
+                }
+            }
             RequestDispatcher rd = request.getRequestDispatcher("voir-profil.jsp");
             rd.forward(request, response);
-//            c1.close();
-//            c2.close();
-        
+
     }
 
     /**

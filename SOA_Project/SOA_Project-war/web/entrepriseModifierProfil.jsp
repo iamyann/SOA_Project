@@ -162,7 +162,7 @@
                                     <i class="fa fa-dashboard"></i>  <a href="entrepriseTableauBord.jsp">Tableau de bord</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-edit"></i> Stage
+                                    <i class="fa fa-edit"></i> Modifier profil
                                 </li>
                             </ol>
                         </div>
@@ -173,21 +173,21 @@
                     <div class="row">
                         <div class="col-lg-6">
 
-                            <form role="form" method="post" action="EntrepriseModifierProfil">
+                            <form role="form" method="POST" action="EntrepriseModifierProfil">
 
 
-                                <div class="form-group input-group">
+                                <div class="form-group">
                                     <label>Nom</label>
-                                    <input type="text" class="form-control" value="${nomEnt}" required>
+                                    <input type="text" name="nom" size="20" maxlength="20" class="form-control" value="${nomEnt}" required>
                                 </div>  
                                 
                                 <div class="form-group">
                                     <label>Siret</label>
-                                    <input type="text" class="form-control" value="${siretEnt}">
+                                    <input type="text" name="siret" size="14" maxlength="14" class="form-control" value="${siretEnt}">
                                 </div>
                                 <div class="form-group">
                                     <label>Domaine d'activité</label> <br/>
-                                    <select name="domaine" id="domaine" required>
+                                    <select name="domaine" class="form-control" id="domaine" required>
                                         <option value="${domaineEnt}">${domaineEnt}</option>
                                         <option value="Eco Industrie, environnement et aménagement">Eco Industrie, environnement et aménagement</option>
                                         <option value="Eco conception">Eco conception</option>
@@ -213,7 +213,7 @@
 
                                 <div class="form-group">
                                     <label>Taille de l'établissement</label> <br/>
-                                    <select name="taille" id="taille" required>                   
+                                    <select name="taille" class="form-control" id="taille" required>                   
                                         <option value="${tailleEnt}">${tailleEnt}</option>
                                         <option value="TPE">1 à 49 (TPE)</option>
                                         <option value="PME">50 à 249 (PME)</option>
@@ -225,22 +225,22 @@
 
                                 <div class="form-group">
                                     <label>Adresse</label>
-                                    <input type="text" class="form-control" value="${adresseEnt}" required>
+                                    <input type="text" name="adresse" size="30" maxlength="30" class="form-control" value="${adresseEnt}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Code Postal</label>
-                                    <input type="text" class="form-control" value="${codepostalEnt}" size="5" maxlength="5" required >
+                                    <input type="text" name="code_postal" size="5" maxlength="5" class="form-control" value="${codepostalEnt}" size="5" maxlength="5" required >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Ville</label>
-                                    <input type="text" class="form-control" value="${villeEnt}" required>
+                                    <input type="text" name="ville" size="20" maxlength="20" class="form-control" value="${villeEnt}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Pays</label> <br/>
-                                    <select id="pays" name="pays" required>
+                                    <select id="pays" class="form-control" name="pays" required>
                                         <option value="${paysEnt}">${paysEnt}</option>
                                         <option value="Afghanistan">Afghanistan </option>
                                         <option value="Afrique_Centrale">Afrique_Centrale </option>
@@ -415,12 +415,12 @@
                                         
                                 <div class="form-group">
                                     <label>Téléphone</label>
-                                    <input type="tel" class="form-control" value="${telephoneEnt}" required>
+                                    <input type="tel" name="telephone" size="13" maxlength="13" class="form-control" value="${telephoneEnt}" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Site web</label>
-                                    <input type="tel" class="form-control" value="${sitewebEnt}" >
+                                    <input type="tel" name="siteweb" size="30" maxlength="30" class="form-control" value="${sitewebEnt}" >
                                 </div>
 
                                 <button type="submit" class="btn btn-default">Valider</button>

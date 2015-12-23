@@ -82,6 +82,15 @@ public class EntrepriseAfficherProfilEntreprise extends HttpServlet {
         request.setAttribute("telephoneEnt", telephone);
         request.setAttribute("sitewebEnt", siteweb);
         
+        //Fermeture de la Connexion à la BD
+        if (c1 != null) {
+            try {
+                c1.close();
+                System.out.println("Fermeture de la connexion");
+            } catch (SQLException ignore) {
+            }
+        }
+        
         this.getServletContext().getRequestDispatcher("/entrepriseProfil.jsp").forward(request, response); 
     }
 
@@ -127,12 +136,14 @@ public class EntrepriseAfficherProfilEntreprise extends HttpServlet {
         request.setAttribute("telephoneEnt", telephone);
         request.setAttribute("sitewebEnt", siteweb);
         
-        if (c1 != null) {
+        //Fermeture de la Connexion à la BD
+         if (c1 != null) {
                 try {
                     c1.close();
+                    System.out.println("Fermeture de la connexion");
                 } catch (SQLException ignore) {
                 }
-        }
+         }
         
         this.getServletContext().getRequestDispatcher("/entrepriseProfil.jsp").forward(request, response); 
     }

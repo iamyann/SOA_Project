@@ -92,7 +92,16 @@ public class EditProfileServlet extends HttpServlet {
         
         //Update Description
         String description=request.getParameter("resume");
-        Data.setElementwithID(c1, id, description, "STUDENT", "DESCRIPTION"); 
+        Data.setElementwithID(c1, id, description, "STUDENT", "DESCRIPTION");
+        
+        //Fermeture de la Connexion à la BD
+         if (c1 != null) {
+                try {
+                    c1.close();
+                    System.out.println("Fermeture de la connexion");
+                } catch (SQLException ignore) {
+                }
+         }
         RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
         rd.forward(request, response); 
     }

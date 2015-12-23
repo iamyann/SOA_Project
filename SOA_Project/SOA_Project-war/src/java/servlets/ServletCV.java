@@ -89,7 +89,15 @@ public class ServletCV extends HttpServlet {
                 }
             } catch (SQLException ex) {
             System.out.println("[ServletCV] ERROR ");
-        }        
+        } 
+        //Fermeture de la Connexion à la BD
+        if (c1 != null) {
+            try {
+                c1.close();
+                System.out.println("Fermeture de la connexion");
+            } catch (SQLException ignore) {
+            }
+        }
     }
 
     /**
