@@ -175,6 +175,39 @@ public class Data {
         }
         return type ;  
     }
+     
+     public static String  getCompany(Connection con){
+        String recherche = "";
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM COMPANY");
+            int nbr = 0;
+            recherche ="<div class=\"form-group\">\n" +
+"                                <label>Nom de l'entreprise</label>\n" +
+"                                <select name=\"nomE\" class=\"form-control\">\n" ;
+            while(resultset.next()){
+                String nom =resultset.getString(resultset.findColumn("NOM"));
+                String s = "null";
+                String s1 = "" + nom;
+                String rest;
+                if (s.equals(s1)) {
+                    rest = "-";
+                } else {
+                    rest = nom;
+                }
+                recherche +="<option>"+rest+"</option>\n";
+                nbr++;
+            }
+            if (nbr > 0) {
+                recherche += "                                </select>\n" +
+"                            </div>";
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recherche ;  
+    }
     
     /** Modifie le type et renvoie "true" si l'ID existe dans la base de données */
     public static Boolean setElement(Connection con,String user, String mdp, String mot, String Table, String Element){

@@ -5,8 +5,13 @@
  */
 package servlets;
 
+import database.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -45,17 +50,15 @@ public class SpontaneServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                    String entreprise=""
-                            + "<div class=\"form-group\">\n" +
-"                                <label>Nom de l'entreprise</label>\n" +
-"                                <select class=\"form-control\">\n" +
-"                                    <option>Orange</option>\n" +
-"                                    <option>SFR</option>\n" +
-"                                    <option>IBM</option>\n" +
-"                                    <option>Solucom</option>\n" +
-"                                    <option>Sopra Steria</option>\n" +
-"                                </select>\n" +
-"                            </div>";
+        
+         Connection c1 = null;
+        try {
+            c1 = Data.connectionDatabase1();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                    String entreprise=Data.getCompany(c1);
             
             request.setAttribute("entreprise", entreprise); // This will be available as ${entreprise}
             RequestDispatcher rd = request.getRequestDispatcher("forms.jsp");
