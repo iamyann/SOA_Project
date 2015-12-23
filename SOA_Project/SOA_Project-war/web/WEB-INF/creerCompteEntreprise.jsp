@@ -242,9 +242,9 @@
                 <label for="siteweb">Site Web</label>
                     <input type="text" id="siteweb" name="siteweb" size="20" maxlength="30"/><br>
             </fieldset><br>
-            <input disabled type="submit" value="Valider" id="send"/>
+            <input  type="submit" value="Valider" id="send"/>
         </form>
-        <script>
+        <!--<script>
             function testData(){
             return (/^[0-9]{14}$/.test(document.getElementById('siret').value)
             && /^[0-9]{5}$/.test(document.getElementById('code_postal').value)
@@ -296,6 +296,6 @@
                 document.getElementById('send').disabled = true;
             }
         }
-        </script>
+        </script>-->
     </body>
 </html>

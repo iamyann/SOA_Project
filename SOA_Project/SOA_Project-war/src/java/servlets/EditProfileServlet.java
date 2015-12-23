@@ -6,22 +6,32 @@
 package servlets;
 
 import database.Data;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author yann
  */
+@MultipartConfig
 public class EditProfileServlet extends HttpServlet {
 
     /**
@@ -65,24 +75,24 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-          Connection c1 = null;
+        HttpSession session = ((HttpServletRequest) request).getSession(false);
+        String id= (String) session.getAttribute("id");
+        Connection c1 = null;
         try {
             c1 = Data.connectionDatabase1();
         } catch (SQLException ex) {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
+         
+        //Update CV
+        Part cv = request.getPart("file");
+        String fileName = cv.getSubmittedFileName();
+        InputStream fileContent = cv.getInputStream();
+        Data.setCVwithID(c1,id, "?", "STUDENT", "CV",fileContent);        
         
-            Connection c2 = null;
-        try {
-            c2 = Data.connectionDatabase2();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        //Update Description
         String description=request.getParameter("resume");
-        String cv=request.getParameter("file");
-
-        Data.setElement(c1, "Etudiant", "etudiant", description, "STUDENT", "DESCRIPTION");       
+        Data.setElementwithID(c1, id, description, "STUDENT", "DESCRIPTION"); 
         RequestDispatcher rd = request.getRequestDispatcher("index-etud.jsp");       
         rd.forward(request, response); 
     }

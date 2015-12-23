@@ -1,14 +1,19 @@
 package servlets;
 
+import database.Data;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ServletCreerCompteEntreprise extends HttpServlet 
 {
@@ -17,26 +22,20 @@ public class ServletCreerCompteEntreprise extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {        
-/* Chargement du driver JDBC pour MySQL */
-        try 
-        {
-            Class.forName("org.apache.derby.jdbc.ClientDriver" );
-        } 
-        catch (ClassNotFoundException e) // gérer les éventuelles erreurs ici
-        {
-            request.setAttribute("fail", e);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/fail.jsp").forward(request, response);
+        /**************** Fonction me permettant de me connnecter à la Database et faire des scripts par la suite************************************/
+        /*===> Auriol ne supprime pas ce que je fais, ça modifie pas ton code, je fais un lien avec ma page profil**/
+        /*Suite à notre discussion, La connection c2 te permet de te connecter directement sur ta BDD [voir Classe DATA.java ]*/
+        Connection c1 = null;
+        try {
+            c1 = Data.connectionDatabase1(); 
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-/* Connexion à la base de données  et inscription de l'utilisateur */
-        String url = "jdbc:derby://localhost:1527/etudiants"; // à modifier selon matthieu
-        String utilisateur = "thomas";
-        String motDePasse = "thomas";
-        Connection connexion = null;
-        try // Ici, nous placerons nos requêtes vers la BDD
-        {
-            connexion = DriverManager.getConnection(url, utilisateur, motDePasse); // connexion à la bdd en mode admin
-            Statement statement = connexion.createStatement();  // création de l'objet gérant les requêtes
-            // récupération des champs du formulaire
+        /****************************************************/
+         HttpSession session = ((HttpServletRequest) request).getSession(false);
+         session = request.getSession();  
+         // récupération des champs du formulaire
             String email = request.getParameter("email");
             String mdp = request.getParameter("mdp1"); // on assume que les deux mots de passes sont identiques du fait du js
             //String mdp2 = request.getParameter("mdp2");
@@ -51,25 +50,16 @@ public class ServletCreerCompteEntreprise extends HttpServlet
             String pays  = request.getParameter("pays");
             String telephone = request.getParameter("telephone");
             String siteweb = request.getParameter("siteweb");
+            
             // insertion dans la bdd
-            int statut = statement.executeUpdate("INSERT INTO THOMAS.ENTREPRISE (EMAIL, MDP, TYPE, NOM, SIRET, DOMAINE, TAILLE, ADRESSE, CODEPOSTAL, VILLE, PAYS, TELEPHONE, SITEWEB) "
-                    + "VALUES ('"+email+"', '"+mdp+"', '"+type+"', '"+nom+"', '"+siret+"', '"+domaine+"','"+taille+"','"+adresse+"', '"+code+"', '"+ville+"', '"+pays+"', '"+telephone+"', '"+siteweb+"')");
-        } 
-        catch (SQLException e) // gérer les éventuelles erreurs ici
-        {
-            request.setAttribute("fail", e);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/fail.jsp").forward(request, response);
-        } 
-        finally 
-        {
-            if (connexion != null)
-                try 
-                {
-                    connexion.close(); // Fermeture de la connexion */
-                } 
-                catch (SQLException ignore) {} // Si une erreur survient lors de la fermeture, il suffit de l'ignorer
-        }
-/* redirection */
-        this.getServletContext().getRequestDispatcher("/WEB-INF/profilEntreprise.jsp").forward(request, response);     
+            Data.addElementCompanyGui(c1, email, mdp, type, nom, siret, domaine, taille, adresse, code, ville, pays, telephone, siteweb);                
+                    
+            /* redirection [Auriol ne supprime rien, car c'est ça qui me permet d'identifier chaque entreprise] */
+            session.setAttribute( "prenom", nom);
+            String id=Data.getElement(c1, nom, mdp, "ID", "GUI.COMPANY");
+            System.out.println("[creation Entreprise]ID = "+id);
+            session.setAttribute( "id", id);
+            RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       
+            rd.forward(request, response);            
     }
 }

@@ -91,10 +91,10 @@
 					    <div class="row">
                             <div class="col-lg-12 text-center"> 					                       
 								  <div class="form-group">
-									   <div><input name="username" placeholder="Identifiant" class="form-control" type="text" id="Id Utilisateur"/></div>
+									   <div><input name="username" placeholder="email@test.com" class="form-control" type="text" id="Id Utilisateur"/></div>
 								  </div>                                 
 								  <div class="form-group">
-										<div><input name="password" placeholder="Mot de Passe" class="form-control" type="password" id="Mot de Passe"/></div>
+										<div><input name="password" placeholder="mot de passe" class="form-control" type="password" id="Mot de Passe"/></div>
 								  </div>                                 
 								  <div class="form-group">
 										 <input  class="btn btn-primary" type="submit" value="Se connecter"/>
@@ -108,7 +108,7 @@
             <form method="post" action="CreationCompte">
 						  <div class="row">
                             <div class="col-lg-12 text-center"> 
-                                <h6 class="section-heading">Pas de compte? Créer en un <a href="#" onClick="afficherLesChamps()">Ici</a></h6>                           	                    
+                                <h6 class="section-heading">Pas de compte? Créez-en un <a href="#" onClick="afficherLesChamps()">Ici</a></h6>                           	                    
 								<p>
 									<input type="radio" name="typeCompte" value="etudiant" id="cacher1"/> 
 									<label for="etudiant" id="cacher2">Etudiant  <label/>

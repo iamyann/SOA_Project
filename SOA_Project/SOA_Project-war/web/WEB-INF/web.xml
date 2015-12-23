@@ -72,6 +72,18 @@
         <servlet-name>EntrepriseProposerStageServlet</servlet-name>
         <servlet-class>servlets.EntrepriseProposerStageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCV</servlet-name>
+        <servlet-class>servlets.ServletCV</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EntrepriseAfficherProfilEntreprise</servlet-name>
+        <servlet-class>servlets.EntrepriseAfficherProfilEntreprise</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EntrepriseModifierProfil</servlet-name>
+        <servlet-class>servlets.EntrepriseModifierProfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -144,7 +156,19 @@
         <servlet-name>EntrepriseProposerStageServlet</servlet-name>
         <url-pattern>/EntrepriseProposerStageServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCV</servlet-name>
+        <url-pattern>/ServletCV</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntrepriseAfficherProfilEntreprise</servlet-name>
+        <url-pattern>/EntrepriseAfficherProfilEntreprise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntrepriseModifierProfil</servlet-name>
+        <url-pattern>/EntrepriseModifierProfil</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>5</session-timeout>
+        <session-timeout>15</session-timeout>
     </session-config>
 </web-app>
