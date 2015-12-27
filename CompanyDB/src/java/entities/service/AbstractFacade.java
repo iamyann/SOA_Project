@@ -7,6 +7,7 @@ package entities.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -58,6 +59,13 @@ public abstract class AbstractFacade<T> {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+    
+    public List<T> findBySpe(Object specialite) { 
+        Query request = getEntityManager().createNamedQuery("Stages.findBySpecialite");
+        request.setParameter("specialite", specialite);
+        return request.getResultList();
+        
     }
     
 }

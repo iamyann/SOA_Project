@@ -86,4 +86,11 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
         return em;
     }
     
+    @GET
+    @Path("bySpecialite/{spe}")
+    @Produces({"application/xml", "application/json"})
+    public List<Stages> findBySpe(@PathParam("spe") String spe) {
+        return super.findBySpe(spe);
+    }
+    
 }
