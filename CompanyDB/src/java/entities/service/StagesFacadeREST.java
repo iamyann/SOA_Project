@@ -106,4 +106,10 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     public List<Stages> findByRef(@PathParam("ref") String ref) {
         return super.findByRef(ref);
     }
+    @GET
+    @Path("bySiret/{siret}")
+    @Produces({"application/xml", "application/json"})
+    public List<Stages> findBySiret(@PathParam("siret") String siret) {
+        return super.findBySiret(siret);
+    }
 }

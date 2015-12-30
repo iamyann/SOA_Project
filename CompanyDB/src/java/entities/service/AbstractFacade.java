@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package entities.service;
 
 import entities.Stages;
@@ -16,35 +16,35 @@ import javax.persistence.Query;
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
-
+    
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
-
+    
     protected abstract EntityManager getEntityManager();
-
+    
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
-
+    
     public void edit(T entity) {
         getEntityManager().merge(entity);
     }
-
+    
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
-
+    
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
     }
-
+    
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
-
+    
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
@@ -53,7 +53,7 @@ public abstract class AbstractFacade<T> {
         q.setFirstResult(range[0]);
         return q.getResultList();
     }
-
+    
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
@@ -62,12 +62,12 @@ public abstract class AbstractFacade<T> {
         return ((Long) q.getSingleResult()).intValue();
     }
     
-    public List<T> findBySpe(Object specialite) { 
+    public List<T> findBySpe(Object specialite) {
         Query request = getEntityManager().createNamedQuery("Stages.findBySpecialite");
         request.setParameter("specialite", specialite);
         return request.getResultList();
     }
-
+    
     Stages findByTitle(String title) {
         Stages stage = new Stages();
         Query request = getEntityManager().createNamedQuery("Stages.findByTitresujet");
@@ -75,9 +75,24 @@ public abstract class AbstractFacade<T> {
         return stage ;
     }
     
-    public List<T> findByRef(Object ref) { 
+    public List<T> findByRef(Object ref) {
         Query request = getEntityManager().createNamedQuery("Stages.findByReference");
         request.setParameter("reference", ref);
+        return request.getResultList();
+    }
+    //***Develop by ChocoBoy
+    //***return application for a candidat    
+    List<T> findByCand(Object nometudiant) {
+        Query request = getEntityManager().createNamedQuery("Candidatures.findByNometudiant");
+        request.setParameter("nometudiant", nometudiant);
+        return request.getResultList();
+    }
+    
+    //***Develop by ChocoBoy
+    //***return application for a Company 
+    List<T> findBySiret(Object siret) {
+    Query request = getEntityManager().createNamedQuery("Stages.findBySiret");
+        request.setParameter("siret", siret);
         return request.getResultList();
     }
     

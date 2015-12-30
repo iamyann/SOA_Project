@@ -80,7 +80,13 @@ public class CandidaturesFacadeREST extends AbstractFacade<Candidatures> {
     public String countREST() {
         return String.valueOf(super.count());
     }
-
+    
+    @GET
+    @Path("CandidatureIndividuel/{nometudiant}")
+    @Produces({"application/xml", "application/json"})
+    public List<Candidatures>dByCand(@PathParam("nometudiant") String nometudiant) {
+        return super.findByCand(nometudiant);
+    }
     @Override
     protected EntityManager getEntityManager() {
         return em;
