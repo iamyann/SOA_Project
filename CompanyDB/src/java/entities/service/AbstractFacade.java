@@ -5,6 +5,7 @@
  */
 package entities.service;
 
+import entities.Stages;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -65,7 +66,13 @@ public abstract class AbstractFacade<T> {
         Query request = getEntityManager().createNamedQuery("Stages.findBySpecialite");
         request.setParameter("specialite", specialite);
         return request.getResultList();
-        
+    }
+
+    Stages findByTitle(String title) {
+        Stages stage = new Stages();
+        Query request = getEntityManager().createNamedQuery("Stages.findByTitresujet");
+        request.setParameter("title", title);
+        return stage ;
     }
     
 }
