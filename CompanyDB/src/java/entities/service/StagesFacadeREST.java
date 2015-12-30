@@ -99,4 +99,11 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     public Stages findByTitle(@PathParam("title") String title) {
         return super.findByTitle(title);
     }
+    
+    @GET
+    @Path("byRef/{ref}")
+    @Produces({"application/xml", "application/json"})
+    public List<Stages> findByRef(@PathParam("ref") String ref) {
+        return super.findByRef(ref);
+    }
 }
