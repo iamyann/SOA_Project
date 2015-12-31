@@ -54,7 +54,7 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     }
     
     @DELETE
-    @Path("{delByRef/{ref}")
+    @Path("delByRef/{ref}")
     public void removeByRef(@PathParam("ref") Object ref) {
         super.remove(super.findByRef(ref));
     }
