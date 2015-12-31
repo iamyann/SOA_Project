@@ -110,7 +110,7 @@ public abstract class AbstractFacade<T> {
         Query request = getEntityManager().createNamedQuery("Candidatures.findAllSpont");
         return request.getResultList();
     }
-    
+     
     /**
      * Return the list of all spontaneous applications for a given student
      * @param nometudiant Name of the student

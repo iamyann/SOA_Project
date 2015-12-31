@@ -106,6 +106,6 @@ public class CandidaturesFacadeREST extends AbstractFacade<Candidatures> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
+    } 
     
 }

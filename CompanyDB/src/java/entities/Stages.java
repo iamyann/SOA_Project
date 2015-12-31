@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "STAGES")
-@XmlRootElement
+@XmlRootElement 
 @NamedQueries({
     @NamedQuery(name = "Stages.findAll", query = "SELECT s FROM Stages s"),
     @NamedQuery(name = "Stages.findById", query = "SELECT s FROM Stages s WHERE s.id = :id"),

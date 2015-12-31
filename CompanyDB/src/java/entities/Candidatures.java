@@ -100,7 +100,7 @@ public class Candidatures implements Serializable {
         this.cv = cv;
         this.statutentreprise = statutentreprise;
         this.statutetudiant = statutetudiant;
-    }
+    } 
 
     public Integer getId() {
         return id;
