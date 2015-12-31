@@ -52,7 +52,14 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    
+    @DELETE
+    @Path("{delByRef/{ref}")
+    public void removeByRef(@PathParam("ref") Object ref) {
+        super.remove(super.findByRef(ref));
+    }
 
+        
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
@@ -103,9 +110,10 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     @GET
     @Path("byRef/{ref}")
     @Produces({"application/xml", "application/json"})
-    public List<Stages> findByRef(@PathParam("ref") String ref) {
+    public Stages findByRef(@PathParam("ref") String ref) {
         return super.findByRef(ref);
     }
+    
     @GET
     @Path("bySiret/{siret}")
     @Produces({"application/xml", "application/json"})
