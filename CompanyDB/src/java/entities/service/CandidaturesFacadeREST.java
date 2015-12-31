@@ -87,6 +87,22 @@ public class CandidaturesFacadeREST extends AbstractFacade<Candidatures> {
     public List<Candidatures>dByCand(@PathParam("nometudiant") String nometudiant) {
         return super.findByCand(nometudiant);
     }
+    
+    @GET
+    @Path("CandidatureSponts")
+    @Produces({"application/xml", "application/json"})
+    public List<Candidatures> getSpontList() {
+        return super.getSpontList();
+    }
+    
+    @GET
+    @Path("CandidatureSpont/byName/{nometudiant}")
+    @Produces({"application/xml", "application/json"})
+    public List<Candidatures> findSpontByName(Object nometudiant) {
+        return super.getSpontForName(nometudiant);
+    }
+    
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

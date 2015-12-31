@@ -68,14 +68,20 @@ public abstract class AbstractFacade<T> {
         return request.getResultList();
     }
     
-    Stages findByTitle(String title) {
+    /**
+     * Returns an offer according to its title
+     * @param title Title of the offer
+     * @return The offer
+     */
+    public Stages byTitle(String title) {
         Stages stage = new Stages();
         Query request = getEntityManager().createNamedQuery("Stages.findByTitresujet");
         request.setParameter("title", title);
         return stage ;
     }
     
-    public List<T> findByRef(Object ref) {
+  
+    List<T> findByRef(Object ref) {
         Query request = getEntityManager().createNamedQuery("Stages.findByReference");
         request.setParameter("reference", ref);
         return request.getResultList();
@@ -95,5 +101,26 @@ public abstract class AbstractFacade<T> {
         request.setParameter("siret", siret);
         return request.getResultList();
     }
+    
+    /**
+     * Return all spontaneous applications
+     * @return List of all spontaneous applications
+     */
+    List<T> getSpontList(){
+        Query request = getEntityManager().createNamedQuery("Candidatures.findAllSpont");
+        return request.getResultList();
+    }
+    
+    /**
+     * Return the list of all spontaneous applications for a given student
+     * @param nometudiant Name of the student
+     * @return List of the student's spontaneous applications
+     */
+    List<T> getSpontForName(Object nometudiant){
+        Query request = getEntityManager().createNamedQuery("Candidatures.findSpontForNometudiant");
+        request.setParameter("nometudiant", nometudiant);
+        return request.getResultList();
+    }
+    
     
 }
