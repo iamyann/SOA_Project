@@ -91,16 +91,16 @@ public class CandidaturesFacadeREST extends AbstractFacade<Candidatures> {
     @GET
     @Path("CandidatureSponts")
     @Produces({"application/xml", "application/json"})
-    public List<Candidatures> getSpontList() {
+    public List<Candidatures> findSpontList() {
         return super.getSpontList();
     }
     
-    @GET
+    /*@GET
     @Path("CandidatureSpont/byName/{nometudiant}")
     @Produces({"application/xml", "application/json"})
     public List<Candidatures> findSpontByName(Object nometudiant) {
         return super.getSpontForName(nometudiant);
-    }
+    }*/
     
     
     @Override

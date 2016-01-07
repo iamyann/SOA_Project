@@ -73,19 +73,17 @@ public abstract class AbstractFacade<T> {
      * @param title Title of the offer
      * @return The offer
      */
-    List<T> byTitle(Object titresujet) {
-        Stages stage = new Stages();
+    public List<Stages> byTitle(Object title) {
         Query request = getEntityManager().createNamedQuery("Stages.findByTitresujet");
-        request.setParameter("titresujet", titresujet);
-        return request.getResultList() ;
+        request.setParameter("titresujet", title);
+        return request.getResultList();
     }
     
   
-    Stages findByRef(Object ref) {
-        Stages stage = new Stages();
+    public List<T> findByRef(Object ref) {
         Query request = getEntityManager().createNamedQuery("Stages.findByReference");
         request.setParameter("reference", ref);
-        return stage;
+        return request.getResultList();
     }
     //***Develop by ChocoBoy
     //***return application for a candidat    

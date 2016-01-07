@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Candidatures.findById", query = "SELECT c FROM Candidatures c WHERE c.id = :id"),
     @NamedQuery(name = "Candidatures.findByNometudiant", query = "SELECT c FROM Candidatures c WHERE c.nometudiant = :nometudiant"),
     @NamedQuery(name = "Candidatures.findAllSpont", query = "SELECT c FROM Candidatures c WHERE c.refoffrestage IS NULL"),
-    @NamedQuery(name = "Candidatures.findSpontForNometudiant", query = "SELECT c FROM Candidatures c WHERE c.nometudiant = :nometudiant AND c.refoffrestage IS NULL"),
+    //@NamedQuery(name = "Candidatures.findSpontForNometudiant", query = "SELECT c FROM Candidatures c WHERE c.nometudiant = :nometudiant AND c.refoffrestage IS NULL"),
     @NamedQuery(name = "Candidatures.findByPrenometudiant", query = "SELECT c FROM Candidatures c WHERE c.prenometudiant = :prenometudiant"),
     @NamedQuery(name = "Candidatures.findByCommentaires", query = "SELECT c FROM Candidatures c WHERE c.commentaires = :commentaires"),
     @NamedQuery(name = "Candidatures.findByStatutentreprise", query = "SELECT c FROM Candidatures c WHERE c.statutentreprise = :statutentreprise"),
