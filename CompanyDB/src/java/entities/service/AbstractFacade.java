@@ -81,10 +81,11 @@ public abstract class AbstractFacade<T> {
     }
     
   
-    List<T> findByRef(Object ref) {
+    Stages findByRef(Object ref) {
+        Stages stage = new Stages();
         Query request = getEntityManager().createNamedQuery("Stages.findByReference");
         request.setParameter("reference", ref);
-        return request.getResultList();
+        return stage;
     }
     //***Develop by ChocoBoy
     //***return application for a candidat    

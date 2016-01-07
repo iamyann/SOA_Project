@@ -46,13 +46,27 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     public void edit(@PathParam("id") Integer id, Stages entity) {
         super.edit(entity);
     }
+    
+    @PUT
+    @Path("byRef/{ref}")
+    @Consumes({"application/xml", "application/json"})
+    public void edit(@PathParam("ref") Object ref, Stages entity) {
+        super.edit(super.findByRef(ref));
+    }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    
+    @DELETE
+    @Path("byRef/{ref}")
+    public void removeByRef(@PathParam("ref") Object ref) {
+        super.remove(super.findByRef(ref));
+    }
 
+        
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
@@ -103,9 +117,10 @@ public class StagesFacadeREST extends AbstractFacade<Stages> {
     @GET
     @Path("byRef/{ref}")
     @Produces({"application/xml", "application/json"})
-    public List<Stages> findByRef(@PathParam("ref") String ref) {
+    public Stages findByRef(@PathParam("ref") Object ref) {
         return super.findByRef(ref);
     }
+    
     @GET
     @Path("bySiret/{siret}")
     @Produces({"application/xml", "application/json"})
