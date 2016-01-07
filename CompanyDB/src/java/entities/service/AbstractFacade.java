@@ -73,11 +73,11 @@ public abstract class AbstractFacade<T> {
      * @param title Title of the offer
      * @return The offer
      */
-    public Stages byTitle(String title) {
+    List<T> byTitle(Object titresujet) {
         Stages stage = new Stages();
         Query request = getEntityManager().createNamedQuery("Stages.findByTitresujet");
-        request.setParameter("title", title);
-        return stage ;
+        request.setParameter("titresujet", titresujet);
+        return request.getResultList() ;
     }
     
   
