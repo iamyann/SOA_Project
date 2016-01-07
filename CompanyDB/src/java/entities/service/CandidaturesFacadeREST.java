@@ -84,7 +84,7 @@ public class CandidaturesFacadeREST extends AbstractFacade<Candidatures> {
     @GET
     @Path("CandidatureIndividuel/{nometudiant}")
     @Produces({"application/xml", "application/json"})
-    public List<Candidatures>dByCand(@PathParam("nometudiant") String nometudiant) {
+    public List<Candidatures> findCand(@PathParam("nometudiant") String nometudiant) {
         return super.findByCand(nometudiant);
     }
     

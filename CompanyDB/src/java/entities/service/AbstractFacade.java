@@ -87,7 +87,7 @@ public abstract class AbstractFacade<T> {
     }
     //***Develop by ChocoBoy
     //***return application for a candidat    
-    List<T> findByCand(Object nometudiant) {
+    public List<T> findByCand(Object nometudiant) {
         Query request = getEntityManager().createNamedQuery("Candidatures.findByNometudiant");
         request.setParameter("nometudiant", nometudiant);
         return request.getResultList();
@@ -95,7 +95,7 @@ public abstract class AbstractFacade<T> {
     
     //***Develop by ChocoBoy
     //***return application for a Company 
-    List<T> findBySiret(Object siret) {
+    public List<T> findBySiret(Object siret) {
     Query request = getEntityManager().createNamedQuery("Stages.findBySiret");
         request.setParameter("siret", siret);
         return request.getResultList();
@@ -105,7 +105,7 @@ public abstract class AbstractFacade<T> {
      * Return all spontaneous applications
      * @return List of all spontaneous applications
      */
-    List<T> getSpontList(){
+    public List<T> getSpontList(){
         Query request = getEntityManager().createNamedQuery("Candidatures.findAllSpont");
         return request.getResultList();
     }
@@ -115,7 +115,7 @@ public abstract class AbstractFacade<T> {
      * @param nometudiant Name of the student
      * @return List of the student's spontaneous applications
      */
-    List<T> getSpontForName(Object nometudiant){
+    public List<T> getSpontForName(Object nometudiant){
         Query request = getEntityManager().createNamedQuery("Candidatures.findSpontForNometudiant");
         request.setParameter("nometudiant", nometudiant);
         return request.getResultList();
