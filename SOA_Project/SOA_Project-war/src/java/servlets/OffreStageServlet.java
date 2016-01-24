@@ -56,13 +56,15 @@ public class OffreStageServlet extends HttpServlet {
               
             Connection c1 = null;
             HttpSession session = ((HttpServletRequest) request).getSession(false);
-            String id = (String) session.getAttribute("ID");
+            String id= (String) session.getAttribute("id");
             
             try {
                 c1 = Data.connectionDatabase1();
             } catch (SQLException ex) {
                 Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^ID ="+id);
             
             
             String offresStage="";

@@ -251,52 +251,54 @@ public class Data {
 
             for (int i = 0; i < nodes.getLength(); i++)
             {
-                recherche ="<tr>\n" ;
+                recherche +="<tr>\n" ;
                 
                 Element element = (Element) nodes.item(i);
                 NodeList name = element.getElementsByTagName("reference");
                 Element line = (Element) name.item(0);
                 String ref = getCharacterDataFromElement(line);
-                System.out.println("REFERENCE_Stage: " +ref );
+                System.out.println("*****************************************REFERENCE_Stage: " +ref );
                 recherche +="<td>"+ref+"</td>\n"; //*****************************************
 
                 NodeList title = element.getElementsByTagName("titresujet");
                 line = (Element) title.item(0);
                 String titre = getCharacterDataFromElement(line);
-                System.out.println("Intitulé: " + titre);
+                System.out.println("*****************************************Intitulé: " + titre);
                 recherche +="<td><a href=\"form-stages.jsp\">"+titre+"</td>\n"; //*****************************************
 
                 NodeList Entreprise = element.getElementsByTagName("siret");
                 line = (Element) Entreprise.item(0);
                 String siret= getCharacterDataFromElement(line);
-                System.out.println("Siret: " + siret);                
-                resultset =smt.executeQuery("SELECT * FROM COMPANY  WHERE SIRET="+siret);  
+                System.out.println("*****************************************Siret: " + siret);                
+                resultset =smt.executeQuery("SELECT * FROM COMPANY  WHERE SIRET='"+siret+"'");  
                 String entreprise ="";
                 if(resultset.next()){
                     entreprise = resultset.getString(resultset.findColumn("NOM"));
-                    System.out.println("nom_entreprise ==> "+entreprise);
+                    System.out.println("*****************************************nom_entreprise ==> "+entreprise);
                 }
                 recherche +="<td>"+entreprise+"</td>\n"; //*****************************************
 
                 NodeList Lieu = element.getElementsByTagName("adresse");
                 line = (Element) Lieu.item(0);
                 String lieu = getCharacterDataFromElement(line);
-                System.out.println("Lieu: " + lieu);
+                System.out.println("*****************************************Lieu: " + lieu);
                 recherche +="<td>"+lieu+"</td>\n"; //*****************************************
                 
-                NodeList niveauEtud = element.getElementsByTagName("adresse");
+                NodeList niveauEtud = element.getElementsByTagName("niveauetude");
                 line = (Element) niveauEtud.item(0);
                 String nivoEtud = getCharacterDataFromElement(line);
-                System.out.println("niveauEtud: " + nivoEtud);
+                System.out.println("*****************************************niveauEtud: " + nivoEtud);
                 recherche +="<td>"+nivoEtud+"</td>\n"; //*****************************************
 
                 NodeList Rem = element.getElementsByTagName("remuneration");
                 line = (Element) Rem.item(0);
                 String remu= getCharacterDataFromElement(line);
-                System.out.println("REMUNERATION: " + remu);
+                System.out.println("*****************************************REMUNERATION: " + remu);
                 recherche +="<td>$"+remu+"</td>\n"; //*****************************************          
 
                 recherche +="</tr>" ;
+                
+                System.out.println("----------");
             }
             
         } catch (SQLException ex) {

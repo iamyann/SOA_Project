@@ -1,6 +1,7 @@
 package Restclient;
 
-import com.sun.corba.se.impl.orbutil.ObjectWriter;
+
+//import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 public final class ClientWS_DB {
     
     private final String USER_AGENT = "Mozilla/5.0";
-    private final String url = "http://localhost:8080/CompanyDB/webresources";
+    private final String url = "http://192.168.0.12:8080/CompanyDB/webresources";
     
     
     public ClientWS_DB() {
@@ -63,7 +64,8 @@ public final class ClientWS_DB {
     }
     
     // HTTP POST reques
-    private String sendPost(String complement, String param) throws Exception {
+    private String sendPost(String complement, String param) throws Exception 
+    {
        String output="";
         try {
 
@@ -78,17 +80,22 @@ public final class ClientWS_DB {
 			OutputStream outputStream = httpConnection.getOutputStream();
 			outputStream.write(param.getBytes());
 			outputStream.flush();
+			
+			System.out.println(outputStream.toString());
+			System.out.println("code : "+httpConnection.getResponseCode());
 
-			if (httpConnection.getResponseCode() != 200) {
+			/*if (httpConnection.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 					+ httpConnection.getResponseCode());
-			}
+			}*/
+			
+			//System.out.println("2");
 
 			BufferedReader responseBuffer = new BufferedReader(new InputStreamReader(
 					(httpConnection.getInputStream())));
 
 			
-			System.out.println("Output from Server:\n");
+			//System.out.println("Output from Server:\n");
 			while ((output = responseBuffer.readLine()) != null) {
 				System.out.println(output);
                                 return output;
@@ -190,25 +197,27 @@ public final class ClientWS_DB {
 		return result;
     }
     
-    public void addStage(Stage st){
+    public void addStage(String siret, String titre, String ref,String desc, String rem,
+    		String adresse, String contactname, String contacttel, String contactweb,
+    		String type, String duree, String spe, String niveau){
     	try{   		
     		String json = "{"+
-    		        "siret"+":"+"12356987447150"+","+
-    		        "titresujet"+":"+ "Jayce"+","+
-    		        "reference"+":"+"ref010"+","+
-    		        "descriptionsujet"+":"+"DescrSuj"+","+
-    		        "remuneration"+":"+"1000/mois"+","+
-    		        "adresse" +":"+"adresse"+","+
-    		        "contactname"+":"+"contactname"+","+
-    		        "contacttel"+":"+"0258741963"+","+
-    		        "contactweb"+":"+"http://www.ex.ent.fr"+","+
-    		        "typecontrat"+":"+"stage"+","+
-    		        "duree"+":"+"7 mois"+","+
-    		        "specialite"+":"+"RT"+","+
-    		        "niveauetude"+":"+"4A"+"}";
-                json= fromStageToJson(st);
-    		System.out.println("json: "+json);
+    		        "\"siret\""+":"+"\""+siret+"\""+","+
+    		        "\"titresujet\""+":"+ "\""+titre+"\""+","+
+    		        "\"reference\""+":"+"\""+ref+"\""+","+
+    		        "\"descriptionsujet\""+":"+"\""+desc+"\""+","+
+    		        "\"remuneration\""+":"+"\""+rem+"\""+","+
+    		        "\"adresse\"" +":"+"\""+adresse+"\""+","+
+    		        "\"contactname\""+":"+"\""+contactname+"\""+","+
+    		        "\"contacttel\""+":"+"\""+contacttel+"\""+","+
+    		        "\"contactweb\""+":"+"\""+contactweb+"\""+","+
+    		        "\"typecontrat\""+":"+"\""+type+"\""+","+
+    		        "\"duree\""+":"+"\""+duree+"\""+","+
+    		        "\"specialite\""+":"+"\""+spe+"\""+","+
+    		        "\"niveauetude\""+":"+"\""+niveau+"\""+"}";                
+    		
     		String result=this.sendPost("/entities.stages", json); 
+    		
     		System.out.println("insertStage: "+result);
         }catch(Exception e){
             System.out.println("NBstage: Exception raised.");
@@ -219,13 +228,8 @@ public final class ClientWS_DB {
     public static void main(String[] args) {
         
         ClientWS_DB db = new ClientWS_DB();
-         Stage st = new Stage ("blagnac","jayce","0435498279","stage renforce","7 mois"
-		 ,"bac+5", "TI-ST1458", "1200", "1234656879","IR","ingenieur reseau","stage","http://www.orange.com");
-        db.addStage(st);
-        // System.out.println(db.getOffreStage("ISS")); 
-        // System.out.println(db.getMesCandidatures("etud"));
-        // System.out.println(db.getMaRef("UnSujet"));
-        // System.out.println(db.getMaRef("testSujet")); 
-        
+    
+        db.addStage("12345678912344","Olga","ref010","DescrSuj","1000","adresse","contactname",
+        		"0258741963","http://www.ex.ent.fr","stage","7 mois","IR","4A" );       
     }
 }
