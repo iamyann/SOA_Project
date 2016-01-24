@@ -175,8 +175,8 @@
                                         <i class="fa fa-comments fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">0</div>
-                                        <div>Nouveaux Messages!</div>
+                                        <div class="huge"></div>
+                                        <div>Messages!</div>
                                     </div>
                                 </div>
                             </div>
@@ -198,12 +198,12 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>Nouvelles Offres!</div>
+                                        <div class="huge"></div>
+                                        <div>Offres!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="/SOA_Project-war/OffreStageServlet">
                                 <div class="panel-footer">
                                     <span class="pull-left">Voir Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -220,12 +220,12 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
+                                        <div class="huge"></div>
                                         <div>Candidatures</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="/SOA_Project-war/VoirCandidatureServlet">
                                 <div class="panel-footer">
                                     <span class="pull-left">Voir Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -242,12 +242,12 @@
                                         <i class="fa fa-support fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
+                                        <div class="huge"></div>
                                         <div>Suivi!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="/SOA_Project-war/VoirProfilServlet">
                                 <div class="panel-footer">
                                     <span class="pull-left">Voir Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

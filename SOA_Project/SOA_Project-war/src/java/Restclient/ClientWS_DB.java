@@ -1,7 +1,4 @@
-package servlets;
-
-
-
+package Restclient;
 
 import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import java.util.*;
@@ -13,9 +10,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.json.*;
+//import org.json.*;
 
 import javax.net.ssl.HttpsURLConnection;
+import org.json.JSONObject;
 
 /**
  *
@@ -141,10 +139,7 @@ public final class ClientWS_DB {
         System.out.println(response.toString());
         return response.toString();
         
-    }
-    
-   
-   
+    }   
     
     public void deletestage(String id){
         try{
@@ -164,16 +159,81 @@ public final class ClientWS_DB {
             System.out.println("NBstage: Exception raised.");
         }
     }
-    /*------------------------------------------------------         METHODES POUR LE PARSING       -----------------------------------------------------------------*/
+
+     public String fromStageToJson(Stage stage){
+        
+        String result;        
+        JSONObject jsonObject = new JSONObject(stage);
+        result  =jsonObject.toString();
+        
+        return result;
+    }
     
-   //-------------------------------------------------         MAIN POUR LES TESTS       -----------------------------------------------------------------------*/
+    public String getOffreStage(String spe){
+    	String result="";
+    	try{            
+            result=this.sendGet("/entities.stages/bySpecialite/"+spe);   
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+		return result;
+    }
+    
+    public String getMesCandidatures(String nom){
+    	String result="";
+    	try{            
+            result=this.sendGet("/com.webservice.candidatures/CandidatureIndividuel/"+nom);   
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+		return result;
+    }
+    
+    public String getMaRef(String title){
+    	String result="";
+    	try{            
+            result=this.sendGet("/entities.stages/byTitle/"+title);   
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+		return result;
+    }
+    
+    public void addStage(Stage st){
+    	try{   		
+    		String json = "{"+
+    		        "siret"+":"+"12356987447150"+","+
+    		        "titresujet"+":"+ "Jayce"+","+
+    		        "reference"+":"+"ref010"+","+
+    		        "descriptionsujet"+":"+"DescrSuj"+","+
+    		        "remuneration"+":"+"1000/mois"+","+
+    		        "adresse" +":"+"adresse"+","+
+    		        "contactname"+":"+"contactname"+","+
+    		        "contacttel"+":"+"0258741963"+","+
+    		        "contactweb"+":"+"http://www.ex.ent.fr"+","+
+    		        "typecontrat"+":"+"stage"+","+
+    		        "duree"+":"+"7 mois"+","+
+    		        "specialite"+":"+"RT"+","+
+    		        "niveauetude"+":"+"4A"+"}";
+    		System.out.println("json: "+json);
+    		String result=this.sendPost("/entities.stages", json); 
+    		System.out.println("insertStage: "+result);
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+    }    
+    
     
     public static void main(String[] args) {
         
         ClientWS_DB db = new ClientWS_DB();
-        
-        db.getNbrStage();
-//        
+         Stage st = new Stage ("ADRESSE","CONTACTNAME","CONTACTTEL","DESCRIPTIONSUJET","DUREE"
+		 ,"NIVEAUETUDE", "REFERENCE", "REMUNERATION", "SIRET","SPECIALITE","TITRESUJET","TYPECONTRAT","CONTACTWEB");
+        db.addStage(st);
+        // System.out.println(db.getOffreStage("ISS")); 
+        // System.out.println(db.getMesCandidatures("etud"));
+        // System.out.println(db.getMaRef("UnSujet"));
+        // System.out.println(db.getMaRef("testSujet")); 
         
     }
 }

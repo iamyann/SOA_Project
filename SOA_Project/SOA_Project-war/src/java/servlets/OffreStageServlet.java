@@ -5,8 +5,13 @@
  */
 package servlets;
 
+import database.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -74,6 +79,13 @@ public class OffreStageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+            Connection c1 = null;
+        try {
+            c1 = Data.connectionDatabase1();
+        } catch (SQLException ex) {
+            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Data.getCompany(c1);
             String offresStage=""
                     + "<tr>\n" +
 "                           <td>TT-421698-Tls</td>\n" +
