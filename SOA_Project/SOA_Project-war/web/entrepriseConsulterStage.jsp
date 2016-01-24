@@ -126,7 +126,7 @@
                         <a href="/SOA_Project-war/EntrepriseConsulterStage"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
                     </li>                    
                     <li>
-                        <a href="entrepriseConvoquerEtudiant.jsp"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
+                        <a href="/SOA_Project-war/ConvocationEntreprise"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
                     </li>
                     <li>
                         <a href="entrepriseEnvoyerReponse.jsp"><i class="fa fa-fw fa-table"></i> Envoyer une Reponse</a>

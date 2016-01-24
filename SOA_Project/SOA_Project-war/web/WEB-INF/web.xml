@@ -96,6 +96,14 @@
         <servlet-name>EntrepriseConsulterStage</servlet-name>
         <servlet-class>servlets.EntrepriseConsulterStage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConvocationEntreprise</servlet-name>
+        <servlet-class>servlets.ConvocationEntreprise</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RepondreEntreprise</servlet-name>
+        <servlet-class>servlets.RepondreEntreprise</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>EntrepriseConsulterStage</servlet-name>
         <url-pattern>/EntrepriseConsulterStage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConvocationEntreprise</servlet-name>
+        <url-pattern>/ConvocationEntreprise</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RepondreEntreprise</servlet-name>
+        <url-pattern>/RepondreEntreprise</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

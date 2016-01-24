@@ -126,7 +126,7 @@
                         <a href="/SOA_Project-war/EntrepriseConsulterStage"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
                     </li>                    
                     <li>
-                        <a href="entrepriseConvoquerEtudiant.jsp"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
+                        <a href="/SOA_Project-war/ConvocationEntreprise"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
                     </li>
                     <li>
                         <a href="entrepriseEnvoyerReponse.jsp"><i class="fa fa-fw fa-table"></i> Envoyer une Reponse</a>
@@ -167,20 +167,9 @@
                                <div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">
-							
-							<label>Nom Etudiant</label>
-							<div class="form-group input-group">								
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
-                            </div>
-                             <div class="form-group input-group">
-                                <span class="input-group-addon">@</span>
-                                <input type="text" class="form-control" placeholder="email@example.com">
-                            </div>      
+                        <form method="POST" action="ConvocationEntreprise">
+                            ${etudiant}     
                             <button type="submit" class="btn btn-default">Valider</button>
-                            <button type="reset" class="btn btn-default">Reinitialiser</button>
-
                         </form>                   
                 </div>
                 <!-- FIN******************************************************************** -->
