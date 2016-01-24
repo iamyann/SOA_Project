@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public final class ClientWS_DB {
     
     private final String USER_AGENT = "Mozilla/5.0";
-    private final String url = "http://localhost:8080/WEB-INF/webresources";
+    private final String url = "http://localhost:8080/CompanyDB/webresources";
     
     
     public ClientWS_DB() {
@@ -43,8 +43,8 @@ public final class ClientWS_DB {
         con.setRequestProperty("Content-Type", "application/json");
         
         int responseCode = con.getResponseCode();
-        System.out.println("\n Sending 'GET' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
+        //System.out.println("\n Sending 'GET' request to URL : " + url);
+        //System.out.println("Response Code : " + responseCode);
         
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
@@ -57,7 +57,7 @@ public final class ClientWS_DB {
         in.close();
         
         //print result
-        System.out.println(response.toString());
+        //System.out.println(response.toString());
         return response.toString();
         
     }
@@ -150,15 +150,6 @@ public final class ClientWS_DB {
             System.out.println("deleteParking: Exception raised.");
         }       
     }
-    public void getNbrStage(){
-        try{
-            String result;
-            result=this.sendGet("/entities.stages/count");
-            System.out.println("NBstage: "+result);
-        }catch(Exception e){
-            System.out.println("NBstage: Exception raised.");
-        }
-    }
 
      public String fromStageToJson(Stage stage){
         
@@ -215,6 +206,7 @@ public final class ClientWS_DB {
     		        "duree"+":"+"7 mois"+","+
     		        "specialite"+":"+"RT"+","+
     		        "niveauetude"+":"+"4A"+"}";
+                json= fromStageToJson(st);
     		System.out.println("json: "+json);
     		String result=this.sendPost("/entities.stages", json); 
     		System.out.println("insertStage: "+result);
@@ -227,8 +219,8 @@ public final class ClientWS_DB {
     public static void main(String[] args) {
         
         ClientWS_DB db = new ClientWS_DB();
-         Stage st = new Stage ("ADRESSE","CONTACTNAME","CONTACTTEL","DESCRIPTIONSUJET","DUREE"
-		 ,"NIVEAUETUDE", "REFERENCE", "REMUNERATION", "SIRET","SPECIALITE","TITRESUJET","TYPECONTRAT","CONTACTWEB");
+         Stage st = new Stage ("blagnac","jayce","0435498279","stage renforce","7 mois"
+		 ,"bac+5", "TI-ST1458", "1200", "1234656879","IR","ingenieur reseau","stage","http://www.orange.com");
         db.addStage(st);
         // System.out.println(db.getOffreStage("ISS")); 
         // System.out.println(db.getMesCandidatures("etud"));

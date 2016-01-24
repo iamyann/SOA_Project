@@ -17,6 +17,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -51,18 +54,27 @@ public class OffreStageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
               
-            String offresStage=""
-                    + "<tr>\n" +
-"                           <td>TT-8145</td>\n" +                   
-"                           <td><a href=\"form-stages.jsp\">Ingenieur Securite</a></td>\n" +
-"                           <td>Sogeti</td>\n" +
-"                           <td>Blagnac</td>\n" +
-"                           <td>Bac+5</td>\n" +
-"                           <td>$1200</td>\n" +
-"                       </tr>"
-                    + "";
+            Connection c1 = null;
+            HttpSession session = ((HttpServletRequest) request).getSession(false);
+            String id = (String) session.getAttribute("ID");
             
-            request.setAttribute("offres", offresStage); // This will be available as ${trajets}
+            try {
+                c1 = Data.connectionDatabase1();
+            } catch (SQLException ex) {
+                Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            String offresStage="";
+            try {
+                offresStage = Data.getOffreStage(c1,id);
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(OffreStageServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+            Logger.getLogger(OffreStageServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            request.setAttribute("offres", offresStage); // This will be available as ${offres}
             RequestDispatcher rd = request.getRequestDispatcher("stages-offres.jsp");
             rd.forward(request, response); 
     }
@@ -78,28 +90,6 @@ public class OffreStageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            Connection c1 = null;
-        try {
-            c1 = Data.connectionDatabase1();
-        } catch (SQLException ex) {
-            Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Data.getCompany(c1);
-            String offresStage=""
-                    + "<tr>\n" +
-"                           <td>TT-421698-Tls</td>\n" +
-"                           <td><a href=\"form-stages.jsp\">Ingenieur Securite</a></td>\n" +
-"                           <td>Sogeti</td>\n" +
-"                           <td>Blagnac</td>\n" +
-"                           <td>Bac+5</td>\n" +
-"                           <td>$1200</td>\n" +
-"                       </tr>"
-                    + "";
-            
-            request.setAttribute("offres", offresStage); // This will be available as ${offres}
-            RequestDispatcher rd = request.getRequestDispatcher("stages-offres.jsp");
-            rd.forward(request, response); 
     }
 
     /**

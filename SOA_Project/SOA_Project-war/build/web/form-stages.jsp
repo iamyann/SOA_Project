@@ -176,11 +176,11 @@
 
                         <form method="POST" action="CandidatStageServlet">
 							
-			    <label>Ref. Stage</label>
+			    <!--<label>Sujet de Stage</label>
 			    <div class="form-group input-group">								
-                                <input name="ref_stage" type="text" class="form-control">
+                                <input name="ref_stage" type="text" class="form-control" value="Yann">
                                 <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
-                            </div>      
+                            </div> -->     
 
                             <div class="form-group">
                                 <label>CV</label>

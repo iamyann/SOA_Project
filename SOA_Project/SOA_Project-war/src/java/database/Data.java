@@ -6,6 +6,8 @@
 
 package database;
 
+import Restclient.ClientWS_DB;
+import static Restclient.Main.getCharacterDataFromElement;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +17,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import servlets.ServletCV;
+
+import java.io.StringReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.CharacterData;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 
 /**
@@ -208,6 +224,97 @@ public class Data {
         }
         return recherche ;  
     }
+     
+     
+      public static String  getOffreStage(Connection con,String id) throws ParserConfigurationException, SAXException, IOException{
+        String recherche = "";
+        String spe ="";
+        
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM STUDENT  WHERE ID="+id);
+            
+            if(resultset.next()){
+                spe = resultset.getString(resultset.findColumn("SPE"));
+                System.out.println("specialite ==> "+spe);
+            }
+            
+            ClientWS_DB db1 = new ClientWS_DB();        
+            String result= db1.getOffreStage(spe);
+            String xmlRecords = result;
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(xmlRecords));
+            
+            Document doc = db.parse(is);
+            NodeList nodes = doc.getElementsByTagName("stages");
+
+            for (int i = 0; i < nodes.getLength(); i++)
+            {
+                recherche ="<tr>\n" ;
+                
+                Element element = (Element) nodes.item(i);
+                NodeList name = element.getElementsByTagName("reference");
+                Element line = (Element) name.item(0);
+                String ref = getCharacterDataFromElement(line);
+                System.out.println("REFERENCE_Stage: " +ref );
+                recherche +="<td>"+ref+"</td>\n"; //*****************************************
+
+                NodeList title = element.getElementsByTagName("titresujet");
+                line = (Element) title.item(0);
+                String titre = getCharacterDataFromElement(line);
+                System.out.println("Intitulé: " + titre);
+                recherche +="<td><a href=\"form-stages.jsp\">"+titre+"</td>\n"; //*****************************************
+
+                NodeList Entreprise = element.getElementsByTagName("siret");
+                line = (Element) Entreprise.item(0);
+                String siret= getCharacterDataFromElement(line);
+                System.out.println("Siret: " + siret);                
+                resultset =smt.executeQuery("SELECT * FROM COMPANY  WHERE SIRET="+siret);  
+                String entreprise ="";
+                if(resultset.next()){
+                    entreprise = resultset.getString(resultset.findColumn("NOM"));
+                    System.out.println("nom_entreprise ==> "+entreprise);
+                }
+                recherche +="<td>"+entreprise+"</td>\n"; //*****************************************
+
+                NodeList Lieu = element.getElementsByTagName("adresse");
+                line = (Element) Lieu.item(0);
+                String lieu = getCharacterDataFromElement(line);
+                System.out.println("Lieu: " + lieu);
+                recherche +="<td>"+lieu+"</td>\n"; //*****************************************
+                
+                NodeList niveauEtud = element.getElementsByTagName("adresse");
+                line = (Element) niveauEtud.item(0);
+                String nivoEtud = getCharacterDataFromElement(line);
+                System.out.println("niveauEtud: " + nivoEtud);
+                recherche +="<td>"+nivoEtud+"</td>\n"; //*****************************************
+
+                NodeList Rem = element.getElementsByTagName("remuneration");
+                line = (Element) Rem.item(0);
+                String remu= getCharacterDataFromElement(line);
+                System.out.println("REMUNERATION: " + remu);
+                recherche +="<td>$"+remu+"</td>\n"; //*****************************************          
+
+                recherche +="</tr>" ;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recherche ;  
+    }
+      
+      
+     public static String getCharacterDataFromElement(Element e) {
+        Node child = e.getFirstChild();
+        if (child instanceof CharacterData) {
+          CharacterData cd = (CharacterData) child;
+          return cd.getData();
+        }
+        return "";
+      }
+      
     
     /** Modifie le type et renvoie "true" si l'ID existe dans la base de données */
     public static Boolean setElement(Connection con,String user, String mdp, String mot, String Table, String Element){
