@@ -167,52 +167,82 @@
                     <div class="row">
                         <div class="col-lg-6">
 
-                            <form role="form">
+                            <form role="form" method="POST" action="EntrepriseProposerStageServlet">
 
-                                <label>Titre du poste</label>
-                                <div class="form-group input-group">								
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+                                <div class="form-group">
+                                    <label>Type de Contrat  </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="typeContrat" id="optionsRadiosInline1" value="Stage" checked>Stage
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="typeContrat" id="optionsRadiosInline2" value="CDD">CDD
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="typeContrat" id="optionsRadiosInline3" value="CDI">CDI
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Titre du Sujet</label>
+                                    <input type="text" name="titreSujet" class="form-control" required>
+                                    <!--<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>-->
                                 </div>  
 
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label>Missions</label>
                                     <input type="file">
-                                </div>
+                                </div>-->
                                 <div class="form-group">
-                                    <label>Resume Offre</label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <label>Description du Sujet</label>
+                                    <textarea name="descriptionSujet" class="form-control" rows="3" required></textarea>
                                 </div> 
-
-                                <div class="form-group">
-                                    <label>Lieu du Stage</label>
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox">Midi-Pyrenee
-                                    </label>
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox">Ile de France
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Permis</label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>oui
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">non
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Niveau souhaite</label>
-                                    <select multiple class="form-control">
-                                        <option>Bac+1</option>
-                                        <option>Bac+2</option>
-                                        <option>Bac+3</option>
-                                        <option>Bac+4</option>
-                                        <option>Bac+5</option>
+                                <div class="form-group ">
+                                    <label>Spécialité</label>
+                                    <select name="specialite" multiple class="form-control" size="3" multiple required>
+                                            <option value="GB">Génie Biochimique</option>
+                                            <option value="GC">Génie Civil</option>
+                                            <option value="AE">Automatique, Electronique</option>
+                                            <option value="IR">Informatique et Réseaux</option>
+                                            <option value="GMM">Génie Mathématique et Modélisation</option>
+                                            <option value="GM">Génie Mécanique</option>
+                                            <option value="GPh">Génie Physique</option>
+                                            <option value="GPr">Génie des Procédés</option>
                                     </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Niveau d'études</label>
+                                    <select name="niveauEtude" multiple class="form-control" size="3" multiple required>
+                                        <option value="Bac+5">Bac+5</option>
+                                        <option value="Bac+4">Bac+4</option>
+                                        <option value="Bac+3">Bac+3</option>
+                                        <option value="Bac+2">Bac+2</option>
+                                        <option value="Bac+1">Bac+1</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Durée</label>
+                                    <input type="text" name="duree" class="form-control" required/>
+                                </div> 
+                                <div class="form-group">
+                                    <label>Rémunération</label>
+                                    <input type="text" name="remuneration" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Adresse du lieu de stage</label>
+                                    <textarea name="adresse" class="form-control" rows="2" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Personne à contacter</label>
+                                    <input type="text" name="contactName" class="form-control" required/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Téléphone</label>
+                                    <input type="text" name="contactTel" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="contactWeb" class="form-control" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-default">Valider</button>

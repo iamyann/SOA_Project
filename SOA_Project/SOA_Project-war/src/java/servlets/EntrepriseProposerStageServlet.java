@@ -5,12 +5,21 @@
  */
 package servlets;
 
+import bean.Stage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import database.Data;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
+
 
 /**
  *
@@ -22,6 +31,62 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            String typecontrat = request.getParameter("typeContrat");
+            String titresujet = request.getParameter("titreSujet"); 
+            String descriptionsujet = request.getParameter("descriptionSujet");
+            String[] specialite= request.getParameterValues("specialite");
+            String[] niveauetude = request.getParameterValues("niveauEtude");
+            String remuneration = request.getParameter("remuneration");
+            String duree = request.getParameter("duree");
+            String adresse = request.getParameter("adresse");
+            String contactname = request.getParameter("contactName");
+            String contacttel = request.getParameter("contactTel");
+            String contactweb  = request.getParameter("contactWeb");
+            
+            HttpSession session = ((HttpServletRequest) request).getSession(false);
+            String id= (String) session.getAttribute("id");
+            Connection c1 = null;
+            try {
+                c1 = Data.connectionDatabase1();
+            } catch (SQLException ex) {
+                Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+            String siret = Data.getElementwithID(c1,id,"SIRET","GUI.COMPANY");//recuperation du siret de l'entreprise dans la BDD
+            String nom = Data.getElementwithID(c1,id,"NOM","GUI.COMPANY");//recuperation du nom de l'entreprise dans la BDD
+            
+            Stage stage = new Stage();
+            stage.setSiret(siret);
+            stage.setReference(nom);
+            stage.setTypecontrat(typecontrat);
+            stage.setTitresujet(titresujet);
+            stage.setDescriptionsujet(descriptionsujet);
+            stage.setSpecialite(specialite);
+            stage.setNiveauetude(niveauetude);
+            stage.setRemuneration(remuneration);
+            stage.setDuree(duree);
+            stage.setAdresse(adresse);
+            stage.setContactname(contactname);
+            stage.setContacttel(contacttel);
+            stage.setContactweb(contactweb);
+            
+            String json = new Gson().toJson(stage);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+                    
+            request.setAttribute("json",json);
+            if (c1 != null) {
+                try {
+                    c1.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        this.getServletContext().getRequestDispatcher("/entrepriseTestJSON.jsp").forward(request, response);
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
         this.getServletContext().getRequestDispatcher("/entrepriseProposerStage.jsp").forward(request, response);
     }
 

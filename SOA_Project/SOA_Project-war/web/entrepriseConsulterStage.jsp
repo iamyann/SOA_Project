@@ -235,7 +235,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <form method="post" action="/SOA_Project-war/EntrepriseProposerStageServlet">
+                            <form method="GET" action="EntrepriseProposerStageServlet">
                                 <button type="submit" class="btn btn-default">Ajouter une offre de stage</button>
                             </form>
                         </div>
