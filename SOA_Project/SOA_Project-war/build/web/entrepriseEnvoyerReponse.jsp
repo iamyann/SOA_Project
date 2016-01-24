@@ -167,16 +167,16 @@
                                <div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">
+                        <form method="POST" action="RepondreEntreprise">
 							
-							<label>Ref. Stage</label>
-							<div class="form-group input-group">								
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
-                            </div>
+				<label>Ref. Stage</label>
+				<div class="form-group input-group">								
+                                    <input type="text" class="form-control" name="reference">
+                                    <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+                                </div>
                              <div class="form-group input-group">
                                 <span class="input-group-addon">@</span>
-                                <input type="text" class="form-control" placeholder="email@example.com">
+                                <input type="text" class="form-control" placeholder="email@example.com" name="mail">
                             </div>                            
                            
                             <div class="form-group">

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import mails.MailManager;
 
 /**
  *
@@ -93,10 +94,12 @@ public class ConvocationEntreprise extends HttpServlet {
             Logger.getLogger(VoirProfilServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        String nameEntreprise = Data.getElementwithID(c1, id1,"NOM", "COMPANY");
         String nom = request.getParameter("nomEtudiant");
         String id = Data.getElementwithNAme(c1, nom);
         String email =Data.getElementwithID(c1, id,"EMAIL", "STUDENT");
         
+        MailManager.sendConvocation(email, nameEntreprise);
         RequestDispatcher rd = request.getRequestDispatcher("entrepriseConvoquerEtudiant.jsp");
         rd.forward(request, response);
         
