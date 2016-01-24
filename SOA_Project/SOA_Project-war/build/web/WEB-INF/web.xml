@@ -92,6 +92,10 @@
         <servlet-name>ServletCV2</servlet-name>
         <servlet-class>servlets.ServletCV2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EntrepriseConsulterStage</servlet-name>
+        <servlet-class>servlets.EntrepriseConsulterStage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/SignServlet</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>ServletCV2</servlet-name>
         <url-pattern>/ServletCV2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntrepriseConsulterStage</servlet-name>
+        <url-pattern>/EntrepriseConsulterStage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

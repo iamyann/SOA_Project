@@ -169,6 +169,15 @@ public final class ClientWS_DB {
 		return result;
     }
     
+    public String getStage(String siret){
+    	String result="";
+    	try{            
+            result=this.sendGet("/com.webservice.stages/bySiret/"+siret);   
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+		return result;
+    }
     public String getMesCandidatures(String nom){
     	String result="";
     	try{            

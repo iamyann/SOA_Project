@@ -120,10 +120,10 @@
                         <a href="entrepriseTableauBord.jsp"><i class="fa fa-fw fa-dashboard"></i> Tableau de bord</a>
                     </li>
                     <li>
-                        <a href="entrepriseConsulterProfil.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
+                        <a href="/SOA_Project-war/Consulter_Profil"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
                     </li>
                     <li>
-                        <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
+                        <a href="/SOA_Project-war/EntrepriseConsulterStage"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
                     </li>                    
                     <li>
                         <a href="entrepriseConvoquerEtudiant.jsp"><i class="fa fa-fw fa-table"></i> Convoquer un Etudiant</a>
@@ -180,59 +180,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="active">
-                                        <td>Developpeur Web</td>
-                                        <td>Paris</td>
-                                        <td>Bac+4</td>
-                                        <td>$800</td>
-                                        <td>
-                                            <form method="post" action="/SOA_Project-war/EditerStageServlet">
-                                                <button type="submit" class="btn btn-default">Editer</button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form method="post" action="/SOA_Project-war/SupprimerOffreServlet">
-                                                <button type="submit" class="btn btn-default">Supprimer</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr class="success">
-                                        <td>Developeur Java</td>
-                                        <td>Toulouse</td>
-                                        <td>Bac+4</td>
-                                        <td>$1200</td>
-                                    </tr>
-                                    <tr class="warning">
-                                        <td>Chef de projet</td>
-                                        <td>Paris</td>
-                                        <td>Bac+5</td>
-                                        <td>$1000</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>Architecte Reseau</td>
-                                        <td>Blagnac</td>
-                                        <td>Bac+5</td>
-                                        <td>$1500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ingenieur Securite</td>
-                                        <td>Blagnac</td>
-                                        <td>Bac+5</td>
-                                        <td>$1200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ingenieur Cloud</td>
-                                        <td>Montpellier</td>
-                                        <td>Bac+5</td>
-                                        <td>$1200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Technicien Réseau</td>
-                                        <td>Narbonne</td>
-                                        <td>Bac+2</td>
-                                        <td>$500</td>
-                                    </tr>
+                                    ${offres}                                    
                                 </tbody>
                             </table>
                             <form method="GET" action="EntrepriseProposerStageServlet">

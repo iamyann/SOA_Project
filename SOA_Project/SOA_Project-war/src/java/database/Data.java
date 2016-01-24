@@ -299,7 +299,7 @@ public class Data {
 
             for (int i = 0; i < nodes.getLength(); i++)
             {
-                recherche +="<tr>\n" ;
+                recherche +="<tr class=\"success\">\n" ;
                 
                 Element element = (Element) nodes.item(i);
                 NodeList name = element.getElementsByTagName("reference");
@@ -354,7 +354,87 @@ public class Data {
         }
         return recherche ;  
     }
+     
       
+       public static String  getOffreStageEntreprise(Connection con,String id) throws ParserConfigurationException, SAXException, IOException{
+        String recherche = "";
+        String sire ="";
+        
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM COMPANY  WHERE ID="+id);
+            
+            if(resultset.next()){
+                sire = resultset.getString(resultset.findColumn("SIRET"));
+                System.out.println("SIRET ==> "+sire);
+            }
+            
+            ClientWS_DB db1 = new ClientWS_DB();        
+            String result= db1.getStage(sire);
+            String xmlRecords = result;
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(xmlRecords));
+            
+            Document doc = db.parse(is);
+            NodeList nodes = doc.getElementsByTagName("stages");
+
+            for (int i = 0; i < nodes.getLength(); i++)
+            {
+                recherche +="<tr class=\"warning\">\n" ;
+                
+                Element element = (Element) nodes.item(i);
+                NodeList name = element.getElementsByTagName("reference");
+                Element line = (Element) name.item(0);
+                String ref = getCharacterDataFromElement(line);
+                System.out.println("*****************************************REFERENCE_Stage: " +ref );
+                recherche +="<td>"+ref+"</td>\n"; //*****************************************
+
+                NodeList title = element.getElementsByTagName("titresujet");
+                line = (Element) title.item(0);
+                String titre = getCharacterDataFromElement(line);
+                System.out.println("*****************************************Intitulé: " + titre);
+                recherche +="<td>"+titre+"</td>\n"; //*****************************************
+
+                NodeList Lieu = element.getElementsByTagName("adresse");
+                line = (Element) Lieu.item(0);
+                String lieu = getCharacterDataFromElement(line);
+                System.out.println("*****************************************Lieu: " + lieu);
+                recherche +="<td>"+lieu+"</td>\n"; //*****************************************
+                
+                NodeList niveauEtud = element.getElementsByTagName("niveauetude");
+                line = (Element) niveauEtud.item(0);
+                String nivoEtud = getCharacterDataFromElement(line);
+                System.out.println("*****************************************niveauEtud: " + nivoEtud);
+                recherche +="<td>"+nivoEtud+"</td>\n"; //*****************************************
+
+                NodeList Rem = element.getElementsByTagName("remuneration");
+                line = (Element) Rem.item(0);
+                String remu= getCharacterDataFromElement(line);
+                System.out.println("*****************************************REMUNERATION: " + remu);
+                recherche +="<td>$"+remu+"</td>\n"; //*****************************************          
+
+                recherche +="<td>\n" +
+"                                            <form method=\"post\" action=\"/SOA_Project-war/EditerStageServlet\">\n" +
+"                                                <button type=\"submit\" class=\"btn btn-default\">Editer</button>\n" +
+"                                            </form>\n" +
+"                                        </td>\n" +
+"                                        <td>\n" +
+"                                            <form method=\"post\" action=\"/SOA_Project-war/SupprimerOffreServlet\">\n" +
+"                                                <button type=\"submit\" class=\"btn btn-default\">Supprimer</button>\n" +
+"                                            </form>\n" +
+"                                        </td>";
+                
+                recherche +="</tr>" ;
+                
+                System.out.println("----------");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recherche ;  
+    }
       
      public static String getCharacterDataFromElement(Element e) {
         Node child = e.getFirstChild();
