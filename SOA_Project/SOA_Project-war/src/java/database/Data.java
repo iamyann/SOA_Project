@@ -38,8 +38,8 @@ import org.xml.sax.SAXException;
  * @author yann
  */
 public class Data {
-    private static String username = "gui" ; //Chez moi le root marche pas comme unsername, c plutot gui (Auriole)
-    //private static String username = "root" ;
+    //private static String username = "gui" ; //Chez moi le root marche pas comme unsername, c plutot gui (Auriole)
+    private static String username = "root" ;
     private static String password = "root" ;
     private static String serverName = "localhost";
     private static String portNumber="1527" ;
@@ -192,6 +192,21 @@ public class Data {
         return type ;  
     }
      
+     public static String  getElementwithNAme(Connection con, String name){
+        String type = null ;
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT ID FROM STUDENT WHERE NOM='"+name+"'");
+            if(resultset.next()){
+                type = resultset.getString("ID");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return type ;  
+    }
+     
      public static String  getCompany(Connection con){
         String recherche = "";
         try {
@@ -225,6 +240,39 @@ public class Data {
         return recherche ;  
     }
      
+     
+     public static String  getStudent(Connection con){
+        String recherche = "";
+        try {
+            Statement smt = con.createStatement() ;
+            ResultSet resultset =smt.executeQuery("SELECT * FROM STUDENT");
+            int nbr = 0;
+            recherche ="<div class=\"form-group\">\n" +
+"                                <label>Nom de l'etudiant</label>\n" +
+"                                <select name=\"nomEtudiant\" class=\"form-control\">\n" ;
+            while(resultset.next()){
+                String nom =resultset.getString(resultset.findColumn("NOM"));
+                String s = "null";
+                String s1 = "" + nom;
+                String rest;
+                if (s.equals(s1)) {
+                    rest = "-";
+                } else {
+                    rest = nom;
+                }
+                recherche +="<option>"+rest+"</option>\n";
+                nbr++;
+            }
+            if (nbr > 0) {
+                recherche += "                                </select>\n" +
+"                            </div>";
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recherche ;  
+    }
      
       public static String  getOffreStage(Connection con,String id) throws ParserConfigurationException, SAXException, IOException{
         String recherche = "";
@@ -376,6 +424,7 @@ public class Data {
         }
         return result ;
     }
+    
     
     
     /** Supprime l'utilisateur ayant l'email "email" et renvoie "true" si cet utilisateur existait bien, "false" sinon */

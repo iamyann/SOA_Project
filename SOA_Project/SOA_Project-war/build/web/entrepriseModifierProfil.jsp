@@ -126,7 +126,7 @@
                             <a href="entrepriseTableauBord.jsp"><i class="fa fa-fw fa-dashboard"></i> Tableau de bord</a>
                         </li>
                         <li>
-                            <a href="entrepriseConsulterProfil.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
+                            <a href="/SOA_Project-war/Consulter_Profil"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
                         </li>
                         <li>
                             <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>

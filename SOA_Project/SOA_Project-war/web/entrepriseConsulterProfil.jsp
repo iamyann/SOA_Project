@@ -120,7 +120,7 @@
                         <a href="entrepriseTableauBord.jsp"><i class="fa fa-fw fa-dashboard"></i> Tableau de bord</a>
                     </li>
                     <li>
-                        <a href="entrepriseConsulterProfil.jsp"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
+                        <a href="/SOA_Project-war/Consulter_Profil"><i class="fa fa-fw fa-desktop"></i> Consulter un Profil</a>
                     </li>
                     <li>
                         <a href="entrepriseConsulterStage.jsp"><i class="fa fa-fw fa-table"></i> Offres de Stage</a>
@@ -167,15 +167,9 @@
 				<div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">							
-							<label>Nom Etudiant</label>
-							<div class="form-group input-group">								
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
-                            </div>
-                             
-                            <button type="submit" class="btn btn-default">Rechercher</button>
-                            <button type="reset" class="btn btn-default">Reinitialiser</button>
+                        <form method="POST" action="Consulter_Profil">	                            
+                             ${etudiant}   
+                             ${bouton}                            
                         </form>
                     </div>
                 </div>
@@ -184,23 +178,9 @@
 				
                 <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Resume Professionnel</th>
-                                        <th>Etablissement</th>
-                                        <th>Tel</th>
-                                        <th>Email</th>
-                                        <th>Adresse</th>
-                                    </tr>
-                                </thead>
+                                ${resume}                                 
                                 <tbody>
-                                    <tr>
-                                        <td>Actuellement en recherche de stage en ingenierie Cloud</td>
-                                        <td>INSA Toulouse</td>
-                                        <td>06.34.58.49.79</td>
-                                        <td>mboungou@etud.insa-toulouse.fr</td>
-                                        <td>141 Avenue de Rangueil, Toulouse</td>
-                                    </tr>
+                                 ${profil}      
                                 </tbody>
                             </table>
                         </div>
