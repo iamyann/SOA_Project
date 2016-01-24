@@ -158,14 +158,6 @@ public final class ClientWS_DB {
         }       
     }
 
-     public String fromStageToJson(Stage stage){
-        
-        String result;        
-        JSONObject jsonObject = new JSONObject(stage);
-        result  =jsonObject.toString();
-        
-        return result;
-    }
     
     public String getOffreStage(String spe){
     	String result="";
