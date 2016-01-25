@@ -177,6 +177,8 @@
                                         <th>Lieu</th>
                                         <th>Niveau</th>
                                         <th>Remuneration</th>
+                                        <th><b></b></th>
+                                        <th><b></b></th>
                                     </tr>
                                 </thead>
                                 <tbody>

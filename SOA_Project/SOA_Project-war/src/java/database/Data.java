@@ -388,7 +388,7 @@ public class Data {
                 Element line = (Element) name.item(0);
                 String ref = getCharacterDataFromElement(line);
                 System.out.println("*****************************************REFERENCE_Stage: " +ref );
-                recherche +="<td>"+ref+"</td>\n"; //*****************************************
+               // recherche +="<td>"+ref+"</td>\n"; //*****************************************
 
                 NodeList title = element.getElementsByTagName("titresujet");
                 line = (Element) title.item(0);

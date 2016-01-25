@@ -5,6 +5,8 @@
  */
 package servlets;
 
+
+import java.util.Random;
 import bean.Stage;
 import Restclient.ClientWS_DB;
 import java.io.IOException;
@@ -55,9 +57,13 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
             String siret = Data.getElementwithID(c1,id,"SIRET","GUI.COMPANY");//recuperation du siret de l'entreprise dans la BDD
             String nom = Data.getElementwithID(c1,id,"NOM","GUI.COMPANY");//recuperation du nom de l'entreprise dans la BDD
             
+            Random randomGenerator = new Random();
+            int randomInt = randomGenerator.nextInt(10000);
+            String reference = nom+randomInt;
+            
             Stage stage = new Stage();
             stage.setSiret(siret);
-            stage.setReference(nom);
+            stage.setReference(reference);
             stage.setTypecontrat(typecontrat);
             stage.setTitresujet(titresujet);
             stage.setDescriptionsujet(descriptionsujet);
