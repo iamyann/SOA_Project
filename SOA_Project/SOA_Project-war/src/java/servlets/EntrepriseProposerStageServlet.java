@@ -35,8 +35,8 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
             String typecontrat = request.getParameter("typeContrat");
             String titresujet = request.getParameter("titreSujet"); 
             String descriptionsujet = request.getParameter("descriptionSujet");
-            String[] specialite= request.getParameterValues("specialite");
-            String[] niveauetude = request.getParameterValues("niveauEtude");
+            String specialite= request.getParameter("specialite");
+            String niveauetude = request.getParameter("niveauEtude");
             String remuneration = request.getParameter("remuneration");
             String duree = request.getParameter("duree");
             String adresse = request.getParameter("adresse");
@@ -76,7 +76,8 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
             response.getWriter().write(json);
             System.out.println(json);
             ClientWS_DB client = new ClientWS_DB();
-            //client.addStageV2(json);
+            client.addStageV2(json);
+            //client.addStage(siret,nom,"ref"+nom+"010231",descriptionsujet,remuneration,adresse,contactname,contacttel,contactweb,typecontrat,duree,specialite,niveauetude);
             
             request.setAttribute("json",json);
             if (c1 != null) {

@@ -21,8 +21,8 @@ public class Stage {
     private String contactweb; 
     private String typecontrat;
     private String duree;
-    private String[] specialite;
-    private String[] niveauetude;
+    private String specialite;
+    private String niveauetude;
 
     /**
      * @return the siret
@@ -181,28 +181,28 @@ public class Stage {
     /**
      * @return the specialite
      */
-    public String[] getSpecialite() {
+    public String getSpecialite() {
         return specialite;
     }
 
     /**
      * @param specialite the specialite to set
      */
-    public void setSpecialite(String[] specialite) {
+    public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
 
     /**
      * @return the niveauetude
      */
-    public String[] getNiveauetude() {
+    public String getNiveauetude() {
         return niveauetude;
     }
 
     /**
      * @param niveauetude the niveauetude to set
      */
-    public void setNiveauetude(String[] niveauetude) {
+    public void setNiveauetude(String niveauetude) {
         this.niveauetude = niveauetude;
     }
 }

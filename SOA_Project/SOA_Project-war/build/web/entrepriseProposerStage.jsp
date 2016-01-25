@@ -197,7 +197,7 @@
                                 </div> 
                                 <div class="form-group ">
                                     <label>Spécialité</label>
-                                    <select name="specialite" multiple class="form-control" size="3" multiple required>
+                                    <select name="specialite" class="form-control" size="3" required>
                                             <option value="GB">Génie Biochimique</option>
                                             <option value="GC">Génie Civil</option>
                                             <option value="AE">Automatique, Electronique</option>
@@ -211,7 +211,7 @@
                                 
                                 <div class="form-group">
                                     <label>Niveau d'études</label>
-                                    <select name="niveauEtude" multiple class="form-control" size="3" multiple required>
+                                    <select name="niveauEtude"  class="form-control" size="3" required>
                                         <option value="Bac+5">Bac+5</option>
                                         <option value="Bac+4">Bac+4</option>
                                         <option value="Bac+3">Bac+3</option>

@@ -211,7 +211,7 @@ public final class ClientWS_DB {
     
     public void addStage(String siret, String titre, String ref,String desc, String rem,
     		String adresse, String contactname, String contacttel, String contactweb,
-    		String type, String duree, String spe, String niveau){
+    		String type, String duree, String[] spe, String[] niveau){
     	try{   		
     		String json = "{"+
     		        "\"siret\""+":"+"\""+siret+"\""+","+
@@ -252,7 +252,7 @@ public final class ClientWS_DB {
         
         ClientWS_DB db = new ClientWS_DB();
     
-        db.addStage("12345678912344","Olga","ref010","DescrSuj","1000","adresse","contactname",
-        		"0258741963","http://www.ex.ent.fr","stage","7 mois","IR","4A" );       
+        //db.addStage("12345678912344","Olga","ref010","DescrSuj","1000","adresse","contactname",
+        		//"0258741963","http://www.ex.ent.fr","stage","7 mois","IR","4A" );       
     }
 }
