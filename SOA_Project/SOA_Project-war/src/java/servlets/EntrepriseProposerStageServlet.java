@@ -6,6 +6,7 @@
 package servlets;
 
 import bean.Stage;
+import Restclient.ClientWS_DB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -73,7 +74,10 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
-                    
+            System.out.println(json);
+            ClientWS_DB client = new ClientWS_DB();
+            //client.addStageV2(json);
+            
             request.setAttribute("json",json);
             if (c1 != null) {
                 try {
@@ -81,7 +85,7 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
                 } catch (SQLException ignore) {
                 }
             }
-        this.getServletContext().getRequestDispatcher("/entrepriseTestJSON.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/entrepriseConsulterStage.jsp").forward(request, response);
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

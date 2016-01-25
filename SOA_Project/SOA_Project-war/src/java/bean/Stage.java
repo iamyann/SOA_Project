@@ -11,18 +11,18 @@ package bean;
  */
 public class Stage {
     private String siret;
-    private String reference;
-    private String typecontrat;
     private String titresujet ;
-    private String descriptionsujet;
-    private String[] specialite;
-    private String[] niveauetude;
-    private String duree;
+    private String reference;
+    private String descriptionsujet;  
     private String remuneration;
     private String adresse;
     private String contactname;
     private String contacttel;
-    private String contactweb;    
+    private String contactweb; 
+    private String typecontrat;
+    private String duree;
+    private String[] specialite;
+    private String[] niveauetude;
 
     /**
      * @return the siret

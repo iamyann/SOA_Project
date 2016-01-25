@@ -61,9 +61,9 @@ public class CreationCompte extends HttpServlet {
             throws ServletException, IOException {
        String typeCompte=request.getParameter("typeCompte");
        if (typeCompte.equals("entreprise")) {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/creerCompteEntreprise.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/creerCompteEntreprise.jsp").forward(request, response);
        } else {
-            this.getServletContext().getRequestDispatcher("/WEB-INF/creerCompteEtudiant.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/creerCompteEtudiant.jsp").forward(request, response);
        }
     }
 

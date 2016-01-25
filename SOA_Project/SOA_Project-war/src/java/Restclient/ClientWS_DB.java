@@ -178,6 +178,17 @@ public final class ClientWS_DB {
         }
 		return result;
     }
+    
+    public String getUNStage(String siret, String reference){
+    	String result="";
+    	try{            
+            result=this.sendGet("/entities.stages/byRef/"+reference);   
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+		return result;
+    }
+    
     public String getMesCandidatures(String nom){
     	String result="";
     	try{            
@@ -218,6 +229,17 @@ public final class ClientWS_DB {
     		        "\"niveauetude\""+":"+"\""+niveau+"\""+"}";                
     		
     		String result=this.sendPost("/entities.stages", json); 
+    		
+    		System.out.println("insertStage: "+result);
+        }catch(Exception e){
+            System.out.println("NBstage: Exception raised.");
+        }
+    } 
+    
+    public void addStageV2(String leJson){
+    	try{   	
+                       
+    		String result=this.sendPost("/entities.stages", leJson); 
     		
     		System.out.println("insertStage: "+result);
         }catch(Exception e){
