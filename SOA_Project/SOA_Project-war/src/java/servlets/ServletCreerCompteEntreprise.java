@@ -56,7 +56,7 @@ public class ServletCreerCompteEntreprise extends HttpServlet
                     
             /* redirection [Auriol ne supprime rien, car c'est ça qui me permet d'identifier chaque entreprise] */
             session.setAttribute( "prenom", nom);
-            String id=Data.getElement(c1, nom, mdp, "ID", "GUI.COMPANY");
+            String id=Data.getElement(c1, nom, mdp, "ID", "COMPANY");
             System.out.println("[creation Entreprise]ID = "+id);
             session.setAttribute( "id", id);
             RequestDispatcher rd = request.getRequestDispatcher("entrepriseTableauBord.jsp");       

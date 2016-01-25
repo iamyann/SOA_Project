@@ -38,8 +38,8 @@ import org.xml.sax.SAXException;
  * @author yann
  */
 public class Data {
-    private static String username = "gui" ; //Chez moi le root marche pas comme unsername, c plutot gui (Auriole)
-    //private static String username = "root" ;
+    //private static String username = "gui" ; //Chez moi le root marche pas comme unsername, c plutot gui (Auriole)
+    private static String username = "root" ;
     private static String password = "root" ;
     private static String serverName = "localhost";
     private static String portNumber="1527" ;

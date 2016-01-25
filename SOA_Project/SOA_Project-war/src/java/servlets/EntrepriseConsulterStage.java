@@ -5,6 +5,9 @@
  */
 package servlets;
 
+import Restclient.ClientWS_DB;
+import bean.Stage;
+import com.google.gson.Gson;
 import database.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -90,8 +93,7 @@ public class EntrepriseConsulterStage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+       }
 
     /**
      * Returns a short description of the servlet.
