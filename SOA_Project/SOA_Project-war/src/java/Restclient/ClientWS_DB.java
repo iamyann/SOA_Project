@@ -172,7 +172,8 @@ public final class ClientWS_DB {
     public String getStage(String siret){
     	String result="";
     	try{            
-            result=this.sendGet("/com.webservice.stages/bySiret/"+siret);   
+            result=this.sendGet("/entities.stages/bySiret/"+siret);
+            System.out.println("/entities.stages/bySiret/"+siret);
         }catch(Exception e){
             System.out.println("NBstage: Exception raised.");
         }

@@ -86,7 +86,7 @@ public class EntrepriseProposerStageServlet extends HttpServlet {
                 } catch (SQLException ignore) {
                 }
             }
-        this.getServletContext().getRequestDispatcher("/SOA_Project-war/EntrepriseConsulterStage").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/entrepriseTableauBord.jsp").forward(request, response);
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
